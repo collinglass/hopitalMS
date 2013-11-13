@@ -22,6 +22,7 @@ They're described as :
 >
 > Goal: A Staff Member wants to register to the HMS in order to identify
 > himself to the system in order to use its functions
+>
 > Precondition: The HMS is ON
 >
 > Postcondition: The Staff Member is registered
@@ -54,9 +55,13 @@ They're described as :
 > Linked Requirements: F12
 >
 > Goal: A Staff Member wants to identify himself to the system in order to use
-> its functions Precondition: The HMS is ON AND Staff member is not logged in
+> its functions
+>
+> Precondition: The HMS is ON AND Staff member is not logged in
+>
 > Postcondition: The Staff Member is logged in, the Staff Nember's operation
 > choice menu is being displayed with the right priviledges
+>
 > Main Scenario
 >
 > 1. Staff Member enters login information
@@ -200,8 +205,29 @@ Goal: A Staff Member wants to visualize a Patient file. Precondition: The > Staf
 
 ## User stories
 
-* As a anonymous person, I want to create a user account so that I can log in.
-*
+* Register Staff
+
+As a anonymous person, I want to create a staff account so that I can log in.
+
+* Staff Log in
+
+As a logged out staff, I want to log in so that I can access the staff features.
+
+* Staff Log out
+
+As a logged in staff, I want to log out so that I can remove access to my account on this browser.
+
+* Register patient
+
+As a logged in medical staff, I want to register a new Patient so that the patient file can be handled by the system.
+
+* Consult Patient file
+
+As a
+
+* Update Patient file
+* Admit patient
+
 
 # Extras
 
