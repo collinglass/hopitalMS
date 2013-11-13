@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "homepage": "https://github.com/collinglass/moustacheMS",
   "authors": [
-    "Antoine Grondin <antoinegrondin@gmail.com>"
+    "Antoine Grondin <antoinegrondin@gmail.com>",
     "Collin Glass <collinglass92@gmail.com>"
   ],
   "description": "The Moustache Management System, a SEG3102 term project.",
