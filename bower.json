@@ -1,0 +1,23 @@
+{
+  "name": "moustacheMS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/collinglass/moustacheMS",
+  "authors": [
+    "Antoine Grondin <antoinegrondin@gmail.com>"
+    "Collin Glass <collinglass92@gmail.com>"
+  ],
+  "description": "The Moustache Management System, a SEG3102 term project.",
+  "main": "app/index.html",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.0"
+  }
+}
