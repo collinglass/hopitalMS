@@ -10,7 +10,7 @@ func collections(val string) string {
 }
 
 func main() {
-	web.Get("/", http.FileServer(http.Dir("app/")))
+	web.Get("/(.*)", http.FileServer(http.Dir("app/")))
 	web.Get("/api/v1/(.+)", collections)
 	web.Run("0.0.0.0:8080")
 }
