@@ -223,11 +223,15 @@ As a logged in medical staff, I want to register a new Patient so that the patie
 
 * Consult Patient file
 
-As a
+As a logged in medical staff, I want to consult a Patient file so that I can update the Patient file.
 
 * Update Patient file
+
+As a logged in medical staff, I want to update a Patient file so that I can make it relevant information.
+
 * Admit patient
 
+As a logged in Charge Nurse, I want to admit a Patient to my division so that staff in my division may treat him.
 
 # Extras
 
