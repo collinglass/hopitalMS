@@ -1,44 +1,16 @@
-function LoginCtrl($scope) {
-
-  var User = function(login) {
-    var wasNotNull = login || false;
-    login = login ||{};
-    return {
-      name: login.employeeId || "",
-      employeeId: login.employeeId || "",
-      loggedIn: wasNotNull && login.employeeId === login.password
-    };
-  };
-
-  $scope.User = new User();
-
-  $scope.Login = {
-    employeeId: undefined,
-    password: undefined,
-    employeeIdPlaceholder: "Employee ID",
-    passwordPlaceholder: "Password"
-  };
+'use strict';
 
 
-  $scope.onNewAccount = function() {
-    var login = $scope.Login;
-    console.log("New account for :" + JSON.stringify(login));
-  };
-
-  $scope.onLogin = function() {
-    var login = $scope.Login;
-    console.log("Logging in with :" + JSON.stringify(login));
-
-    if (login.employeeId === login.password) {
-      $scope.User = new User(login);
-    } else {
-      // show "invalid username or password"
-      console.log("Invalid username or password :" + JSON.stringify(login));
-    }
-  };
-
-  $scope.onLogOut = function() {
-    console.log("Logging out from :" + $scope.User.name);
-    $scope.User = new User({});
-  };
-}
+// Declare app level module which depends on filters, and services
+angular.module('myApp', [
+  'ngRoute',
+  'myApp.filters',
+  'myApp.services',
+  'myApp.directives',
+  'myApp.controllers'
+]).
+config(['$routeProvider', function($routeProvider) {
+  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
+  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
+  $routeProvider.otherwise({redirectTo: '/view1'});
+}]);
