@@ -1,16 +1,14 @@
 package main
 
 import (
-	"github.com/hoisie/web"
+	"log"
 	"net/http"
 )
 
-func collections(val string) string {
-	return "<html><body><h1>collections <i>" + val + "</i></h1></body></html>"
-}
-
 func main() {
-	web.Get("/(.*)", http.FileServer(http.Dir("app/")))
-	web.Get("/api/v1/(.+)", collections)
-	web.Run("0.0.0.0:8080")
+	log.Println("Starting Server")
+	http.Handle("/", http.FileServer(http.Dir("./app/")))
+
+	log.Println("Listening on 8080")
+	http.ListenAndServe(":8080", nil)
 }
