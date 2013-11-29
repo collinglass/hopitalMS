@@ -1,27 +1,23 @@
 <div ng-controller="LoginCtrl">
-
-
-
-
-  <div id="loginModal" class="modal fade">
     <div class="modal-dialog">
-      <div class="modal-content">
-        <form class="navbar-form navbar-left" role="search">
-          <div class="modal-header">
-            <h4 class="modal-title">Please login</h4>
-          </div>
-          <div class="modal-body form-group">
-            <label class="login-field-icon fui-user" for="login-name"></label>
-            <input type="text" id="login-name" class="form-control" ng-model="Login.employeeId" placeholder="{{Login.employeeIdPlaceholder}}">
-            <label class="login-field-icon fui-lock" for="login-pass"></label>
-            <input type="password" id="login-pass" class="form-control" ng-model="Login.password" placeholder="{{Login.passwordPlaceholder}}">
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-default" ng-click="onNewAccount()">New Account</button>
-            <button type="submit" class="btn btn-default" ng-click="onLogin()">Login</button>
-          </div>
-        </form>
-      </div>
+        <div class="modal-content">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="modal-header">
+                    <h4 class="modal-title">Please login</h4>
+                </div>
+                <div class="modal-body form-group">
+                    <label class="login-field-icon fui-user" for="login-name"></label>
+                    <input type="text" id="login-name" class="form-control" ng-model="Login.employeeId"
+                           placeholder="{{Login.employeeIdPlaceholder}}">
+                    <label class="login-field-icon fui-lock" for="login-pass"></label>
+                    <input type="password" id="login-pass" class="form-control" ng-model="Login.password"
+                           placeholder="{{Login.passwordPlaceholder}}">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-default" ng-click="onNewAccount()">New Account</button>
+                    <button type="submit" class="btn btn-default" ng-click="onLogin()">Login</button>
+                </div>
+            </form>
+        </div>
     </div>
-  </div>
 </div>

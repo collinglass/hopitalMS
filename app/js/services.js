@@ -3,7 +3,10 @@
 /* Services */
 
 
-// Demonstrate how to register services
-// In this case it is a simple value service.
-angular.module('mustacheApp.services', []).
-  value('version', '0.1');
+var mustacheServices = angular.module('mustacheApp.services', ['ngResource']);
+
+mustacheServices.factory("Ward", ["$resource", function($resource){
+    return $resource('/api/v0.1/wards/:wardId', {wardId:'@id'}, {
+        query: {method:'GET', params:{wardId:'@id'}, isArray:true}
+    });
+}]);

@@ -2,25 +2,19 @@
 
 /* Controllers */
 
-angular.module('mustacheApp.controllers', []).
-    controller('LoginCtrl', [function () {
+var controllers = angular.module('mustacheApp.controllers', []);
 
-    }])
-    .controller('RegisterCtrl', [function () {
+controllers.controller('LoginCtrl', [function () {
 
-    }]).controller('WardListCtrl', [function () {
-        // Doing nothing
+}]);
 
-    }]).controller('WardDetailCtrl', ["$scope", function ($scope) {
-        $scope.patients = [
-            {
-                lastName: "Smith",
-                firstName: "John",
-                heathInsNum: "0123 4567 89AB CDEF",
-                roomNum: 9000,
-                bedNum: 42,
-                status: "nominal"
-            }
-        ];
+controllers.controller('RegisterCtrl', [function () {
 
+}]);
+
+controllers.controller('WardListCtrl', ["$scope", "Ward", function ($scope, Ward) {
+        $scope.wards = Ward.query();
+
+    }]).controller('WardDetailCtrl', ["$scope", "$routeParams", "Ward", function ($scope, $routeParams, Ward) {
+        $scope.ward = Ward.get({wardId: $routeParams.wardId});
     }]);
