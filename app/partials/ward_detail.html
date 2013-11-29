@@ -1,5 +1,5 @@
 <div ng-controller="WardDetailCtrl">
-    <h5>Ward View({{getTotalPatients()}})</h5>
+    <h5>Ward View({{patients.length}})</h5>
     <button class="btn btn-primary btn-margin">Register</button>
     <button class="btn btn-danger btn-margin">Discharge</button>
     <button class="btn btn-warning btn-margin">Transfer</button>
@@ -27,7 +27,7 @@
 
     <br>
     <br>
-    <h5>Admissions({{getTotalAdmissions()}})</h5> <!-- Make Dynamic -->
+    <h5>Admissions({{admissions.length}})</h5> <!-- Make Dynamic -->
 
     <button class="btn btn-primary btn-margin" ng-click="admitPatient()">Admit</button>
     <button class="btn btn-danger btn-margin">Refuse</button>
