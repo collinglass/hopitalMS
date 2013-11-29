@@ -1,29 +1,55 @@
 <!doctype html>
-<html lang="en" ng-app="myApp">
+<html lang="en" ng-app="mustacheApp">
 <head>
-  <meta charset="utf-8">
-  <title>My AngularJS App</title>
-  <link rel="stylesheet" href="css/app.css"/>
+    <meta charset="utf-8">
+    <title>The Mustache PMS</title>
+    <!-- Loading Bootstrap with Flat UI -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/flat-ui.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet"/>
 </head>
 <body>
-  <ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-  </ul>
 
-  <div ng-view></div>
+<nav class="navbar navbar-default navbar-static-top" role="navigation">
+    <a class="navbar-brand" href="#">The Mustache PMS</a>
 
-  <div>Angular seed app: v<span app-version></span></div>
+    <div ng-if="!User.loggedIn">
+        <button class="navbar-toggle"
+                data-toggle="modal"
+                data-target="#loginModal">Login
+        </button>
+    </div>
+    <div ng-if="User.loggedIn">
+        <p class="navbar-text navbar-right">Signed in as
+            <a href="#" class="navbar-link">{{User.name}}</a>
+        </p>
+        <button class="navbar-toggle" ng-click="onLogOut()">
+            Log out
+        </button>
+    </div>
 
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-  -->
-  <script src="lib/angular/angular.js"></script>
-  <script src="lib/angular/angular-route.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/filters.js"></script>
-  <script src="js/directives.js"></script>
+    <ul class="nav navbar-nav navbar-right">
+        <li><a href="#/login">Login</a></li>
+        <li><a href="#/register">Register</a></li>
+        <li><a href="#/ward">Ward</a></li>
+    </ul>
+</nav>
+
+<div ng-view></div>
+
+
+
+<div>Angular seed app: v<span app-version></span></div>
+
+<!-- In production use:
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+-->
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular/angular-route.js"></script>
+<script src="js/app.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/filters.js"></script>
+<script src="js/directives.js"></script>
 </body>
 </html>

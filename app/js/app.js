@@ -2,15 +2,29 @@
 
 
 // Declare app level module which depends on filters, and services
-angular.module('myApp', [
-  'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'MyCtrl1'});
-  $routeProvider.when('/view2', {templateUrl: 'partials/partial2.html', controller: 'MyCtrl2'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);
+angular.module('mustacheApp', [
+        'ngRoute',
+        'mustacheApp.filters',
+        'mustacheApp.services',
+        'mustacheApp.directives',
+        'mustacheApp.controllers'
+    ]).
+    config(['$routeProvider', function ($routeProvider) {
+        $routeProvider.when('/login', {
+            templateUrl: 'partials/login.html',
+            controller: 'LoginCtrl'
+        });
+        $routeProvider.when('/register', {
+            templateUrl: 'partials/register.html',
+            controller: 'RegisterCtrl'
+        });
+        $routeProvider.when('/ward', {
+            templateUrl: 'partials/ward_list.html',
+            controller: 'WardListCtrl'
+        });
+        $routeProvider.when('/ward/:wardId', {
+            templateUrl: 'partials/ward_detail.html',
+            controller: 'WardDetailCtrl'
+        });
+        $routeProvider.otherwise({redirectTo: '/login'});
+    }]);

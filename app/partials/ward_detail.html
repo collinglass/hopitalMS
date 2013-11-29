@@ -1,0 +1,21 @@
+<div ng-controller="WardDetailCtrl">
+    <table class="table table-striped table-bordered table-condensed">
+        <th>
+            <td>Last Name <b class="caret"></b></td>
+            <td>First Name <b class="caret"></b></td>
+            <td>Health Ins# <b class="caret"></b></td>
+            <td>Room <b class="caret"></b></td>
+            <td>Bed <b class="caret"></b></td>
+            <td>Status <b class="caret"></b></td>
+        </th>
+        <tr ng-repeat="patient in patients">
+            <td class="active"></td>
+            <td>{{patient.lastName}}</td>
+            <td>{{patient.firstName}}</td>
+            <td>{{patient.heathInsNum}}</td>
+            <td>{{patient.roomNum}}</td>
+            <td>{{patient.bedNum}}</td>
+            <td>{{patient.status}}</td>
+        </tr>
+    </table>
+</div>

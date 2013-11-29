@@ -1,0 +1,20 @@
+<div ng-controller="RegisterCtrl">
+    <div class="modal fade" id="create" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p>Create Account</p>
+                </div>
+                <form class="create-account input-group">
+                    <input type="text" ng-model="email" placeholder="email@moustache.com"
+                           class="form-control input-create">
+                    <input type="text" ng-model="firstName" placeholder="First Name" class="form-control input-create">
+                    <input type="text" ng-model="lastName" placeholder="Last Name" class="form-control input-create">
+                    <button class="btn btn-hg btn-primary btn-create">
+                        Create!
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

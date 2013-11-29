@@ -1,40 +1,6 @@
-<!DOCTYPE html>
-<html ng-app>
-<head>
-  <title>Login</title>
-  <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-  <!-- Angular -->
-  <script type="text/javascript" src="components/angular/angular.js"></script>
-  <script type="text/javascript" src="js/app.js"></script>
-
-  <!-- Loading Bootstrap with Flat UI -->
-  <link href="css/bootstrap.css" rel="stylesheet">
-  <link href="css/flat-ui.css" rel="stylesheet">
-</head>
-
-<body>
 <div ng-controller="LoginCtrl">
 
-  <nav class="navbar navbar-default navbar-static-top" role="navigation">
-    <a class="navbar-brand" href="#">The Mustache PMS</a>
 
-    <div ng-if="!User.loggedIn">
-      <button class="navbar-toggle"
-              data-toggle="modal"
-              data-target="#loginModal">Login
-      </button>
-    </div>
-    <div ng-if="User.loggedIn">
-      <p class="navbar-text navbar-right">Signed in as
-        <a href="#" class="navbar-link">{{User.name}}</a>
-      </p>
-      <button class="navbar-toggle" ng-click="onLogOut()">
-        Log out
-      </button>
-    </div>
-  </nav>
 
 
   <div id="loginModal" class="modal fade">
@@ -59,7 +25,3 @@
     </div>
   </div>
 </div>
-
-</body>
-
-</html>
