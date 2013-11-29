@@ -4,7 +4,7 @@
     <!-- Loading Bootstrap with Flat UI -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/flat-ui.css" rel="stylesheet">
-    <link href="css/moustache.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
 
     <!-- Angular -->
     <script src="components/angular/angular.js"></script>
@@ -41,6 +41,12 @@
         </ul>
       </div><!-- /.navbar-collapse -->
     </nav>
+    
+    <h5>Ward View</h5>
+    <button class="btn btn-primary btn-margin">Register</button>
+    <button class="btn btn-danger btn-margin">Discharge</button>
+    <button class="btn btn-warning btn-margin">Transfer</button>
+
 
     <table class="table table-striped table-bordered table-condensed">
       <th>
@@ -52,13 +58,130 @@
         <td>Status <b class="caret"></b></td>
       </th>
       <tr>
-        <td class="active">...</td>
+        <td class="active">
+          <label class="checkbox" for="checkbox1">
+            <span class="icons">
+              <span class="first-icon fui-checkbox-unchecked"></span>
+              <span class="second-icon fui-checkbox-checked"></span>
+            </span>
+            <input id="checkbox1" type="checkbox" data-toggle="checkbox" value="">
+          </label>
+        </td>
+        <td>Doe</td>
+        <td>John</td>
+        <td>9000</td>
+        <td>42</td>
+        <td>2</td>
+        <td class="warning">transfer...</td> <!-- use class="active,warning,danger,..." for status -->
+      </tr>
+      <tr>
+        <td class="active">
+          <label class="checkbox" for="checkbox1">
+            <span class="icons">
+              <span class="first-icon fui-checkbox-unchecked"></span>
+              <span class="second-icon fui-checkbox-checked"></span>
+            </span>
+            <input id="checkbox1" type="checkbox" data-toggle="checkbox" value="">
+          </label>
+        </td>
+        <td>Doe</td>
+        <td>Jane</td>
+        <td>9001</td>
+        <td>42</td>
+        <td>1</td>
+        <td>Active</td> <!-- use class="active,warning,danger,..." for status -->
+      </tr>
+      <tr>
+        <td class="active">
+          <label class="checkbox" for="checkbox1">
+            <span class="icons">
+              <span class="first-icon fui-checkbox-unchecked"></span>
+              <span class="second-icon fui-checkbox-checked"></span>
+            </span>
+            <input id="checkbox1" type="checkbox" data-toggle="checkbox" value="">
+          </label>
+        </td>
         <td>...</td>
         <td>...</td>
         <td>...</td>
         <td>...</td>
         <td>...</td>
+        <td>...</td> <!-- use class="active,warning,danger,..." for status -->
+      </tr>
+    </table>
+
+    <!-- Charge Nurse::Admission table -->
+    <br>
+    <br>
+    <h5>Admissions(2)</h5> <!-- Make Dynamic -->
+
+    <button class="btn btn-primary btn-margin">Admit</button>
+    <button class="btn btn-danger btn-margin">Refuse</button>
+    <button class="btn btn-info btn-margin">View</button>
+
+
+    <table class="table table-striped table-bordered table-condensed">
+      <th>
+        <td>Last Name <b class="caret"></b></td>
+        <td>First Name <b class="caret"></b></td>
+        <td>Health Ins# <b class="caret"></b></td>
+        <td>Outbound Ward<b class="caret"></b></td>
+        <td>Outbound Nurse <b class="caret"></b></td>
+        <td>Priority <b class="caret"></b></td>
+        <td>Rationale <b class="caret"></b></td>
+      </th>
+      <tr>
+        <td class="active">
+          <label class="checkbox" for="checkbox1">
+            <span class="icons">
+              <span class="first-icon fui-checkbox-unchecked"></span>
+              <span class="second-icon fui-checkbox-checked"></span>
+            </span>
+            <input id="checkbox1" type="checkbox" data-toggle="checkbox" value="">
+          </label>
+        </td>
+        <td>Doe</td>
+        <td>John</td>
+        <td>9000</td>
+        <td>Psych</td>
+        <td>Nurse Swallows</td>
+        <td class="warning">Medium</td> <!-- use class="active,warning,danger,..." for status -->
+        <td>The patient...</td> <!-- Make link for rationale window -->
+      </tr>
+      <tr>
+        <td class="active">
+          <label class="checkbox" for="checkbox1">
+            <span class="icons">
+              <span class="first-icon fui-checkbox-unchecked"></span>
+              <span class="second-icon fui-checkbox-checked"></span>
+            </span>
+            <input id="checkbox1" type="checkbox" data-toggle="checkbox" value="">
+          </label>
+        </td>
+        <td>Doe</td>
+        <td>Jane</td>
+        <td>9001</td>
+        <td>Pediatrics</td>
+        <td>Nurse Balls</td>
+        <td class="danger">High</td> <!-- use class="active,warning,danger,..." for status -->
+        <td>The patient...</td>
+      </tr>
+      <tr>
+        <td class="active">
+          <label class="checkbox" for="checkbox1">
+            <span class="icons">
+              <span class="first-icon fui-checkbox-unchecked"></span>
+              <span class="second-icon fui-checkbox-checked"></span>
+            </span>
+            <input id="checkbox1" type="checkbox" data-toggle="checkbox" value="">
+          </label>
+        </td>
         <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td>
+        <td>...</td> <!-- use class="active,warning,danger,..." for status -->
       </tr>
     </table>
     
@@ -67,4 +190,5 @@
 
   <script type="text/javascript" src="js/jquery-2.0.3.min.js"></script>
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/app.js"></script>
 </html>
