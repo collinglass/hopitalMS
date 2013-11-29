@@ -29,8 +29,15 @@
   padding: 0;
 }
 
-.btn-create {
+.btn-margin {
+  margin-left: 2px;
+  margin-bottom: 5px;
 }
+
+.selected-true {
+  background-color: #d9d9d9;
+}
+
 .input-group {
     padding: 15px;
 }
