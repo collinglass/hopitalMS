@@ -1,0 +1,24 @@
+{
+    "name": "East Ward",
+    "patients": [
+        {
+            "lastName": "Smith",
+            "firstName": "John",
+            "healthInsNum": "0123 4567 89AB CDEF",
+            "roomNum": 9000,
+            "bedNum": 42,
+            "status": "nominal"
+        }
+    ],
+    "admissions": [
+        {
+            "lastName": "Balls",
+            "firstName": "Harry",
+            "healthInsNum": "9876 5432 10FE DCBA",
+            "outboundWard": 9001,
+            "outboundNurse": 41,
+            "priority": "nominal",
+            "rationale": "The patient..."
+        }
+    ]
+}
