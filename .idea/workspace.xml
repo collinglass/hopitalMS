@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9853f8-067b-4a2e-97c8-432883a1d55d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/server.go" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/css/app.css" afterPath="$PROJECT_DIR$/app/css/app.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/app.js" afterPath="$PROJECT_DIR$/app/js/app.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/filters.js" afterPath="$PROJECT_DIR$/app/js/filters.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/ward_detail.html" afterPath="$PROJECT_DIR$/app/partials/ward_detail.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="moustacheMS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,10 +27,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="31" selection-start="682" selection-end="682" vertical-scroll-proportion="0.36182335" vertical-offset="61" max-vertical-offset="870">
+            <state line="14" column="0" selection-start="466" selection-end="466" vertical-scroll-proportion="-6.2083335" vertical-offset="61" max-vertical-offset="870">
               <folding />
             </state>
           </provider>
@@ -42,7 +39,7 @@
       <file leaf-file-name="app.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="34" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="540">
+            <state line="29" column="8" selection-start="974" selection-end="974" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="675">
               <folding />
             </state>
           </provider>
@@ -69,18 +66,18 @@
       <file leaf-file-name="ward_detail.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="44" selection-start="734" selection-end="734" vertical-scroll-proportion="-6.25" vertical-offset="90" max-vertical-offset="960">
+            <state line="16" column="44" selection-start="731" selection-end="731" vertical-scroll-proportion="-6.25" vertical-offset="90" max-vertical-offset="960">
               <folding>
-                <marker date="1385697825000" expanded="true" signature="35:42" placeholder="..." />
+                <marker date="1385699575000" expanded="true" signature="35:42" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="0" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+            <state line="16" column="36" selection-start="340" selection-end="340" vertical-scroll-proportion="0.33660588" vertical-offset="0" max-vertical-offset="713">
               <folding />
             </state>
           </provider>
@@ -511,7 +508,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="34" selection-start="646" selection-end="646" vertical-scroll-proportion="0.0" vertical-offset="30" max-vertical-offset="540">
+        <state line="29" column="8" selection-start="974" selection-end="974" vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="675">
           <folding />
         </state>
       </provider>
@@ -525,9 +522,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="44" selection-start="734" selection-end="734" vertical-scroll-proportion="-6.25" vertical-offset="90" max-vertical-offset="960">
+        <state line="16" column="44" selection-start="731" selection-end="731" vertical-scroll-proportion="-6.25" vertical-offset="90" max-vertical-offset="960">
           <folding>
-            <marker date="1385697825000" expanded="true" signature="35:42" placeholder="..." />
+            <marker date="1385699575000" expanded="true" signature="35:42" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -553,13 +550,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="0" selection-start="219" selection-end="219" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/register.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="13" column="25" selection-start="746" selection-end="746" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="345">
@@ -576,7 +566,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="31" selection-start="682" selection-end="682" vertical-scroll-proportion="0.36182335" vertical-offset="61" max-vertical-offset="870">
+        <state line="14" column="0" selection-start="466" selection-end="466" vertical-scroll-proportion="-6.2083335" vertical-offset="61" max-vertical-offset="870">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="36" selection-start="340" selection-end="340" vertical-scroll-proportion="0.33660588" vertical-offset="0" max-vertical-offset="713">
           <folding />
         </state>
       </provider>

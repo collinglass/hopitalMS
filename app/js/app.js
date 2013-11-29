@@ -28,3 +28,12 @@ angular.module('mustacheApp', [
         });
         $routeProvider.otherwise({redirectTo: '/login'});
     }]);
+
+$scope.admitPatient = function() {
+    angular.forEach($scope.admissions, function(obj) {
+        if ( obj.selected == true ) {
+            $scope.patients.push({lastName: obj.lastName, firstName: obj.firstName, healthInsNum: obj.healthInsNum, roomNum: "00", bedNum: "00", status: "nominal",});
+            $scope.admissions.splice(obj, 1);
+        }
+    });
+};
