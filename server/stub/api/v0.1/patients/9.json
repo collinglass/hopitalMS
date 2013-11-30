@@ -1,3 +1,12 @@
-            "lastName": "Philips",
-            "firstName": "Philip",
-            "healthInsNum": "5736 2098 53ED ASKJ",
+{
+	"patientId": 9,
+	"lastName": "Philips",
+	"firstName": "Philip",
+	"healthInsNum": "5736 2098 53ED ASKJ",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "married",
+	"nextOfKin": 9
+}

@@ -1,3 +1,13 @@
-            "lastName": "Hats",
-            "firstName": "Jason",
-            "healthInsNum": "0689 7594 93JF LOHR",
+{
+	"patientId": 4,
+	"lastName": "Hats",
+	"firstName": "Jason",
+	"healthInsNum": "0689 7594 93JF LOHR",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "married",
+	"nextOfKin": 4
+
+}            

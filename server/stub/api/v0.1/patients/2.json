@@ -1,5 +1,5 @@
 {
-    "patientId": 1,
+    "patientId": 2,
     "lastName": "Jimmy",
     "firstName": "Hendrix",
     "healthInsNum": "4562 8472 19EN JUAA",
@@ -8,5 +8,5 @@
     "dateOfBirth": "1987-04-23T00:00:00.000Z",
     "gender": "male",
     "maritalStatus": "single",
-    "nextOfKin": 1
+    "nextOfKin": 2
 }

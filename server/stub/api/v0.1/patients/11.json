@@ -1,3 +1,12 @@
-            "lastName": "Marley",
-            "firstName": "Bob",
-            "healthInsNum": "5324 7382 77LI EUSH",
+{
+	"patientId": 11,
+	"lastName": "Marley",
+	"firstName": "Bob",
+	"healthInsNum": "5324 7382 77LI EUSH",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "single",
+	"nextOfKin": 11
+}
