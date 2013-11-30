@@ -33,8 +33,8 @@
         {"patientId": 5, "toWardId": 2, "inProgress": true, "refusal": null}
     ],
     "admissionsRequest": [
-        {"patientId": 6, "fromWardId": 9001, "priority": "nominal", "rationale": "The patient is ill."},
-        {"patientId": 7, "fromWardId": 9002, "priority": "nominal", "rationale": "The patient is sick."},
-        {"patientId": 8, "fromWardId": 9003, "priority": "tranfer", "rationale": "The patient broke his pinky."}
+        {"patientId": 6, "fromWardId": 2, "priority": "low", "rationale": "The patient is ill."},
+        {"patientId": 7, "fromWardId": 2, "priority": "low", "rationale": "The patient is sick."},
+        {"patientId": 8, "fromWardId": 2, "priority": "high", "rationale": "The patient broke his pinky."}
     ]
 }

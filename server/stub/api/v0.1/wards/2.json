@@ -36,7 +36,7 @@
     "admissionsResponse": [
         {"patientId": 6, "toWardId": 1, "inProgress":true, "refusal": null},
         {"patientId": 7, "toWardId": 1, "inProgress":true, "refusal": null},
-        {"patientId": 8, "toWardId": 1, "inProgress":true, "refusal": "She's a jerk, keep her"}
+        {"patientId": 8, "toWardId": 1, "inProgress":false, "refusal": "She's a jerk, keep her"}
     ],
     "admissionsRequest": [
         {"patientId": 4, "fromWardId": 1, "priority": "high", "rationale": "The patient hurt his back."},
