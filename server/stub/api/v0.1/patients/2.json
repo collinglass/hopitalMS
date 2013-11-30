@@ -8,6 +8,10 @@
     "dateOfBirth": "1987-04-23T00:00:00.000Z",
     "gender": "male",
     "maritalStatus": "single",
-    "nextOfKin": 1,
-    "nokRelationship": "Brother"
+    "nextOfKin": {
+                    "name" : "Somebody Close to that person",
+                    "relationship" : "brother",
+                    "address" :"Somewhere way to far",
+                    "phoneNum" : "666-666-6666"
+    }
 }
