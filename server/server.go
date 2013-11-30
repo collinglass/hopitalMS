@@ -47,7 +47,7 @@ func restStubHandler(prefix string) http.HandlerFunc {
 		verb := req.Method
 
 		dir, file := path.Split(req.URL.String())
-		fmt.Printf("Method %v Path: %v File: %v\n", verb, dir, file)
+		log.Printf("Method %v Collection: %v Member: %v\n", verb, dir, file)
 
 		prefixDir := filepath.Join(filepath.Clean(prefix), filepath.Clean(dir))
 		if file != "" {
@@ -64,7 +64,6 @@ func restStubHandler(prefix string) http.HandlerFunc {
 
 func restMemberStub(verb, dir, file string, rw http.ResponseWriter, req *http.Request) {
 	filename := filepath.Join(dir, file)
-	log.Printf("Trying to open file %s", filename)
 	f, err := os.Open(filename)
 	if err != nil && !os.IsNotExist(err) {
 		log.Printf("Error, %v", err)
@@ -72,7 +71,6 @@ func restMemberStub(verb, dir, file string, rw http.ResponseWriter, req *http.Re
 		return
 	}
 	if err != nil && os.IsNotExist(err) {
-		log.Printf("Not found, %v", err)
 		f, err = tryFindFile(dir, file)
 		if err != nil && !os.IsNotExist(err) {
 			log.Printf("No match, %v", err)
@@ -99,7 +97,6 @@ func restMemberStub(verb, dir, file string, rw http.ResponseWriter, req *http.Re
 		return
 	}
 
-	log.Printf("Writing response")
 	setContentTypeFromReq(rw, req)
 	n, err := rw.Write(bytes)
 	if err != nil {
@@ -110,7 +107,6 @@ func restMemberStub(verb, dir, file string, rw http.ResponseWriter, req *http.Re
 }
 
 func tryFindFile(dirname, name string) (*os.File, error) {
-	log.Printf("Trying to find file matching %s in %s", name, dirname)
 	finfos, err := ioutil.ReadDir(dirname)
 	if err != nil {
 		return nil, err
@@ -120,7 +116,6 @@ func tryFindFile(dirname, name string) (*os.File, error) {
 			continue
 		}
 		if name == stripExtension(fi.Name()) {
-			log.Printf("Found %s", fi.Name())
 			return os.Open(filepath.Join(dirname, fi.Name()))
 		}
 	}

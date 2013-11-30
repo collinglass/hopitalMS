@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-
+var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
 controllers.controller('LoginCtrl', [function () {
@@ -14,31 +14,46 @@ controllers.controller('RegisterCtrl', [function () {
 }]);
 
 controllers.controller('WardListCtrl', ["$scope", "Ward", function ($scope, Ward) {
-        $scope.wards = Ward.query();
-    }]).controller('WardDetailCtrl', ["$scope", "$routeParams", "Ward", function ($scope, $routeParams, Ward) {
+
+        Ward.query(function(wards) {
+            $scope.wards = wards;
+        });
+
+
+    }]).controller('WardDetailCtrl', ["$scope", "$routeParams", "Ward", "Patient", function ($scope, $routeParams, Ward, Patient) {
+
         Ward.get({wardId: $routeParams.wardId}, function (ward) {
             $scope.ward = ward;
             $scope.patients = ward.patients;
-            $scope.admissions = ward.admissions;
+            $scope.admissionsRequest = ward.admissionsRequest;
+            $scope.admissionsResponse = ward.admissionsResponse;
 
-            $scope.admisions.admit = function () {
 
-                angular.forEach($scope.admissions, function (patient) {
-                    if (!patient.selected) {
-                        // ignore those that aren't selected
-                        return;
-                    }
-                    $scope.patients.push({
-                        lastName: patient.lastName,
-                        firstName: patient.firstName,
-                        healthInsNum: patient.healthInsNum,
-                        roomNum: "00",
-                        bedNum: "00",
-                        status: "nominal"
-                    });
 
-                    $scope.admissions.splice(patient, 1);
+            $scope.patients.forEach(function(patient){
+                Patient.get({patientId:patient.patientId}, function(patientDetails){
+                    patient.details = patientDetails;
+
                 });
+            });
+
+            $scope.admissionsRequest.forEach(function(request){
+                Patient.get({patientId:request.patientId}, function(patientDetails){
+                    request.patientDetails = patientDetails;
+
+                });
+            });
+
+            $scope.admissionsResponse.forEach(function(response){
+                Patient.get({patientId:response.patientId}, function(patientDetails){
+                    response.patientDetails = patientDetails;
+
+                });
+            });
+
+
+            $scope.admissionsRequest.admit = function () {
+
             };
 
             $scope.patients.discharge = function () {

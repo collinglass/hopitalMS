@@ -1,7 +1,7 @@
 'use strict';
 
 /* Filters */
-
+var angular = angular || {}; // To shut JSHint
 var mustacheFilters = angular.module('mustacheApp.filters', []);
 
 mustacheFilters.
