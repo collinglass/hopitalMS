@@ -30,8 +30,8 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward",
 
     }]);
 
-controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient",
-    function ($scope, $location, $routeParams, Ward, Patient) {
+controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee) {
 
         $scope.go = function (path) {
             $location.path(path);
@@ -43,11 +43,15 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionsRequest = ward.admissionsRequest;
             $scope.admissionsResponse = ward.admissionsResponse;
 
-
             $scope.patients.forEach(function (patient) {
                 Patient.get({patientId: patient.patientId}, function (patientDetails) {
                     patient.details = patientDetails;
 
+                });
+                ward.beds.forEach(function(bed){
+                    if(bed.bedId === patient.bedId) {
+                        patient.roomId = bed.roomId;
+                    }
                 });
             });
 
@@ -56,6 +60,13 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                     request.patientDetails = patientDetails;
 
                 });
+
+                Ward.get({wardId: request.fromWardId}, function(fromWard) {
+                   request.fromWard = fromWard;
+                    Employee.get({employeeId: fromWard.chargeNurseId}, function(nurse) {
+                        request.chargeNurseName = nurse.firstName + " " + nurse.lastName;
+                    });
+                });
             });
 
             $scope.admissionsResponse.forEach(function (response) {
@@ -63,7 +74,6 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                     response.patientDetails = patientDetails;
                 });
             });
-
 
             $scope.admissionsRequest.admit = function () {
                 console.log("I AINT ADMITIN NOTHIN");
@@ -79,10 +89,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                     $scope.patients.splice(index, 1);
                 });
             };
-
         });
-
-
     }]);
 
 

@@ -3,7 +3,7 @@
     "passwordHash": "garbblegarbble",
     "passwordSalt": "0xDEADBEEF",
     "firstName": "Samantha",
-    "lastname": "Fox",
-    "email": "samantha@fox.com"
+    "lastName": "Fox",
+    "email": "samantha@fox.com",
     "roles": [1, 3]
 }

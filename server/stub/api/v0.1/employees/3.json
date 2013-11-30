@@ -3,7 +3,7 @@
     "passwordHash": "garbblegarbble",
     "passwordSalt": "0xDEADBEEF",
     "firstName": "Jimmy",
-    "lastname": "Got Talent",
+    "lastName": "Got Talent",
     "email": "stuff@somewhere.com",
     "roles": [1, 3]
 }

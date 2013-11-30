@@ -3,7 +3,7 @@
     "passwordHash": "garbblegarbble",
     "passwordSalt": "0xDEADBEEF",
     "firstName": "Monica",
-    "lastname": "Lewingski",
+    "lastName": "Lewingski",
     "email": "prez@whitehouse.gov",
     "roles": [2, 3]
 }
