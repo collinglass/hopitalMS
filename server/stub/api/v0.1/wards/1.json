@@ -1,89 +1,40 @@
 {
-    "id" : 1,
+    "wardId" : 1,
     "name": "East Ward",
-    "patients": [
-        {
-            "patientId": 1,
-            "roomNum": 9000,
-            "bedNum": 42,
-            "status": "nominal"
-        },
-        {
-            "patientId": 2,
-            "roomNum": 9005,
-            "bedNum": 65,
-            "status": "nominal"
-        },
-        {
-            "patientId": 5,
-            "roomNum": 9010,
-            "bedNum": 71,
-            "status": "nominal"
-        },
-        {
-            "patientId": 6,
-            "roomNum": 9015,
-            "bedNum": 16,
-            "status": "transfer"
-        },
-        {
-            "patientId": 7,
-            "roomNum": 9020,
-            "bedNum": 26,
-            "status": "nominal"
-        },
-        {
-            "patientId": 8,
-            "roomNum": 9025,
-            "bedNum": 34,
-            "status": "transfer"
-        },
-        {
-            "patientId": 9,
-            "roomNum": 9030,
-            "bedNum": 74,
-            "status": "nomina"
-        },
-        {
-            "patientId": 10,
-            "roomNum": 9035,
-            "bedNum": 22,
-            "status": "nominal"
-        },
-        {
-            "patientId": 11,
-            "roomNum": 9040,
-            "bedNum": 56,
-            "status": "nominal"
-        },
-        {
-            "patientId": 12,
-            "roomNum": 9045,
-            "bedNum": 76,
-            "status": "nominal"
-        }
+    "chargeNurseId": 1,
+    "doctorId": 2,
+    "beds": [
+        {"bedId": 1000, "roomId": 100},
+        {"bedId": 1001, "roomId": 100},
+        {"bedId": 1002, "roomId": 101},
+        {"bedId": 1003, "roomId": 101},
+        {"bedId": 1004, "roomId": 102},
+        {"bedId": 1005, "roomId": 102},
+        {"bedId": 1006, "roomId": 103},
+        {"bedId": 1007, "roomId": 103},
+        {"bedId": 1008, "roomId": 104},
+        {"bedId": 1009, "roomId": 104},
+        {"bedId": 1010, "roomId": 105},
+        {"bedId": 1011, "roomId": 105},
+        {"bedId": 1012, "roomId": 106},
+        {"bedId": 1013, "roomId": 106},
+        {"bedId": 1014, "roomId": 107},
+        {"bedId": 1015, "roomId": 107}
     ],
-    "admissions": [
-        {
-            "patientId": 13,
-            "outboundWardId": 9001,
-            "outboundNurseEmplId": 41,
-            "priority": "nominal",
-            "rationale": "The patient is ill."
-        },
-        {
-            "patientId": 1,
-            "outboundWardId": 9002,
-            "outboundNurseEmplId": 14,
-            "priority": "nominal",
-            "rationale": "The patient is sick."
-        },
-        {
-            "patientId": 2,
-            "outboundWardId": 9003,
-            "outboundNurseEmplId": 28,
-            "priority": "tranfer",
-            "rationale": "The patient broke his pinky."
-        }
+    "patients": [
+        {"patientId": 1, "bedId": 1000, "status": "nominal"},
+        {"patientId": 2, "bedId": 1001, "status": "nominal"},
+        {"patientId": 3, "bedId": 1002, "status": "nominal"},
+        {"patientId": 4, "bedId": 1003, "status": "transfer"},
+        {"patientId": 5, "bedId": 1004, "status": "transfer"}
+    ],
+    "admissionsResponse": [
+        {"patientId": 4, "toWardId": 2, "inProgress": false, "refusal": "Not our business"},
+        {"patientId": 5, "toWardId": 2, "inProgress": true, "refusal": null}
+    ],
+    "admissionsRequest": [
+        {"patientId": 6, "fromWardId": 2, "priority": "low", "rationale": "The patient is ill."},
+        {"patientId": 7, "fromWardId": 2, "priority": "low", "rationale": "The patient is sick."},
+        {"patientId": 8, "fromWardId": 2, "priority": "high", "rationale": "The patient broke his pinky."}
     ]
 }

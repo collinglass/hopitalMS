@@ -1,0 +1,9 @@
+{
+    "employeeId": 4,
+    "passwordHash": "garbblegarbble",
+    "passwordSalt": "0xDEADBEEF",
+    "firstName": "Monica",
+    "lastname": "Lewingski",
+    "email": "prez@whitehouse.gov",
+    "roles": [2, 3]
+}

@@ -2,7 +2,7 @@
 
     <h5>{{ward.name}} {{'(' + patients.length + ')'}}</h5>
 
-    <button class="btn btn-primary btn-margin">Register</button>
+    <button class="btn btn-primary btn-margin" ng-click="go('/patients')">Register</button>
     <button class="btn btn-danger btn-margin" ng-click="dischargePatient()">Discharge</button>
     <button class="btn btn-warning btn-margin">Transfer</button>
 
@@ -17,20 +17,20 @@
         </th>
         <tr ng-repeat="patient in patients" class="selected-{{patient.selected}}">
             <td class="active"><input type="checkbox" ng-model="patient.selected"></td>
-            <td>{{patient.lastName}}</td>
-            <td>{{patient.firstName}}</td>
-            <td>{{patient.healthInsNum}}</td>
-            <td>{{patient.roomNum}}</td>
-            <td>{{patient.bedNum}}</td>
+            <td>{{patient.details.lastName}}</td>
+            <td>{{patient.details.firstName}}</td>
+            <td>{{patient.details.healthInsNum}}</td>
+            <td>{{patient.roomId}}</td>
+            <td>{{patient.bedId}}</td>
             <td>{{patient.status}}</td>
         </tr>
     </table>
 
     <br>
     <br>
-    <h5>Admissions ({{admissions.length}})</h5> <!-- Make Dynamic -->
+    <h5>Admissions ({{admissionsRequest.length}})</h5> <!-- Make Dynamic -->
 
-    <button class="btn btn-primary btn-margin" ng-click="admitPatient()">Admit</button>
+    <button class="btn btn-primary btn-margin" ng-click="admissionsRequest.admit()">Admit</button>
     <button class="btn btn-danger btn-margin">Refuse</button>
     <button class="btn btn-info btn-margin">View</button>
 
@@ -44,15 +44,15 @@
             <td>Priority <b class="caret"></b></td>
             <td>Rationale <b class="caret"></b></td>
         </th>
-        <tr ng-repeat="admission in admissions" class="selected-{{admission.selected}}">
-            <td class="active"><input type="checkbox" ng-model="admission.selected"></td>
-            <td>{{admission.lastName}}</td>
-            <td>{{admission.firstName}}</td>
-            <td>{{admission.healthInsNum}}</td>
-            <td>{{admission.outboundWard}}</td>
-            <td>{{admission.outboundNurse}}</td>
-            <td>{{admission.priority}}</td>
-            <td>{{admission.rationale}}</td>
+        <tr ng-repeat="request in admissionsRequest" class="selected-{{request.selected}}">
+            <td class="active"><input type="checkbox" ng-model="request.selected"></td>
+            <td>{{request.patientDetails.lastName}}</td>
+            <td>{{request.patientDetails.firstName}}</td>
+            <td>{{request.patientDetails.healthInsNum}}</td>
+            <td>{{request.fromWardId}}</td>
+            <td>{{request.outboundNurse}}</td>
+            <td>{{request.priority}}</td>
+            <td>{{request.rationale}}</td>
         </tr>
     </table>
 </div>

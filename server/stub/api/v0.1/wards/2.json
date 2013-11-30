@@ -1,89 +1,45 @@
 {
-    "id" : 2,
+    "wardId" : 2,
     "name": "West Ward",
-    "patients": [
-        {
-            "patientId": 14,
-            "roomNum": 9050,
-            "bedNum": 82,
-            "status": "nominal"
-        },
-        {
-            "patientId": 15,
-            "roomNum": 9055,
-            "bedNum": 95,
-            "status": "nominal"
-        },
-        {
-            "patientId": 16,
-            "roomNum": 9060,
-            "bedNum": 41,
-            "status": "nominal"
-        },
-        {
-            "patientId": 17,
-            "roomNum": 9065,
-            "bedNum": 46,
-            "status": "nominal"
-        },
-        {
-            "patientId": 18,
-            "roomNum": 9070,
-            "bedNum": 36,
-            "status": "transfer"
-        },
-        {
-            "patientId": 19,
-            "roomNum": 9075,
-            "bedNum": 35,
-            "status": "transfer"
-        },
-        {
-            "patientId": 20,
-            "roomNum": 9080,
-            "bedNum": 30,
-            "status": "nominal"
-        },
-        {
-            "patientId": 21,
-            "roomNum": 9085,
-            "bedNum": 20,
-            "status": "nominal"
-        },
-        {
-            "patientId": 22,
-            "roomNum": 9090,
-            "bedNum": 03,
-            "status": "nominal"
-        },
-        {
-            "patientId": 23,
-            "roomNum": 9095,
-            "bedNum": 02,
-            "status": "nominal"
-        }
+    "chargeNurseId": 3,
+    "doctorId": 4,
+    "beds": [
+        {"bedId": 2000, "roomId": 200},
+        {"bedId": 2001, "roomId": 200},
+        {"bedId": 2002, "roomId": 201},
+        {"bedId": 2003, "roomId": 201},
+        {"bedId": 2004, "roomId": 202},
+        {"bedId": 2005, "roomId": 202},
+        {"bedId": 2006, "roomId": 203},
+        {"bedId": 2007, "roomId": 203},
+        {"bedId": 2008, "roomId": 204},
+        {"bedId": 2009, "roomId": 204},
+        {"bedId": 2010, "roomId": 205},
+        {"bedId": 2011, "roomId": 205},
+        {"bedId": 2012, "roomId": 206},
+        {"bedId": 2013, "roomId": 206},
+        {"bedId": 2014, "roomId": 207},
+        {"bedId": 2015, "roomId": 207}
     ],
-    "admissions": [
-        {
-            "patientId": 24,
-            "outboundWardId": 9004,
-            "outboundNurseEmplId": 55,
-            "priority": "nominal",
-            "rationale": "The patient hurt his back."
-        },
-        {
-            "patientId": 25,
-            "outboundWardId": 9005,
-            "outboundNurseEmplId": 44,
-            "priority": "transfer",
-            "rationale": "The patient keeps throwing up."
-        },
-        {
-            "patientId": 26,
-            "outboundWardId": 9006,
-            "outboundNurseEmplId": 33,
-            "priority": "nominal",
-            "rationale": "The patient has a headache."
-        }
+    "patients": [
+        {"patientId": 6, "bedId": 2000, "status": "transfer"},
+        {"patientId": 7, "bedId": 2001, "status": "transfer"},
+        {"patientId": 8, "bedId": 2002, "status": "transfer"},
+        {"patientId": 9, "bedId": 2003, "status": "nominal"},
+        {"patientId": 10, "bedId": 2004, "status": "nominal"},
+        {"patientId": 11, "bedId": 2005, "status": "nominal"},
+        {"patientId": 12, "bedId": 2006, "status": "nominal"},
+        {"patientId": 13, "bedId": 2007, "status": "nominal"},
+        {"patientId": 14, "bedId": 2008, "status": "nominal"},
+        {"patientId": 15, "bedId": 2009, "status": "nominal"}
+    ],
+    "admissionsResponse": [
+        {"patientId": 6, "toWardId": 1, "inProgress":true, "refusal": null},
+        {"patientId": 7, "toWardId": 1, "inProgress":true, "refusal": null},
+        {"patientId": 8, "toWardId": 1, "inProgress":false, "refusal": "She's a jerk, keep her"}
+    ],
+    "admissionsRequest": [
+        {"patientId": 4, "fromWardId": 1, "priority": "high", "rationale": "The patient hurt his back."},
+        {"patientId": 5, "fromWardId": 1, "priority": "low", "rationale": "The patient keeps throwing up."}
     ]
 }
