@@ -13,6 +13,10 @@ controllers.controller('RegisterCtrl', [function () {
 
 }]);
 
+controllers.controller('PatientCtrl', [function () {
+
+}]);
+
 controllers.controller('WardListCtrl', ["$scope", "Ward", function ($scope, Ward) {
 
         Ward.query(function(wards) {
