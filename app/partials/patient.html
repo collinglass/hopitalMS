@@ -1,3 +1,81 @@
 <div ng-controller="PatientCtrl">
     {{hello}}
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form class="navbar-form navbar-left" role="search">
+                <div class="modal-header">
+                    <h4 class="modal-title">Patient ID: {{patient.patientId}}</h4>
+                </div>
+                <div class="modal-body form-group">
+                    
+                    <!-- <label class="login-field-icon fui-user" for="create-firstname"></label> -->
+                    <input type="password" id="patient-firstname" class="form-control" ng-model="patient.firstName"
+                           placeholder="{{patient.firstName}}">
+                    
+                    <input type="password" id="patient-lastname" class="form-control" ng-model="patient.lastName"
+                           placeholder="{{patient.lastName}}">
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.gender}}<span class="caret"></span>
+                        </button>
+                        <span class="dropdown-arrow"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#fakelink">Female</a></li>
+                            <li><a href="#fakelink">Male</a></li>
+                            <li><a href="#fakelink">Transgender</a></li>
+                        </u>
+                    </div>
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="patient-address" class="form-control" ng-model="patient.address"
+                           placeholder="{{patient.address}}">
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="patient-insurance" class="form-control" ng-model="patient.healthInsNum"
+                           placeholder="{{patient.healthInsNum}}">
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="patient-phone" class="form-control" ng-model="patient.phoneNum"
+                           placeholder="{{patient.phoneNum}}">
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="patient-dateOfBirth" class="form-control" ng-model="patient.dateOfBirth"
+                           placeholder="{{patient.dateOfBirth}}">
+
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.maritalStatus}}<span class="caret"></span>
+                        </button>
+                        <span class="dropdown-arrow"></span>
+                        <ul class="dropdown-menu">
+                            <li><a href="#fakelink">Single</a></li>
+                            <li><a href="#fakelink">Married</a></li>
+                            <li><a href="#fakelink">Separated</a></li>
+                            <li><a href="#fakelink">Divorced</a></li>
+                        </u>
+                    </div>
+
+                    <label for "patient-nextOfKin">Next of Kin</label>
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="nextOfKin-name" class="form-control" ng-model="nextOfKin.name"
+                           placeholder="{{nextOfKin.name}}">
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="nextOfKin-relationship" class="form-control" ng-model="patient.nokRelationship"
+                           placeholder="{{patient.nokRelationship}}">
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="nextOfKin-address" class="form-control" ng-model="nextOfKin.address"
+                           placeholder="{{nextOfKin.address}}">
+
+                    <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
+                    <input type="text" id="nextOfKin-phone" class="form-control" ng-model="nextOfKin.phoneNum"
+                           placeholder="{{nextOfKin.phoneNum}}">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" ng-click="onPatientModify()">Admit/Update</button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
