@@ -13,18 +13,28 @@ controllers.controller('RegisterCtrl', [function () {
 
 }]);
 
-controllers.controller('PatientCtrl', [function () {
-
+controllers.controller('PatientCtrl', ["$scope", function ($scope) {
+    $scope.hello = "Hello from PatientCtrl";
 }]);
 
-controllers.controller('WardListCtrl', ["$scope", "Ward", function ($scope, Ward) {
+controllers.controller('WardListCtrl', ["$scope", "$location", "Ward",
+    function ($scope, $location, Ward) {
 
-        Ward.query(function(wards) {
+        $scope.hello = "Hello from WardListCtrl";
+
+        Ward.query(function (wards) {
             $scope.wards = wards;
         });
 
 
-    }]).controller('WardDetailCtrl', ["$scope", "$routeParams", "Ward", "Patient", function ($scope, $routeParams, Ward, Patient) {
+    }]);
+
+controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient",
+    function ($scope, $location, $routeParams, Ward, Patient) {
+
+        $scope.go = function (path) {
+            $location.path(path);
+        };
 
         Ward.get({wardId: $routeParams.wardId}, function (ward) {
             $scope.ward = ward;
@@ -33,23 +43,22 @@ controllers.controller('WardListCtrl', ["$scope", "Ward", function ($scope, Ward
             $scope.admissionsResponse = ward.admissionsResponse;
 
 
-
-            $scope.patients.forEach(function(patient){
-                Patient.get({patientId:patient.patientId}, function(patientDetails){
+            $scope.patients.forEach(function (patient) {
+                Patient.get({patientId: patient.patientId}, function (patientDetails) {
                     patient.details = patientDetails;
 
                 });
             });
 
-            $scope.admissionsRequest.forEach(function(request){
-                Patient.get({patientId:request.patientId}, function(patientDetails){
+            $scope.admissionsRequest.forEach(function (request) {
+                Patient.get({patientId: request.patientId}, function (patientDetails) {
                     request.patientDetails = patientDetails;
 
                 });
             });
 
-            $scope.admissionsResponse.forEach(function(response){
-                Patient.get({patientId:response.patientId}, function(patientDetails){
+            $scope.admissionsResponse.forEach(function (response) {
+                Patient.get({patientId: response.patientId}, function (patientDetails) {
                     response.patientDetails = patientDetails;
 
                 });
