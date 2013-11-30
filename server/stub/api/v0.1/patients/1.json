@@ -8,5 +8,6 @@
     "dateOfBirth": "1987-04-23T00:00:00.000Z",
     "gender": "male",
     "maritalStatus": "single",
-    "nextOfKin": 1
+    "nextOfKin": 1,
+    "nokRelationship": "Brother"
 }
