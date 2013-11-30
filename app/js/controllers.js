@@ -23,6 +23,7 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward",
         $scope.hello = "Hello from WardListCtrl";
 
         Ward.query(function (wards) {
+
             $scope.wards = wards;
         });
 
@@ -60,13 +61,12 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionsResponse.forEach(function (response) {
                 Patient.get({patientId: response.patientId}, function (patientDetails) {
                     response.patientDetails = patientDetails;
-
                 });
             });
 
 
             $scope.admissionsRequest.admit = function () {
-
+                console.log("I AINT ADMITIN NOTHIN");
             };
 
             $scope.patients.discharge = function () {
