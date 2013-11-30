@@ -1,82 +1,63 @@
 {
+    "id" : 1,
     "name": "East Ward",
     "patients": [
         {
-            "lastName": "Smith",
-            "firstName": "John",
-            "healthInsNum": "0123 4567 89AB CDEF",
+            "patientId": 1,
             "roomNum": 9000,
             "bedNum": 42,
             "status": "nominal"
         },
         {
-            "lastName": "Hats",
-            "firstName": "Jason",
-            "healthInsNum": "0689 7594 93JF LOHR",
+            "patientId": 2,
             "roomNum": 9005,
             "bedNum": 65,
             "status": "nominal"
         },
         {
-            "lastName": "Mice",
-            "firstName": "Samantha",
-            "healthInsNum": "5438 1049 76AC GHRK",
+            "patientId": 5,
             "roomNum": 9010,
             "bedNum": 71,
             "status": "nominal"
         },
         {
-            "lastName": "Dell",
-            "firstName": "Mackenzie",
-            "healthInsNum": "3465 0967 79YB EKIK",
+            "patientId": 6,
             "roomNum": 9015,
             "bedNum": 16,
             "status": "transfer"
         },
         {
-            "lastName": "Khan",
-            "firstName": "Mohamad",
-            "healthInsNum": "6738 3356 56KD IEKD",
+            "patientId": 7,
             "roomNum": 9020,
             "bedNum": 26,
             "status": "nominal"
         },
         {
-            "lastName": "Li",
-            "firstName": "Ming",
-            "healthInsNum": "5322 5363 63EI DKGD",
+            "patientId": 8,
             "roomNum": 9025,
             "bedNum": 34,
             "status": "transfer"
         },
         {
-            "lastName": "Philips",
-            "firstName": "Philip",
-            "healthInsNum": "5736 2098 53ED ASKJ",
+            "patientId": 9,
             "roomNum": 9030,
             "bedNum": 74,
             "status": "nomina"
         },
         {
-            "lastName": "Pane",
-            "firstName": "Tanya",
-            "healthInsNum": "7488 2234 61EG EOFT",
+            "patientId": 10,
             "roomNum": 9035,
             "bedNum": 22,
             "status": "nominal"
         },
         {
-            "lastName": "Marley",
-            "firstName": "Bob",
-            "healthInsNum": "5324 7382 77LI EUSH",
+            "patientId": 11,
             "roomNum": 9040,
             "bedNum": 56,
             "status": "nominal"
         },
         {
-            "lastName": "Buble",
-            "firstName": "Michael",
-            "healthInsNum": "7823 4233 55LE GEGD",
+            "patientId": 12,
             "roomNum": 9045,
             "bedNum": 76,
             "status": "nominal"
@@ -84,29 +65,23 @@
     ],
     "admissions": [
         {
-            "lastName": "Balls",
-            "firstName": "Harry",
-            "healthInsNum": "9876 5432 10FE DCBA",
-            "outboundWard": 9001,
-            "outboundNurse": 41,
+            "patientId": 13,
+            "outboundWardId": 9001,
+            "outboundNurseEmplId": 41,
             "priority": "nominal",
             "rationale": "The patient is ill."
         },
         {
-            "lastName": "Collin",
-            "firstName": "Dylan",
-            "healthInsNum": "9769 6385 19FR DHHA",
-            "outboundWard": 9002,
-            "outboundNurse": 14,
+            "patientId": 1,
+            "outboundWardId": 9002,
+            "outboundNurseEmplId": 14,
             "priority": "nominal",
             "rationale": "The patient is sick."
         },
         {
-            "lastName": "Jacobs",
-            "firstName": "Eric",
-            "healthInsNum": "6928 8472 19EN JUAA",
-            "outboundWard": 9003,
-            "outboundNurse": 28,
+            "patientId": 2,
+            "outboundWardId": 9003,
+            "outboundNurseEmplId": 28,
             "priority": "tranfer",
             "rationale": "The patient broke his pinky."
         }
