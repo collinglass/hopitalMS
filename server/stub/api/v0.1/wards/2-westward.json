@@ -1,0 +1,114 @@
+{
+    "name": "West Ward",
+    "patients": [
+        {
+            "lastName": "Chars",
+            "firstName": "Ciara",
+            "healthInsNum": "3242 4324 94HG KJHT",
+            "roomNum": 9050,
+            "bedNum": 82,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Bagel",
+            "firstName": "Josh",
+            "healthInsNum": "2943 3456 93CG LOTR",
+            "roomNum": 9055,
+            "bedNum": 95,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Barr",
+            "firstName": "Victoria",
+            "healthInsNum": "5294 3245 93SE GHRK",
+            "roomNum": 9060,
+            "bedNum": 41,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Yao",
+            "firstName": "Fang",
+            "healthInsNum": "3929 4322 79AG EUDJ",
+            "roomNum": 9065,
+            "bedNum": 46,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Habib",
+            "firstName": "Ahmed",
+            "healthInsNum": "5827 2348 56GM EJSU",
+            "roomNum": 9070,
+            "bedNum": 36,
+            "status": "transfer"
+        }
+        {
+            "lastName": "Lee",
+            "firstName": "Jenn",
+            "healthInsNum": "4223 3827 63ZS EJSH",
+            "roomNum": 9075,
+            "bedNum": 35,
+            "status": "transfer"
+        }
+        {
+            "lastName": "Timberlake",
+            "firstName": "Justin",
+            "healthInsNum": "3726 6434 53GP EISO",
+            "roomNum": 9080,
+            "bedNum": 30,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Underwood",
+            "firstName": "Ruth",
+            "healthInsNum": "9282 4444 61UN EIIS",
+            "roomNum": 9085,
+            "bedNum": 20,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Presley",
+            "firstName": "Elvis",
+            "healthInsNum": "4837 4345 66EH FDFE",
+            "roomNum": 9090,
+            "bedNum": 03,
+            "status": "nominal"
+        }
+        {
+            "lastName": "Keys",
+            "firstName": "Edward",
+            "healthInsNum": "6996 2277 33IK EWSD",
+            "roomNum": 9095,
+            "bedNum": 02,
+            "status": "nominal"
+        }
+    ],
+    "admissions": [
+        {
+            "lastName": "Hook",
+            "firstName": "Henry",
+            "healthInsNum": "8382 3339 50ED DJSK",
+            "outboundWard": 9004,
+            "outboundNurse": 55,
+            "priority": "nominal",
+            "rationale": "The patient hurt his back."
+        }
+        {
+            "lastName": "Chan",
+            "firstName": "Jackie",
+            "healthInsNum": "4828 4244 49ES SKDH",
+            "outboundWard": 9005,
+            "outboundNurse": 44,
+            "priority": "transfer",
+            "rationale": "The patient keeps throwing up."
+        }
+        {
+            "lastName": "Timber",
+            "firstName": "Sarah",
+            "healthInsNum": "4829 3345 39FL UEJD",
+            "outboundWard": 9006,
+            "outboundNurse": 33,
+            "priority": "nominal",
+            "rationale": "The patient has a headache."
+        }
+    ]
+}
