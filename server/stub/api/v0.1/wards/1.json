@@ -20,7 +20,7 @@
         {"bedId": 1013, "roomId": 106},
         {"bedId": 1014, "roomId": 107},
         {"bedId": 1015, "roomId": 107}
-    ]
+    ],
     "patients": [
         {"patientId": 1, "bedId": 1000, "status": "nominal"},
         {"patientId": 2, "bedId": 1001, "status": "nominal"},

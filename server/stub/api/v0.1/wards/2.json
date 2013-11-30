@@ -20,7 +20,7 @@
         {"bedId": 2013, "roomId": 206},
         {"bedId": 2014, "roomId": 207},
         {"bedId": 2015, "roomId": 207}
-    ]
+    ],
     "patients": [
         {"patientId": 6, "bedId": 2000, "status": "transfer"},
         {"patientId": 7, "bedId": 2001, "status": "transfer"},
