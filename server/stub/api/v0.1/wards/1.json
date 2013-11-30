@@ -8,7 +8,7 @@
             "roomNum": 9000,
             "bedNum": 42,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Hats",
             "firstName": "Jason",
@@ -16,7 +16,7 @@
             "roomNum": 9005,
             "bedNum": 65,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Mice",
             "firstName": "Samantha",
@@ -24,7 +24,7 @@
             "roomNum": 9010,
             "bedNum": 71,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Dell",
             "firstName": "Mackenzie",
@@ -32,7 +32,7 @@
             "roomNum": 9015,
             "bedNum": 16,
             "status": "transfer"
-        }
+        },
         {
             "lastName": "Khan",
             "firstName": "Mohamad",
@@ -40,7 +40,7 @@
             "roomNum": 9020,
             "bedNum": 26,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Li",
             "firstName": "Ming",
@@ -48,7 +48,7 @@
             "roomNum": 9025,
             "bedNum": 34,
             "status": "transfer"
-        }
+        },
         {
             "lastName": "Philips",
             "firstName": "Philip",
@@ -56,7 +56,7 @@
             "roomNum": 9030,
             "bedNum": 74,
             "status": "nomina"
-        }
+        },
         {
             "lastName": "Pane",
             "firstName": "Tanya",
@@ -64,7 +64,7 @@
             "roomNum": 9035,
             "bedNum": 22,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Marley",
             "firstName": "Bob",
@@ -72,7 +72,7 @@
             "roomNum": 9040,
             "bedNum": 56,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Buble",
             "firstName": "Michael",
@@ -91,7 +91,7 @@
             "outboundNurse": 41,
             "priority": "nominal",
             "rationale": "The patient is ill."
-        }
+        },
         {
             "lastName": "Collin",
             "firstName": "Dylan",
@@ -100,7 +100,7 @@
             "outboundNurse": 14,
             "priority": "nominal",
             "rationale": "The patient is sick."
-        }
+        },
         {
             "lastName": "Jacobs",
             "firstName": "Eric",

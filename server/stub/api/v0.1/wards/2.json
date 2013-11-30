@@ -8,7 +8,7 @@
             "roomNum": 9050,
             "bedNum": 82,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Bagel",
             "firstName": "Josh",
@@ -16,7 +16,7 @@
             "roomNum": 9055,
             "bedNum": 95,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Barr",
             "firstName": "Victoria",
@@ -24,7 +24,7 @@
             "roomNum": 9060,
             "bedNum": 41,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Yao",
             "firstName": "Fang",
@@ -32,7 +32,7 @@
             "roomNum": 9065,
             "bedNum": 46,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Habib",
             "firstName": "Ahmed",
@@ -40,7 +40,7 @@
             "roomNum": 9070,
             "bedNum": 36,
             "status": "transfer"
-        }
+        },
         {
             "lastName": "Lee",
             "firstName": "Jenn",
@@ -48,7 +48,7 @@
             "roomNum": 9075,
             "bedNum": 35,
             "status": "transfer"
-        }
+        },
         {
             "lastName": "Timberlake",
             "firstName": "Justin",
@@ -56,7 +56,7 @@
             "roomNum": 9080,
             "bedNum": 30,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Underwood",
             "firstName": "Ruth",
@@ -64,7 +64,7 @@
             "roomNum": 9085,
             "bedNum": 20,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Presley",
             "firstName": "Elvis",
@@ -72,7 +72,7 @@
             "roomNum": 9090,
             "bedNum": 03,
             "status": "nominal"
-        }
+        },
         {
             "lastName": "Keys",
             "firstName": "Edward",
@@ -91,7 +91,7 @@
             "outboundNurse": 55,
             "priority": "nominal",
             "rationale": "The patient hurt his back."
-        }
+        },
         {
             "lastName": "Chan",
             "firstName": "Jackie",
@@ -100,7 +100,7 @@
             "outboundNurse": 44,
             "priority": "transfer",
             "rationale": "The patient keeps throwing up."
-        }
+        },
         {
             "lastName": "Timber",
             "firstName": "Sarah",
