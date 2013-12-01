@@ -5,12 +5,58 @@
 var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
-controllers.controller('LoginCtrl', [function () {
+controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$http", "$location", function ($scope, $rootScope, $http, $location) {
+    $scope.onNewAccount = function () {
+        window.console.log("User is: ", JSON.stringify($scope.User));
+        $rootScope.User = $scope.User;
+        $location.path("/register/");
+    };
 
+    $scope.onLogin = function () {
+        var promise = $http.post("/api/v0.1/sessions/", {
+            employeeId: $rootScope.User.employeeId,
+            password: $rootScope.User.password
+        });
+
+        promise.success(function (data, status) {
+            window.console.log("Login success:", status);
+            $rootScope.User.tokenName = data.tokenName;
+            $rootScope.User.token = data.token;
+            $location.path("/wards/");
+        });
+
+        promise.error(function (data, status) {
+            window.console.log("Login error:", status);
+        });
+    };
 }]);
 
-controllers.controller('RegisterCtrl', [function () {
+controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$http", "$location", "Employee", function ($scope, $rootScope, $http, $location, Employee) {
 
+    $scope.User = $rootScope.User;
+    window.console.log("RegisterCtrl, User is: ", JSON.stringify($scope.User));
+
+    $scope.onRegister = function() {
+        window.console.log("User is: ", JSON.stringify($scope.User));
+        $rootScope.User = $scope.User;
+        Employee.save($scope.User, function() {
+            var promise = $http.post("/api/v0.1/sessions/", {
+                employeeId: $rootScope.User.employeeId,
+                password: $rootScope.User.password
+            });
+
+            promise.success(function (data, status) {
+                window.console.log("Login success:", status);
+                $rootScope.User.tokenName = data.tokenName;
+                $rootScope.User.token = data.token;
+                $location.path("/wards/");
+            });
+
+            promise.error(function (data, status) {
+                window.console.log("Login error:", status);
+            });
+        });
+    };
 }]);
 
 controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee",
@@ -96,11 +142,11 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                 });
             };
         });
-}]);
+    }]);
 
 
-controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
-    function ($scope, $location, $routeParams, Ward, Patient, Employee) {
+controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient",
+    function ($scope, $location, $routeParams, Ward, Patient) {
 
         $scope.go = function (path) {
             $location.path(path);
@@ -111,13 +157,13 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         };
 
         $scope.newPath = function () {
-            if ($location.path() == '/patients/new') {
+            if ($location.path() === '/patients/new') {
                 return true;
             }
             return false;
         };
-        
-        if ( $location.path() == '/patients/new' ) {
+
+        if ($location.path() === '/patients/new') {
 
             // Test with Ward 1
             Ward.get({wardId: 1}, function (ward) {
@@ -125,21 +171,21 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 $scope.patients = ward.patients;
             });
 
-            console.log($scope.patients);
+            window.console.log($scope.patients);
 
             $scope.admit = function () {
-                console.log($scope.patients);
+                window.console.log($scope.patients);
                 var patientPush = { patientId: 205, lastName: $scope.lastName, firstName: $scope.firstName,
                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
                         address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }
                 };
-                
+
                 $scope.patients.push(patientPush);
 
                 $scope.go('/ward/1');
-                
+
             };
 
         } else {
@@ -159,16 +205,16 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 $scope.nextOfKin = patient.nextOfKin;
 
                 $scope.update = function () {
-                    console.log('update');
-                /*
-                    $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
-                        healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
-                        dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
-                        nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
-                        address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
-                */
+                    window.console.log('update');
+                    /*
+                     $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
+                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
+                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
+                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
+                     address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
+                     */
                 };
 
             });
         }
-}]);
+    }]);

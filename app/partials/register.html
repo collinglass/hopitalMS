@@ -1,25 +1,23 @@
 <div ng-controller="RegisterCtrl">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form class="navbar-form navbar-left" role="search">
-                <div class="modal-header">
-                    <h4 class="modal-title">Create an Account</h4>
-                </div>
-                <div class="modal-body form-group">
-                    <label class="login-field-icon fui-mail" for="create-email"></label>
-                    <input type="text" id="create-email" class="form-control" ng-model="Create.email"
-                           placeholder="someone@mustachems.com">
-                    <label class="login-field-icon fui-user" for="create-firstname"></label>
-                    <input type="password" id="create-firstname" class="form-control" ng-model="Create.firstname"
-                           placeholder="First Name">
-                    <label class="login-field-icon fui-user" for="create-lastname"></label>
-                    <input type="password" id="create-lastname" class="form-control" ng-model="Create.lastname"
-                           placeholder="Last Name">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" ng-click="onCreate()">Create</button>
-                </div>
-            </form>
+
+    <form class="navbar-form navbar-left" role="search">
+        <div class="modal-header">
+            <h4 class="modal-title">Create an Account</h4>
         </div>
-    </div>
+        <div class="modal-body form-group">
+            <label class="login-field-icon fui-mail" for="create-email"></label>
+            <input type="email" id="create-email" class="form-control" ng-model="User.email"
+                   placeholder="email@example.com">
+            <label class="login-field-icon fui-user" for="create-firstname"></label>
+            <input type="text" id="create-firstname" class="form-control" ng-model="User.firstName"
+                   placeholder="First Name">
+            <label class="login-field-icon fui-user" for="create-lastname"></label>
+            <input type="text" id="create-lastname" class="form-control" ng-model="User.lastName"
+                   placeholder="Last Name">
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" ng-click="onRegister()">Create</button>
+        </div>
+    </form>
+
 </div>
