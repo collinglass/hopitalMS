@@ -1,3 +1,17 @@
-            "lastName": "Bagel",
-            "firstName": "Josh",
-            "healthInsNum": "2943 3456 93CG LOTR",
+{
+	"patientId": 15,
+	"lastName": "Bagel",
+	"firstName": "Josh",
+	"healthInsNum": "2943 3456 93CG LOTR",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "married",
+	"nextOfKin": {
+		"name" : "Cara Bagel",
+		"relationship": "spouse",
+		"address" : "Ottawa",
+		"phoneNum" : "613-591-7337"
+	}
+}
