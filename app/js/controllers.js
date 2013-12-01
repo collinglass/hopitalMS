@@ -35,6 +35,34 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
         });
     }]);
 
+<<<<<<< HEAD
+=======
+controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Patient",
+    function ($scope, $location, $routeParams, Patient) {
+    $scope.hello = "Hello from PatientCtrl";
+
+    $scope.go = function (path) {
+            $location.path(path);
+    };
+
+    Patient.get({patientId: $routeParams.patientId}, function (patient) {
+        $scope.patient = patient;
+        $scope.patientId = patient.patientId;
+        $scope.lastName = patient.lastName;
+        $scope.firstName = patient.firstName;
+        $scope.healthInsNum = patient.healthInsNum;
+        $scope.address = patient.address;
+        $scope.phoneNum = patient.phoneNum;
+        $scope.dateOfBirth = patient.dateOfBirth;
+        $scope.gender = patient.gender;
+        $scope.maritalStatus = patient.maritalStatus;
+        $scope.nextOfKin = patient.nextOfKin;
+    });
+
+
+}]);
+
+>>>>>>> 6f82d4616d550563e0069018e0dba9af43fad56f
 controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
     function ($scope, $location, $routeParams, Ward, Patient, Employee) {
 
