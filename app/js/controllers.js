@@ -57,6 +57,10 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "P
         $scope.nextOfKin = patient.nextOfKin;
     });
 
+        $scope.save = function(patient) {
+            Patient.save(patient);
+        }
+
 
 }]);
 
