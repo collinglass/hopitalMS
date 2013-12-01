@@ -22,9 +22,14 @@ func init() {
 func main() {
 	log.Println("Starting Server")
 
-	stubFileserver := logHandler(restStubHandler("./stub/"))
+	// sessionMngr := session.NewSessionManager(sessionExpire)
+	// http.Handle("/api/v0.1/sessions", sessionStateHandler(sessionMngr))
 
-	http.Handle("/api/", stubFileserver)
+	// stubFileserver := session.EnsureHasSession(sessionMngr,
+	// 	tokenName,
+	// 	)
+
+	http.Handle("/api/", newRESTStubHandler("./stub/"))
 	http.Handle("/", logHandler(http.FileServer(http.Dir("../app/"))))
 
 	log.Println("Listening on 8080")
@@ -42,23 +47,34 @@ func logHandler(h http.Handler) http.Handler {
 	return handlers.LoggingHandler(os.Stdout, h)
 }
 
-func restStubHandler(prefix string) http.HandlerFunc {
-	return func(rw http.ResponseWriter, req *http.Request) {
-		verb := req.Method
+type restStubHandler struct {
+	prefix    string
+	currentID string
+}
 
-		dir, file := path.Split(req.URL.String())
-		log.Printf("Method %v Collection: %v Member: %v\n", verb, dir, file)
+func newRESTStubHandler(prefix string) restStubHandler {
+	return restStubHandler{prefix: prefix}
+}
 
-		prefixDir := filepath.Join(filepath.Clean(prefix), filepath.Clean(dir))
-		if file != "" {
-			// it's a member request
-			log.Printf("Serving member")
-			restMemberStub(verb, prefixDir, file, rw, req)
-		} else {
-			// it's a collection request
-			log.Printf("Serving collection")
-			restCollectionStub(verb, prefixDir, rw, req)
-		}
+func (r restStubHandler) SetID(id string) {
+	r.currentID = id
+}
+
+func (r restStubHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+	verb := req.Method
+
+	dir, file := path.Split(req.URL.String())
+	log.Printf("Method %v Collection: %v Member: %v\n", verb, dir, file)
+
+	prefixDir := filepath.Join(filepath.Clean(r.prefix), filepath.Clean(dir))
+	if file != "" {
+		// it's a member request
+		log.Printf("Serving member")
+		restMemberStub(verb, prefixDir, file, rw, req)
+	} else {
+		// it's a collection request
+		log.Printf("Serving collection")
+		restCollectionStub(verb, prefixDir, rw, req)
 	}
 }
 
