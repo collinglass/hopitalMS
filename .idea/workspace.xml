@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9853f8-067b-4a2e-97c8-432883a1d55d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.go" afterPath="$PROJECT_DIR$/server/server.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/patient.html" afterPath="$PROJECT_DIR$/app/partials/patient.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/ward_detail.html" afterPath="$PROJECT_DIR$/app/partials/ward_detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/ward_list.html" afterPath="$PROJECT_DIR$/app/partials/ward_list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="moustacheMS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,79 +27,71 @@
     <favorites_list name="moustacheMS" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="angular.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/lib/angular/angular.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/js/services.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="19" column="26" selection-start="629" selection-end="629" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="25" column="58" selection-start="694" selection-end="694" vertical-scroll-proportion="0.33333334" vertical-offset="145" max-vertical-offset="1650">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ward_list.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/partials/ward_list.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="10" selection-start="97" selection-end="97" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="285">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="ward_detail.html" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="14" column="46" selection-start="691" selection-end="691" vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="975">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="ward_list.html" pinned="false" current="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/partials/ward_list.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="2" column="59" selection-start="146" selection-end="146" vertical-scroll-proportion="0.043541364" vertical-offset="0" max-vertical-offset="689">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="1.json" pinned="false" current="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/wards/1.json">
-              <provider selected="true" editor-type-id="text-editor">
-                <state line="3" column="17" selection-start="62" selection-end="62" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="690">
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf>
+      <file leaf-file-name="angular.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/lib/angular/angular.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="services.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/services.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="26" selection-start="629" selection-end="629" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="22" column="26" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="7" column="46" selection-start="267" selection-end="267" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="660">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ward_list.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/partials/ward_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="6" selection-start="554" selection-end="554" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="270">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ward_detail.html" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="50" selection-start="1039" selection-end="1039" vertical-scroll-proportion="-8.75" vertical-offset="90" max-vertical-offset="990">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="patient.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="44" column="0" selection-start="2569" selection-end="2569" vertical-scroll-proportion="0.21367522" vertical-offset="510" max-vertical-offset="1350">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -117,22 +109,22 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/server/stub/api/v0.1/patients/1.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/patients/2.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/wards/2.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/wards/1.json" />
         <option value="$PROJECT_DIR$/app/js/filters.js" />
         <option value="$PROJECT_DIR$/app/js/directives.js" />
         <option value="$PROJECT_DIR$/app/js/app.js" />
-        <option value="$PROJECT_DIR$/app/partials/patient.html" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/3.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/4.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/2.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json" />
-        <option value="$PROJECT_DIR$/app/partials/ward_detail.html" />
         <option value="$PROJECT_DIR$/app/js/services.js" />
         <option value="$PROJECT_DIR$/app/js/controllers.js" />
+        <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/partials/ward_list.html" />
+        <option value="$PROJECT_DIR$/app/partials/ward_detail.html" />
+        <option value="$PROJECT_DIR$/app/partials/patient.html" />
       </list>
     </option>
   </component>
@@ -530,13 +522,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="0" selection-start="1148" selection-end="1148" vertical-scroll-proportion="-10.625" vertical-offset="315" max-vertical-offset="870">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/login.html">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="459">
@@ -544,23 +529,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="72" selection-start="1419" selection-end="1419" vertical-scroll-proportion="0.8530806" vertical-offset="0" max-vertical-offset="1290">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state line="27" column="11" selection-start="907" selection-end="907" vertical-scroll-proportion="0.67320263" vertical-offset="96" max-vertical-offset="615">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/lib/angular/angular.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305">
           <folding />
         </state>
       </provider>
@@ -598,9 +569,16 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
+    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/wards/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="46" selection-start="691" selection-end="691" vertical-scroll-proportion="-8.75" vertical-offset="0" max-vertical-offset="975">
+        <state line="3" column="17" selection-start="62" selection-end="62" vertical-scroll-proportion="0.06531204" vertical-offset="0" max-vertical-offset="690">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/lib/angular/angular.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305">
           <folding />
         </state>
       </provider>
@@ -612,23 +590,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/wards/1.json">
+    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="17" selection-start="62" selection-end="62" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="690">
+        <state line="22" column="26" selection-start="547" selection-end="547" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1650">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="7" column="46" selection-start="267" selection-end="267" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="660">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/ward_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="10" selection-start="97" selection-end="97" vertical-scroll-proportion="-1.25" vertical-offset="0" max-vertical-offset="285">
+        <state line="12" column="6" selection-start="554" selection-end="554" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="270">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
+    <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="58" selection-start="694" selection-end="694" vertical-scroll-proportion="0.33333334" vertical-offset="145" max-vertical-offset="1650">
+        <state line="20" column="50" selection-start="1039" selection-end="1039" vertical-scroll-proportion="-8.75" vertical-offset="90" max-vertical-offset="990">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="44" column="0" selection-start="2569" selection-end="2569" vertical-scroll-proportion="0.21367522" vertical-offset="510" max-vertical-offset="1350">
           <folding />
         </state>
       </provider>

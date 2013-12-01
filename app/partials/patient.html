@@ -7,23 +7,24 @@
                     <h4 class="modal-title">Patient ID: {{patient.patientId}}</h4>
                 </div>
                 <div class="modal-body form-group">
-                    
+
                     <!-- <label class="login-field-icon fui-user" for="create-firstname"></label> -->
                     <input type="password" id="patient-firstname" class="form-control" ng-model="patient.firstName"
                            placeholder="{{patient.firstName}}">
-                    
+
                     <input type="password" id="patient-lastname" class="form-control" ng-model="patient.lastName"
                            placeholder="{{patient.lastName}}">
 
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.gender}}<span class="caret"></span>
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.gender}}<span
+                                class="caret"></span>
                         </button>
                         <span class="dropdown-arrow"></span>
                         <ul class="dropdown-menu">
                             <li><a href="#fakelink">Female</a></li>
                             <li><a href="#fakelink">Male</a></li>
                             <li><a href="#fakelink">Transgender</a></li>
-                        </u>
+                        </ul>
                     </div>
 
                     <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
@@ -43,7 +44,8 @@
                            placeholder="{{patient.dateOfBirth}}">
 
                     <div class="dropdown">
-                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.maritalStatus}}<span class="caret"></span>
+                        <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.maritalStatus}}<span
+                                class="caret"></span>
                         </button>
                         <span class="dropdown-arrow"></span>
                         <ul class="dropdown-menu">
@@ -51,7 +53,7 @@
                             <li><a href="#fakelink">Married</a></li>
                             <li><a href="#fakelink">Separated</a></li>
                             <li><a href="#fakelink">Divorced</a></li>
-                        </u>
+                        </ul>
                     </div>
 
                     <label for "patient-nextOfKin">Next of Kin</label>
@@ -60,11 +62,13 @@
                            placeholder="{{patient.nextOfKin.name}}">
 
                     <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
-                    <input type="text" id="patient-nok-relationship" class="form-control" ng-model="patient.nextOfKin.relationship"
+                    <input type="text" id="patient-nok-relationship" class="form-control"
+                           ng-model="patient.nextOfKin.relationship"
                            placeholder="{{patient.nextOfKin.relationship}}">
 
                     <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->
-                    <input type="text" id="patient-nok-address" class="form-control" ng-model="patient.nextOfKin.address"
+                    <input type="text" id="patient-nok-address" class="form-control"
+                           ng-model="patient.nextOfKin.address"
                            placeholder="{{patient.nextOfKin.address}}">
 
                     <!-- <label class="login-field-icon fui-mail" for="create-email"></label> -->

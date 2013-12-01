@@ -13,21 +13,6 @@
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
     <a class="navbar-brand" href="#">The Mustache PMS</a>
 
-    <div ng-if="!User.loggedIn">
-        <button class="navbar-toggle"
-                data-toggle="modal"
-                data-target="#loginModal">Login
-        </button>
-    </div>
-    <div ng-if="User.loggedIn">
-        <p class="navbar-text navbar-right">Signed in as
-            <a href="#" class="navbar-link">{{User.name}}</a>
-        </p>
-        <button class="navbar-toggle" ng-click="onLogOut()">
-            Log out
-        </button>
-    </div>
-
     <ul class="nav navbar-nav navbar-right">
         <li><a href="#/login">Login</a></li>
         <li><a href="#/register">Register</a></li>
@@ -35,8 +20,9 @@
     </ul>
 </nav>
 
+<div class="container">
 <div ng-view></div>
-
+</div>
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
 -->

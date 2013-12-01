@@ -1,14 +1,13 @@
 <div class="list-group" ng-controller="WardListCtrl">
     <a ng-repeat="ward in wards"
        href="#/ward/{{ward.wardId}}" class="list-group-item">
-        <h4 class="list-group-item-heading">{{ward.name}}</h4>
+        <h4 class="list-group-item-heading">{{ward.name}}<small>{{ward.patients.length}} patients, {{ward.beds.length}} beds</small></h4>
 
-        <p class="list-group-item-text">Doctor {{ward.doctor.lastName}}</p>
-        <p class="list-group-item-text">Charge Nurse {{ward.chargeNurse.lastName}}</p>
-        <div class="well-sm">
-            {{ward.patients.length}} patients,
-            {{ward.beds.length}} beds
-        </div>
+
+        <dl class="dl-horizontal">
+            <dt>Doctor</dt> <dd>{{ward.doctor.firstName + ' ' + ward.doctor.lastName}}</dd>
+            <dt>Charge Nurse</dt> <dd>{{ward.chargeNurse.firstName + ' ' + ward.chargeNurse.lastName}}</dd>
+        </dl>
 
     </a>
 </div>
