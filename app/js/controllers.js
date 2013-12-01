@@ -119,16 +119,27 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         
         if ( $location.path() == '/patients/new' ) {
 
+            // Test with Ward 1
+            Ward.get({wardId: 1}, function (ward) {
+                $scope.ward = ward;
+                $scope.patients = ward.patients;
+            });
+
+            console.log($scope.patients);
+
             $scope.admit = function () {
-                    console.log('admit');
-                /*
-                $scope.patients.push({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
+                console.log($scope.patients);
+                var patientPush = { patientId: 205, lastName: $scope.lastName, firstName: $scope.firstName,
                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
                         address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }
-                });
-                */
+                };
+                
+                $scope.patients.push(patientPush);
+
+                $scope.go('/ward/1');
+                
             };
 
         } else {
@@ -150,11 +161,11 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 $scope.update = function () {
                     console.log('update');
                 /*
-                 $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
-                 healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
-                 dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
-                 nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
-                 address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
+                    $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
+                        healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
+                        dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
+                        nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
+                        address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
                 */
                 };
 
