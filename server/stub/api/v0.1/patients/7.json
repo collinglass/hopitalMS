@@ -8,5 +8,10 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "male",
 	"maritalStatus": "married",
-	"nextOfKin": 7
+	"nextOfKin": {
+		"name" : "Mona Khan",
+		"relationship": "spouse",
+		"address" :"Mississauga",
+		"phoneNum" : "401-592-7890"
+	}
 }

@@ -8,5 +8,10 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "female",
 	"maritalStatus": "married",
-	"nextOfKin": 5
+	"nextOfKin": {
+		"name" : "Briana Mice",
+		"relationship": "sister",
+		"address" :"Ottawa",
+		"phoneNum" : "613-613-6131"
+	}
 }

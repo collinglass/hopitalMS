@@ -8,5 +8,10 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "male",
 	"maritalStatus": "married",
-	"nextOfKin": 12
+	"nextOfKin": {
+		"name" : "Noah Buble",
+		"relationship": "son",
+		"address" :"Burnaby",
+		"phoneNum" : "635-522-6778"
+	}
 }

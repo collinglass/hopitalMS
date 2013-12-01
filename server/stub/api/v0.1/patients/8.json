@@ -8,5 +8,10 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "female",
 	"maritalStatus": "married",
-	"nextOfKin": 8
+	"nextOfKin": {
+		"name" : "Kevin Li",
+		"relationship": "spouse",
+		"address" :"USA",
+		"phoneNum" : "555-456-5432"
+	}
 }

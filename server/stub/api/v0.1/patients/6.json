@@ -8,5 +8,10 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "female",
 	"maritalStatus": "married",
-	"nextOfKin": 6
+	"nextOfKin": {
+		"name" : "Robert Dell",
+		"relationship": "spouse",
+		"address" :"Montreal",
+		"phoneNum" : "514-456-7890"
+	}
 }

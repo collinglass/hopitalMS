@@ -8,5 +8,10 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "male",
 	"maritalStatus": "married",
-	"nextOfKin": 9
+	"nextOfKin": {
+		"name" : "Erin Jacobs",
+		"relationship": "cousin",
+		"address" :"Australia",
+		"phoneNum" : "123-456-7890"
+	}
 }

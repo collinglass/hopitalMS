@@ -4,9 +4,14 @@
 	"firstName": "John",
 	"healthInsNum": "0123 4567 89AB CDEF",
 	"address" : "1234 Something street",
-    "phoneNum" : "123-456-7890",
-    "dateOfBirth": "1987-04-23T00:00:00.000Z",
-    "gender": "male",
-    "maritalStatus": "single",
-    "nextOfKin": 3
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "single",
+	"nextOfKin": {
+		"name" : "Jane Smith",
+		"relationship": "sister",
+		"address" :"Some address",
+		"phoneNum" : "123-456-7890"
+	}
 }

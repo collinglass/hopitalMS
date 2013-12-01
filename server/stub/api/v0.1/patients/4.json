@@ -8,6 +8,11 @@
 	"dateOfBirth": "1987-04-23T00:00:00.000Z",
 	"gender": "male",
 	"maritalStatus": "married",
-	"nextOfKin": 4
+	"nextOfKin": {
+		"name" : "Andrew Hats",
+		"relationship": "brother",
+		"address" :"800 King Edward Avenue",
+		"phoneNum" : "613-316-7890"
+	}
 
-}            
+}
