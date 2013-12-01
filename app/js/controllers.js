@@ -13,10 +13,6 @@ controllers.controller('RegisterCtrl', [function () {
 
 }]);
 
-controllers.controller('PatientCtrl', ["$scope", function ($scope) {
-    $scope.hello = "Hello from PatientCtrl";
-}]);
-
 controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee",
     function ($scope, $location, Ward, Employee) {
 
@@ -38,6 +34,37 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
             });
         });
     }]);
+
+controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee) {
+    $scope.hello = "Hello from PatientCtrl";
+
+    $scope.go = function (path) {
+            $location.path(path);
+    };
+
+    Patient.get({patientId: $routeParams.patientId}, function (patient) {
+        $scope.patient = patient;
+        $scope.patientId = patient.patientId;
+        $scope.lastName = patient.lastName;
+        $scope.firstName = patient.firstName;
+        $scope.healthInsNum = patient.healthInsNum;
+        $scope.address = patient.address;
+        $scope.phoneNum = patient.phoneNum;
+        $scope.dateOfBirth = patient.dateOfBirth;
+        $scope.gender = patient.gender;
+        $scope.maritalStatus = patient.maritalStatus;
+
+        $scope.nextOfKin.name = patient.nextOfKin.name;
+        $scope.nextOfKin.relationship = patient.nextOfKin.relationship;
+        $scope.nextOfKin.address = patient.nextOfKin.address;
+        $scope.nextOfKin.phoneNum = patient.nextOfKin.phoneNum;
+
+
+    });
+
+
+}]);
 
 controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
     function ($scope, $location, $routeParams, Ward, Patient, Employee) {

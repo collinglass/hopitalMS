@@ -30,6 +30,10 @@ angular.module('mustacheApp', [
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl'
         });
+        $routeProvider.when('/patients/:patientId', {
+            templateUrl: 'partials/patient.html',
+            controller: 'PatientCtrl'
+        });
         $routeProvider.otherwise({redirectTo: '/login'});
     }]);
 
