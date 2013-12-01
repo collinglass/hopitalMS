@@ -35,8 +35,8 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
         });
     }]);
 
-controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
-    function ($scope, $location, $routeParams, Ward, Patient, Employee) {
+controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Patient",
+    function ($scope, $location, $routeParams, Patient) {
     $scope.hello = "Hello from PatientCtrl";
 
     $scope.go = function (path) {
@@ -54,9 +54,7 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         $scope.dateOfBirth = patient.dateOfBirth;
         $scope.gender = patient.gender;
         $scope.maritalStatus = patient.maritalStatus;
-
         $scope.nextOfKin = patient.nextOfKin;
-
     });
 
 
