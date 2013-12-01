@@ -1,3 +1,17 @@
-            "lastName": "Chars",
-            "firstName": "Ciara",
-            "healthInsNum": "3242 4324 94HG KJHT",
+{
+	"patientId": 14,
+	"lastName": "Chars",
+	"firstName": "Ciara",
+	"healthInsNum": "3242 4324 94HG KJHT",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "female",
+	"maritalStatus": "single",
+	"nextOfKin": {
+		"name" : "Jessica Chars",
+		"relationship": "sister",
+		"address" : "Ottawa",
+		"phoneNum" : "613-591-7723"
+	}
+}
