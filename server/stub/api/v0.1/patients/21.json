@@ -1,3 +1,17 @@
-            "lastName": "Underwood",
-            "firstName": "Ruth",
-            "healthInsNum": "9282 4444 61UN EIIS",
+{
+	"patientId": 21,
+	"lastName": "Underwood",
+	"firstName": "Ruth",
+	"healthInsNum": "9282 4444 61UN EIIS",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "female",
+	"maritalStatus": "single",
+	"nextOfKin": {
+		"name" : "Carrie Underwood",
+		"relationship": "sister",
+		"address" : "Houston",
+		"phoneNum" : "544-332-2345"
+	}
+}

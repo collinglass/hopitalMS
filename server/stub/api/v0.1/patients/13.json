@@ -1,3 +1,17 @@
-            "lastName": "Balls",
-            "firstName": "Harry",
-            "healthInsNum": "9876 5432 10FE DCBA",
+{
+	"patientId": 13,
+	"lastName": "Balls",
+	"firstName": "Harry",
+	"healthInsNum": "9876 5432 10FE DCBA",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "single",
+	"nextOfKin": {
+		"name" : "Larry Dickson",
+		"relationship": "cousin",
+		"address" :"Newtown",
+		"phoneNum" : "774-425-6778"
+	}
+}
