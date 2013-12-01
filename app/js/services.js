@@ -17,12 +17,6 @@ mustacheServices.factory("Patient", ["$resource", function($resource){
     });
 }]);
 
-mustacheServices.factory("NextOfKin", ["$resource", function($resource){
-    return $resource('/api/v0.1/nextOfKins/:nokId', {nokId:'@id'}, {
-        query: {method:'GET', params:{nokId:'@id'}, isArray:true}
-    });
-}]);
-
 mustacheServices.factory("Role", ["$resource", function($resource){
     return $resource('/api/v0.1/roles/:roleId', {roleId:'@id'}, {
         query: {method:'GET', params:{roleId:'@id'}, isArray:true}
