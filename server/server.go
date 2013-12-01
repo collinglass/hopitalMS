@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/aybabtme/session"
 	"github.com/gorilla/handlers"
 	"io"
 	"io/ioutil"
@@ -23,14 +22,14 @@ func init() {
 func main() {
 	log.Println("Starting Server")
 
-	sessionMngr := session.NewSessionManager(sessionExpire)
-	http.Handle("/api/v0.1/sessions", sessionStateHandler(sessionMngr))
+	// sessionMngr := session.NewSessionManager(sessionExpire)
+	// http.Handle("/api/v0.1/sessions", sessionStateHandler(sessionMngr))
 
-	stubFileserver := session.EnsureHasSession(sessionMngr,
-		tokenName,
-		newRESTStubHandler("./stub/"))
+	// stubFileserver := session.EnsureHasSession(sessionMngr,
+	// 	tokenName,
+	// 	)
 
-	http.Handle("/api/", stubFileserver)
+	http.Handle("/api/", newRESTStubHandler("./stub/"))
 	http.Handle("/", logHandler(http.FileServer(http.Dir("../app/"))))
 
 	log.Println("Listening on 8080")
