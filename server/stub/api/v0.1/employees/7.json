@@ -1,0 +1,9 @@
+{
+    "employeeId": 7,
+    "passwordHash": "garbblegarbble",
+    "passwordSalt": "0xDEADBEEF",
+    "firstName": "Michel",
+    "lastName": "James",
+    "email": "Mike_g@gmail.com",
+    "roles": [1, 3]
+}
