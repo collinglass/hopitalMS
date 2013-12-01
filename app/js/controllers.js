@@ -96,7 +96,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                 });
             };
         });
-    }]);
+}]);
 
 
 controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
@@ -110,49 +110,54 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
             Patient.save(patient);
         };
 
-        Patient.get({patientId: $routeParams.patientId}, function (patient) {
-            $scope.patient = patient;
-            $scope.patientId = patient.patientId;
-            $scope.lastName = patient.lastName;
-            $scope.firstName = patient.firstName;
-            $scope.healthInsNum = patient.healthInsNum;
-            $scope.address = patient.address;
-            $scope.phoneNum = patient.phoneNum;
-            $scope.dateOfBirth = patient.dateOfBirth;
-            $scope.gender = patient.gender;
-            $scope.maritalStatus = patient.maritalStatus;
+        $scope.newPath = function () {
+            if ($location.path() == '/patients/new') {
+                return true;
+            }
+            return false;
+        };
+        
+        if ( $location.path() == '/patients/new' ) {
 
-            $scope.nextOfKin = patient.nextOfKin;
-
-            $scope.newPath = function () {
-
-                if ($location === '/patients/new') {
-                    return true;
-                }
-                return false;
-            };
-
-            $scope.patients.admit = function () {
-                console.log('hello');
+            $scope.admit = function () {
+                    console.log('admit');
+                /*
                 $scope.patients.push({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
-                        address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
+                        address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }
+                });
+                */
             };
 
-            $scope.patients.update = function () {
-                console.log('update');
+        } else {
+            Patient.get({patientId: $routeParams.patientId}, function (patient) {
+
+                $scope.patient = patient;
+                $scope.patientId = patient.patientId;
+                $scope.lastName = patient.lastName;
+                $scope.firstName = patient.firstName;
+                $scope.healthInsNum = patient.healthInsNum;
+                $scope.address = patient.address;
+                $scope.phoneNum = patient.phoneNum;
+                $scope.dateOfBirth = patient.dateOfBirth;
+                $scope.gender = patient.gender;
+                $scope.maritalStatus = patient.maritalStatus;
+
+                $scope.nextOfKin = patient.nextOfKin;
+
+                $scope.update = function () {
+                    console.log('update');
                 /*
                  $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
                  healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
                  dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
                  nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
                  address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
-                 */
-            };
+                */
+                };
 
-        });
-
-
-    }]);
+            });
+        }
+}]);

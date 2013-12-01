@@ -2,82 +2,77 @@
     <form role="form">
         <div class="form-group">
             <label for="patient-firstName">First Name</label>
-            <input type="text" id="patient-firstname" class="form-control" ng-model="patient.firstName"
+            <input type="text" id="patient-firstname" name="patient-firstname" class="form-control" ng-model="patient.firstName"
                 placeholder="{{patient.firstName}}">
         </div>
         <div class="form-group">
             <label for="patient-lastName">Last Name</label>
-            <input type="text" id="patient-lastname" class="form-control" ng-model="patient.lastName"
+            <input type="text" id="patient-lastname" name="patient-lastname" class="form-control" ng-model="patient.lastName"
                 placeholder="{{patient.lastName}}">
         </div>
-        <div class="dropdown form-group">
+        <div class="form-group">
             <label for="patient-gender">Gender</label>
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.gender}}
-                <span class="caret"></span>
-            </button>
-            <span class="dropdown-arrow"></span>
-            <ul class="dropdown-menu">
-                <li><a href="#fakelink">Female</a></li>
-                <li><a href="#fakelink">Male</a></li>
-                <li><a href="#fakelink">Transgender</a></li>
-            </ul>
+            <select id="patient-gender" name="patient-gender">
+                <option value="Male">Male </option> 
+                <option value="Female" selected>Female </option>
+                <option value="Transgender">Transgender</option>
+            </select>
         </div>
         <div class="form-group">
             <label for="patient-address">Address</label>
-            <textarea class="form-control" rows="3" id="patient-address" ng-model="patient.address"
+            <textarea class="form-control" rows="3" id="patient-address" name="patient-address" ng-model="patient.address"
                 placeholder="{{patient.address}}"></textarea>
         </div>
         <div class="form-group">
             <label for="patient-insurance">Health Insurance #</label>
-            <input type="text" id="patient-insurance" class="form-control" ng-model="patient.healthInsNum"
+            <input type="text" id="patient-insurance" name="patient-insurance" class="form-control" ng-model="patient.healthInsNum"
                 placeholder="{{patient.healthInsNum}}">
         </div>
         <div class="form-group">
             <label for="patient-phone">Phone Number</label>
-            <input type="text" id="patient-phone" class="form-control" ng-model="patient.phoneNum"
+            <input type="text" id="patient-phone" name="patient-phone" class="form-control" ng-model="patient.phoneNum"
                 placeholder="{{patient.phoneNum}}">
         </div>
         <div class="form-group">
             <label for="patient-dateOfBirth">Date of Birth (DD/MM/YY)</label>
-            <input type="text" id="patient-dateOfBirth" class="form-control" ng-model="patient.dateOfBirth"
+            <input type="text" id="patient-dateOfBirth" name="patient-dateOfBirth" class="form-control" ng-model="patient.dateOfBirth"
                 placeholder="{{patient.dateOfBirth}}">
         </div>
-        <div class="dropdown form-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">{{patient.maritalStatus}}<span
-                        class="caret"></span>
-            </button>
-            <span class="dropdown-arrow"></span>
-            <ul class="dropdown-menu">
-                <li><a href="#fakelink">Single</a></li>
-                <li><a href="#fakelink">Married</a></li>
-                <li><a href="#fakelink">Separated</a></li>
-                <li><a href="#fakelink">Divorced</a></li>
-            </ul>
+        <div class="form-group">
+            <label for="patient-maritalStatus">Marital Status</label>
+            <select id="patient-maritalStatus" name="patient-maritalStatus">
+                <option value="Single">Single </option> 
+                <option value="Married" selected>Married </option>
+                <option value="Separated">Separated </option>
+                <option value="Divorced">Divorced </option>
+                <option value="Widowed">Widowed </option>
+            </select>
         </div>
         <div class="form-group">
-            <label for "patient-nextOfKin-name">Next of Kin</label>
+            <h5>Next of Kin</h5>
             <br>
-            <label for "patient-nextOfKin">Full Name</label>
-                <input type="text" id="patient-nok-name" class="form-control" ng-model="patient.nextOfKin.name"
+            <label for "patient-nok-name">Full Name</label>
+                <input type="text" id="patient-nok-name" name="patient-nok-name" class="form-control" ng-model="patient.nextOfKin.name"
                 placeholder="{{patient.nextOfKin.name}}">
         </div>
         <div class="form-group">
             <label for="patient-nok-relationship">Relationship</label>
-            <input type="text" id="patient-nok-relationship" class="form-control" ng-model="patient.nextOfKin.relationship"
+            <input type="text" id="patient-nok-relationship" name="patient-nok-relationship" class="form-control" ng-model="patient.nextOfKin.relationship"
                 placeholder="{{patient.nextOfKin.relationship}}">
         </div>
         <div class="form-group">
             <label for="patient-nok-address">Address</label>
-            <input type="text" id="patient-nok-address" class="form-control" ng-model="patient.nextOfKin.address"
+            <input type="text" id="patient-nok-address" name="patient-nok-address" class="form-control" ng-model="patient.nextOfKin.address"
                 placeholder="{{patient.nextOfKin.address}}">
         </div>
         <div class="form-group">
             <label for="patient-nok-phone">Phone Number</label>
-            <input type="text" id="patient-nok-phone" class="form-control" ng-model="patient.nextOfKin.phoneNum"
+            <input type="text" id="patient-nok-phone" name="patient-nok-phone" class="form-control" ng-model="patient.nextOfKin.phoneNum"
                 placeholder="{{patient.nextOfKin.phoneNum}}">
         </div>
 
-        <button type="submit" class="btn btn-default" ng-show="newPath()" ng-click="go(/ward/1)">Admit</button>
-        <button type="submit" class="btn btn-default" ng-hide="newPath()" ng-click="go(/ward/1)">Update</button>
+        <button type="submit" class="btn btn-default" ng-show="newPath()" ng-click="admit()">Admit</button>
+        <button type="submit" class="btn btn-default" ng-hide="newPath()" ng-click="save()">Update</button>
+
     </form>
 </div>
