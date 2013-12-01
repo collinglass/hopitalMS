@@ -1,7 +1,6 @@
 package models
 
 import (
-	"bytes"
 	"code.google.com/p/go.crypto/bcrypt"
 	"fmt"
 )
@@ -15,6 +14,11 @@ type Employee struct {
 	passwordHash []byte `json:"-"`
 }
 
+func FindEmployee(employeeID int) (*Employee, bool, error) {
+	empl, ok := employeeByID[employeeID]
+	return empl, ok, nil
+}
+
 func NewEmployee(employeeID int, password []byte) (*Employee, error) {
 	defer clearBytes(password)
 	hash, err := bcrypt.GenerateFromPassword(password, bcrypt.DefaultCost)
@@ -24,7 +28,7 @@ func NewEmployee(employeeID int, password []byte) (*Employee, error) {
 	return &Employee{passwordHash: hash}, nil
 }
 
-func (e *Employee) validatePassword(password []byte) error {
+func (e *Employee) ValidatePassword(password []byte) error {
 	defer clearBytes(password)
 	return bcrypt.CompareHashAndPassword(e.passwordHash, password)
 }

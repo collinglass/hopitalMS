@@ -14,11 +14,6 @@ import (
 	"os"
 	"path"
 	"path/filepath"
-	"time"
-)
-
-const (
-	sessionExpire = time.Second * 15
 )
 
 func init() {
@@ -28,30 +23,18 @@ func init() {
 func main() {
 	log.Println("Starting Server")
 
-	stubFileserver := logHandler(restStubHandler("./stub/"))
-
 	sessionMngr := session.NewSessionManager(sessionExpire)
+	http.Handle("/api/v0.1/sessions", sessionStateHandler(sessionMngr))
 
-	http.Handle("/api/sessions")
+	stubFileserver := session.EnsureHasSession(sessionMngr,
+		tokenName,
+		newRESTStubHandler("./stub/"))
 
 	http.Handle("/api/", stubFileserver)
 	http.Handle("/", logHandler(http.FileServer(http.Dir("../app/"))))
 
 	log.Println("Listening on 8080")
 	http.ListenAndServe(":8080", nil)
-}
-
-func sessionStateHandler(mngr *session.SessionManager) http.HandlerFunc {
-	return func(rw http.ResponseWriter, req *http.Request) {
-		switch req.Method {
-		case "DELETE":
-
-			mngr.NewSession(id, req.RemoteAddr)
-		case "POST":
-		default:
-			http.Error(rw, "Not allowed:"+req.Method, http.StatusMethodNotAllowed)
-		}
-	}
 }
 
 func jsonHandler(h http.Handler) http.HandlerFunc {
@@ -65,23 +48,34 @@ func logHandler(h http.Handler) http.Handler {
 	return handlers.LoggingHandler(os.Stdout, h)
 }
 
-func restStubHandler(prefix string) http.HandlerFunc {
-	return func(rw http.ResponseWriter, req *http.Request) {
-		verb := req.Method
+type restStubHandler struct {
+	prefix    string
+	currentID string
+}
 
-		dir, file := path.Split(req.URL.String())
-		log.Printf("Method %v Collection: %v Member: %v\n", verb, dir, file)
+func newRESTStubHandler(prefix string) restStubHandler {
+	return restStubHandler{prefix: prefix}
+}
 
-		prefixDir := filepath.Join(filepath.Clean(prefix), filepath.Clean(dir))
-		if file != "" {
-			// it's a member request
-			log.Printf("Serving member")
-			restMemberStub(verb, prefixDir, file, rw, req)
-		} else {
-			// it's a collection request
-			log.Printf("Serving collection")
-			restCollectionStub(verb, prefixDir, rw, req)
-		}
+func (r restStubHandler) SetID(id string) {
+	r.currentID = id
+}
+
+func (r restStubHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+	verb := req.Method
+
+	dir, file := path.Split(req.URL.String())
+	log.Printf("Method %v Collection: %v Member: %v\n", verb, dir, file)
+
+	prefixDir := filepath.Join(filepath.Clean(r.prefix), filepath.Clean(dir))
+	if file != "" {
+		// it's a member request
+		log.Printf("Serving member")
+		restMemberStub(verb, prefixDir, file, rw, req)
+	} else {
+		// it's a collection request
+		log.Printf("Serving collection")
+		restCollectionStub(verb, prefixDir, rw, req)
 	}
 }
 

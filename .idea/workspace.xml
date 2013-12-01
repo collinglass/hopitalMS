@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9853f8-067b-4a2e-97c8-432883a1d55d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/models/employee.go" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.go" afterPath="$PROJECT_DIR$/server/server.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/models/employee.go" afterPath="$PROJECT_DIR$/server/models/employee.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="moustacheMS.iws" />
@@ -30,7 +29,7 @@
       <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="0" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2535">
+            <state line="21" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2700">
               <folding />
             </state>
           </provider>
@@ -39,7 +38,7 @@
       <file leaf-file-name="patient.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="32" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.06392045" vertical-offset="255" max-vertical-offset="1245">
+            <state line="27" column="100" selection-start="1475" selection-end="1475" vertical-scroll-proportion="0.21306819" vertical-offset="255" max-vertical-offset="1245">
               <folding />
             </state>
           </provider>
@@ -336,7 +335,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15243472" sideWeight="0.64588857" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3541114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="2" width="1080" height="492" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3541114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="2" width="1080" height="492" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275862" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -401,7 +400,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/angular/angular.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305" />
+        <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/services.js">
@@ -441,14 +442,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="0" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2460">
+        <state line="21" column="0" selection-start="516" selection-end="516" vertical-scroll-proportion="0.0" vertical-offset="315" max-vertical-offset="2700">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="32" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.06392045" vertical-offset="255" max-vertical-offset="1245">
+        <state line="27" column="100" selection-start="1475" selection-end="1475" vertical-scroll-proportion="0.21306819" vertical-offset="255" max-vertical-offset="1245">
           <folding />
         </state>
       </provider>
