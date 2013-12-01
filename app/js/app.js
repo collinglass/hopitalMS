@@ -26,7 +26,7 @@ angular.module('mustacheApp', [
             templateUrl: 'partials/ward_detail.html',
             controller: 'WardDetailCtrl'
         });
-        $routeProvider.when('/patients', {
+        $routeProvider.when('/patient/new', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl'
         });
