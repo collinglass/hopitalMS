@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9853f8-067b-4a2e-97c8-432883a1d55d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json" afterPath="$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/stub/api/v0.1/employees/2.json" afterPath="$PROJECT_DIR$/server/stub/api/v0.1/employees/2.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/stub/api/v0.1/employees/3.json" afterPath="$PROJECT_DIR$/server/stub/api/v0.1/employees/3.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/stub/api/v0.1/employees/4.json" afterPath="$PROJECT_DIR$/server/stub/api/v0.1/employees/4.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/partials/ward_detail.html" afterPath="$PROJECT_DIR$/app/partials/ward_detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="moustacheMS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -71,7 +67,7 @@
           <file leaf-file-name="ward_detail.html" pinned="false" current="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="51" column="39" selection-start="2419" selection-end="2419" vertical-scroll-proportion="0.69521046" vertical-offset="286" max-vertical-offset="975">
+                <state line="49" column="46" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.6516691" vertical-offset="286" max-vertical-offset="975">
                   <folding />
                 </state>
               </provider>
@@ -102,7 +98,7 @@
           <file leaf-file-name="1.json" pinned="false" current="true" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state line="5" column="10" selection-start="134" selection-end="134" vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="702">
+                <state line="9" column="0" selection-start="202" selection-end="202" vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="702">
                   <folding />
                 </state>
               </provider>
@@ -166,11 +162,11 @@
         <option value="$PROJECT_DIR$/app/partials/ward_list.html" />
         <option value="$PROJECT_DIR$/app/partials/patient.html" />
         <option value="$PROJECT_DIR$/app/js/controllers.js" />
-        <option value="$PROJECT_DIR$/app/partials/ward_detail.html" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/3.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/4.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/2.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json" />
+        <option value="$PROJECT_DIR$/app/partials/ward_detail.html" />
       </list>
     </option>
   </component>
@@ -527,7 +523,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1474947" sideWeight="0.64588857" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1474947" sideWeight="0.64588857" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3541114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="-235" width="1080" height="729" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -638,13 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="39" selection-start="2419" selection-end="2419" vertical-scroll-proportion="0.69521046" vertical-offset="286" max-vertical-offset="975">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/3.json">
       <provider selected="true" editor-type-id="text-editor">
         <state line="5" column="10" selection-start="131" selection-end="131" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="225">
@@ -666,9 +655,16 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="49" column="46" selection-start="2307" selection-end="2307" vertical-scroll-proportion="0.6516691" vertical-offset="286" max-vertical-offset="975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="10" selection-start="134" selection-end="134" vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="702">
+        <state line="9" column="0" selection-start="202" selection-end="202" vertical-scroll-proportion="0.1923077" vertical-offset="0" max-vertical-offset="702">
           <folding />
         </state>
       </provider>

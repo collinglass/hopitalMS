@@ -91,6 +91,11 @@ func restMemberStub(verb, dir, file string, rw http.ResponseWriter, req *http.Re
 		}
 	}()
 
+	if isDir(f) {
+		restCollectionStub(verb, filepath.Join(dir, file), rw, req)
+		return
+	}
+
 	bytes, err := ioutil.ReadAll(f)
 	if err != nil {
 		http.Error(rw, err.Error(), http.StatusInternalServerError)
@@ -109,12 +114,9 @@ func restMemberStub(verb, dir, file string, rw http.ResponseWriter, req *http.Re
 func tryFindFile(dirname, name string) (*os.File, error) {
 	finfos, err := ioutil.ReadDir(dirname)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("reading directory at %s, %v", dirname, err)
 	}
 	for _, fi := range finfos {
-		if fi.IsDir() {
-			continue
-		}
 		if name == stripExtension(fi.Name()) {
 			return os.Open(filepath.Join(dirname, fi.Name()))
 		}
@@ -159,6 +161,15 @@ func respondWithJSON(rw http.ResponseWriter, req *http.Request, data interface{}
 	} else if n != int64(l) {
 		log.Printf("Short write, %d/%d", n, l)
 	}
+}
+
+func isDir(file *os.File) bool {
+	stat, err := file.Stat()
+	if err != nil {
+		log.Fatal(err)
+		return false
+	}
+	return stat.Mode().IsDir()
 }
 
 func stripExtension(filename string) string {
