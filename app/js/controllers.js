@@ -55,11 +55,7 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         $scope.gender = patient.gender;
         $scope.maritalStatus = patient.maritalStatus;
 
-        $scope.nextOfKin.name = patient.nextOfKin.name;
-        $scope.nextOfKin.relationship = patient.nextOfKin.relationship;
-        $scope.nextOfKin.address = patient.nextOfKin.address;
-        $scope.nextOfKin.phoneNum = patient.nextOfKin.phoneNum;
-
+        $scope.nextOfKin = patient.nextOfKin;
 
     });
 
