@@ -1,3 +1,17 @@
-            "lastName": "Buble",
-            "firstName": "Michael",
-            "healthInsNum": "7823 4233 55LE GEGD",
+{
+	"patientId": 12,
+	"lastName": "Buble",
+	"firstName": "Michael",
+	"healthInsNum": "7823 4233 55LE GEGD",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "married",
+	"nextOfKin": {
+		"name" : "Noah Buble",
+		"relationship": "son",
+		"address" :"Burnaby",
+		"phoneNum" : "635-522-6778"
+	}
+}

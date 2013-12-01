@@ -9,9 +9,9 @@
     "gender": "male",
     "maritalStatus": "single",
     "nextOfKin": {
-                    "name" : "Somebody Close to that person",
-                    "relationship" : "brother",
-                    "address" :"Somewhere way to far",
-                    "phoneNum" : "666-666-6666"
+        "name" : "Somebody Close to that person",
+        "relationship" : "brother",
+        "address" :"Somewhere way to far",
+        "phoneNum" : "666-666-6666"
     }
 }
