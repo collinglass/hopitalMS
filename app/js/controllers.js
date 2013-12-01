@@ -138,6 +138,7 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 
                 $scope.patients.push(patientPush);
 
+                // Check out the ward after
                 $scope.go('/ward/1');
                 
             };
