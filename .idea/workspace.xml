@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7e9853f8-067b-4a2e-97c8-432883a1d55d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/controllers.js" afterPath="$PROJECT_DIR$/app/js/controllers.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/server/models/employee.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/server/server.go" afterPath="$PROJECT_DIR$/server/server.go" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="moustacheMS.iws" />
@@ -26,10 +27,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="controllers.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="controllers.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="103" column="0" selection-start="3621" selection-end="3621" vertical-scroll-proportion="0.1446281" vertical-offset="1440" max-vertical-offset="2460">
+            <state line="10" column="0" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="2535">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="patient.html" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="20" column="32" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.06392045" vertical-offset="255" max-vertical-offset="1245">
               <folding />
             </state>
           </provider>
@@ -65,10 +75,10 @@
         <option value="$PROJECT_DIR$/app/index.html" />
         <option value="$PROJECT_DIR$/app/partials/ward_list.html" />
         <option value="$PROJECT_DIR$/app/partials/ward_detail.html" />
-        <option value="$PROJECT_DIR$/app/partials/patient.html" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/patients/1.json" />
         <option value="$PROJECT_DIR$/server/stub/api/v0.1/patients/2.json" />
         <option value="$PROJECT_DIR$/app/js/controllers.js" />
+        <option value="$PROJECT_DIR$/app/partials/patient.html" />
       </list>
     </option>
   </component>
@@ -182,24 +192,16 @@
   <component name="PropertiesComponent">
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="recentsLimit" value="5" />
     <property name="options.lastSelected" value="tasks.servers" />
-    <property name="restartRequiresConfirmation" value="true" />
+    <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/app/index.html" />
+    <property name="restartRequiresConfirmation" value="true" />
     <property name="FullScreen" value="false" />
     <property name="DefaultHtmlFileTemplate" value="Html5" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="JavaScript Debug.Unnamed">
-    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
-      <option name="VMOptions" />
-      <option name="arguments" />
-      <option name="filePath" />
-      <option name="scope" value="ALL" />
-      <option name="testName" />
-      <method />
-    </configuration>
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
       <option name="VMOptions" />
       <option name="arguments" />
@@ -210,19 +212,23 @@
       <option name="showConsoleOnStdOut" value="false" />
       <method />
     </configuration>
-    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
-      <setting name="configLocationType" value="CONFIG_FILE" />
-      <setting name="settingsFile" value="" />
-      <setting name="serverType" value="INTERNAL" />
-      <setting name="preferredDebugBrowser" value="CHROME" />
+    <configuration default="true" type="DartUnitRunConfigurationType" factoryName="DartUnit">
+      <option name="VMOptions" />
+      <option name="arguments" />
+      <option name="filePath" />
+      <option name="scope" value="ALL" />
+      <option name="testName" />
       <method />
     </configuration>
     <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma" singleton="true" config-file="">
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
-      <node-js-remote-debug />
+    <configuration default="true" type="JSTestDriver:ConfigurationType" factoryName="JsTestDriver">
+      <setting name="configLocationType" value="CONFIG_FILE" />
+      <setting name="settingsFile" value="" />
+      <setting name="serverType" value="INTERNAL" />
+      <setting name="preferredDebugBrowser" value="CHROME" />
       <method />
     </configuration>
     <configuration default="true" type="NodeunitConfigurationType" factoryName="Nodeunit">
@@ -235,10 +241,18 @@
       <setting name="jsFile" value="" />
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug">
+      <node-js-remote-debug />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" uri="file://Mustache">
       <method>
         <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_Mustache Server" />
       </method>
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
+      <browser start="false" url="" with-js-debugger="false" />
+      <method />
     </configuration>
     <configuration default="true" type="XSLT" factoryName="XSLT">
       <option name="myOutputFile" />
@@ -254,10 +268,6 @@
       <OutputType value="CONSOLE" save-to-file="false" />
       <FileType name="XML" />
       <JdkChoice value="FROM_MODULE" />
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="$PROJECT_DIR$">
-      <browser start="false" url="" with-js-debugger="false" />
       <method />
     </configuration>
     <configuration default="false" name="Unnamed" type="JavascriptDebugType" factoryName="JavaScript Debug" singleton="true" uri="http://localhost:8080/">
@@ -318,7 +328,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1440" height="874" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="874" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -326,7 +336,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32936507" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15243472" sideWeight="0.64588857" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="true" weight="0.3541114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="2" width="1080" height="492" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.3541114" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="1440" y="2" width="1080" height="492" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275862" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -361,30 +371,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/3.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="10" selection-start="131" selection-end="131" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
+        <state line="5" column="10" selection-start="131" selection-end="131" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="225" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/4.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="19" selection-start="170" selection-end="170" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
+        <state line="6" column="19" selection-start="170" selection-end="170" vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="225" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/2.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="10" selection-start="132" selection-end="132" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
+        <state line="5" column="10" selection-start="132" selection-end="132" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="225" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/employees/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="20" selection-start="144" selection-end="144" vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="702">
-          <folding />
-        </state>
+        <state line="5" column="20" selection-start="144" selection-end="144" vertical-scroll-proportion="0.10683761" vertical-offset="0" max-vertical-offset="702" />
       </provider>
     </entry>
     <entry file="http://localhost:8080/api/v0.1/wards/%5Bobject%20Object%5D">
@@ -394,77 +396,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/wards/1.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="17" selection-start="62" selection-end="62" vertical-scroll-proportion="0.06531204" vertical-offset="0" max-vertical-offset="690">
-          <folding />
-        </state>
+        <state line="3" column="17" selection-start="62" selection-end="62" vertical-scroll-proportion="0.06531204" vertical-offset="0" max-vertical-offset="690" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/lib/angular/angular.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305">
-          <folding />
-        </state>
+        <state line="9979" column="0" selection-start="335095" selection-end="335095" vertical-scroll-proportion="0.0" vertical-offset="149537" max-vertical-offset="304305" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/js/services.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="0" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <folding />
-        </state>
+        <state line="12" column="0" selection-start="372" selection-end="372" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="46" selection-start="267" selection-end="267" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="660">
-          <folding />
-        </state>
+        <state line="7" column="46" selection-start="267" selection-end="267" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="660" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/ward_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="6" selection-start="554" selection-end="554" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="270">
-          <folding />
-        </state>
+        <state line="12" column="6" selection-start="554" selection-end="554" vertical-scroll-proportion="-7.5" vertical-offset="0" max-vertical-offset="270" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/ward_detail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="50" selection-start="1039" selection-end="1039" vertical-scroll-proportion="-8.75" vertical-offset="90" max-vertical-offset="990">
+        <state line="20" column="50" selection-start="1039" selection-end="1039" vertical-scroll-proportion="-8.75" vertical-offset="90" max-vertical-offset="990" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/patients/1.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="345" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/patients/3.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="726" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/patients/2.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="31" selection-start="411" selection-end="411" vertical-scroll-proportion="0.44827586" vertical-offset="0" max-vertical-offset="435" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="0" selection-start="204" selection-end="204" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2460">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/partials/patient.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="256" selection-end="256" vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="1305">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/patients/1.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="0" selection-start="482" selection-end="482" vertical-scroll-proportion="-10.625" vertical-offset="0" max-vertical-offset="345">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/patients/3.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="726">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server/stub/api/v0.1/patients/2.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="31" selection-start="411" selection-end="411" vertical-scroll-proportion="0.44827586" vertical-offset="0" max-vertical-offset="435">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/controllers.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="103" column="0" selection-start="3621" selection-end="3621" vertical-scroll-proportion="0.1446281" vertical-offset="1440" max-vertical-offset="2460">
+        <state line="20" column="32" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.06392045" vertical-offset="255" max-vertical-offset="1245">
           <folding />
         </state>
       </provider>

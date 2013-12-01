@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"github.com/aybabtme/session"
 	"github.com/gorilla/handlers"
 	"io"
 	"io/ioutil"
@@ -13,6 +14,11 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"time"
+)
+
+const (
+	sessionExpire = time.Second * 15
 )
 
 func init() {
@@ -24,11 +30,28 @@ func main() {
 
 	stubFileserver := logHandler(restStubHandler("./stub/"))
 
+	sessionMngr := session.NewSessionManager(sessionExpire)
+
+	http.Handle("/api/sessions")
+
 	http.Handle("/api/", stubFileserver)
 	http.Handle("/", logHandler(http.FileServer(http.Dir("../app/"))))
 
 	log.Println("Listening on 8080")
 	http.ListenAndServe(":8080", nil)
+}
+
+func sessionStateHandler(mngr *session.SessionManager) http.HandlerFunc {
+	return func(rw http.ResponseWriter, req *http.Request) {
+		switch req.Method {
+		case "DELETE":
+
+			mngr.NewSession(id, req.RemoteAddr)
+		case "POST":
+		default:
+			http.Error(rw, "Not allowed:"+req.Method, http.StatusMethodNotAllowed)
+		}
+	}
 }
 
 func jsonHandler(h http.Handler) http.HandlerFunc {
