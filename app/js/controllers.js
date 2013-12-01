@@ -17,17 +17,26 @@ controllers.controller('PatientCtrl', ["$scope", function ($scope) {
     $scope.hello = "Hello from PatientCtrl";
 }]);
 
-controllers.controller('WardListCtrl', ["$scope", "$location", "Ward",
-    function ($scope, $location, Ward) {
+controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee",
+    function ($scope, $location, Ward, Employee) {
 
-        $scope.hello = "Hello from WardListCtrl";
+        $scope.wards = [];
+        Ward.query(function (wardIds) {
+            wardIds.forEach(function (wardId) {
+                Ward.get({wardId: wardId.id}, function (ward) {
 
-        Ward.query(function (wards) {
+                    Employee.get({employeeId: ward.doctorId}, function(doctor) {
+                        ward.doctor = doctor;
+                    });
 
-            $scope.wards = wards;
+                    Employee.get({employeeId: ward.chargeNurseId}, function(nurse) {
+                        ward.chargeNurse = nurse;
+                    });
+
+                    $scope.wards.push(ward);
+                });
+            });
         });
-
-
     }]);
 
 controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
@@ -48,8 +57,8 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                     patient.details = patientDetails;
 
                 });
-                ward.beds.forEach(function(bed){
-                    if(bed.bedId === patient.bedId) {
+                ward.beds.forEach(function (bed) {
+                    if (bed.bedId === patient.bedId) {
                         patient.roomId = bed.roomId;
                     }
                 });
@@ -61,9 +70,9 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
 
                 });
 
-                Ward.get({wardId: request.fromWardId}, function(fromWard) {
-                   request.fromWard = fromWard;
-                    Employee.get({employeeId: fromWard.chargeNurseId}, function(nurse) {
+                Ward.get({wardId: request.fromWardId}, function (fromWard) {
+                    request.fromWard = fromWard;
+                    Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
                         request.chargeNurseName = nurse.firstName + " " + nurse.lastName;
                     });
                 });
@@ -76,7 +85,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             });
 
             $scope.admissionsRequest.admit = function () {
-                console.log("I AINT ADMITIN NOTHIN");
+                window.console.log("I AINT ADMITIN NOTHIN");
             };
 
             $scope.patients.discharge = function () {

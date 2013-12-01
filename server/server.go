@@ -124,6 +124,10 @@ func tryFindFile(dirname, name string) (*os.File, error) {
 	return nil, fmt.Errorf("no match found in dir %s for name %s", dirname, name)
 }
 
+type memberId struct {
+	ID string `json:"id"`
+}
+
 func restCollectionStub(verb, dir string, rw http.ResponseWriter, req *http.Request) {
 
 	finfos, err := ioutil.ReadDir(dir)
@@ -132,7 +136,7 @@ func restCollectionStub(verb, dir string, rw http.ResponseWriter, req *http.Requ
 		return
 	}
 
-	var names []string
+	var names []memberId
 	for _, fi := range finfos {
 		if fi.IsDir() {
 			continue
@@ -140,7 +144,8 @@ func restCollectionStub(verb, dir string, rw http.ResponseWriter, req *http.Requ
 		filename := fi.Name()
 		ext := path.Ext(filename)
 		name := filename[:len(filename)-len(ext)]
-		names = append(names, name)
+
+		names = append(names, memberId{ID: name})
 	}
 	respondWithJSON(rw, req, names)
 }
