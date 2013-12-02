@@ -77,8 +77,12 @@ angular.module('mustacheApp', [
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!Auth.authorize(next.access)) {
             console.log(next);
-            if(Auth.isLoggedIn()) $location.path(next);                // Currently, when logged in, redirects you to ward/1
-            else $location.path('/login');
+            if(Auth.isLoggedIn()) {
+                // Currently, when logged in, redirects you to ward/1
+                $location.path(next);
+            } else {
+                $location.path('/login');
+            }
         }
     });
  
