@@ -34,45 +34,45 @@ mustacheServices.factory('Auth', function($http, $rootScope, $cookieStore){
  
     var accessLevels = routingConfig.accessLevels, 
                     userRoles = routingConfig.userRoles,
-                    currentUser = $cookieStore.get('user') || { username: '', role: userRoles.public };
+                    currentUser = $cookieStore.get('User') || { username: '', role: userRoles.public };
  
     $rootScope.accessLevels = accessLevels;
     $rootScope.userRoles = userRoles;
     
     // *** Start of Dummy $rootScope data to make app work without backend
 
-    $rootScope.user = { username: '', role: 2 };
-    console.log($rootScope.user);
+    $rootScope.User = { username: '', role: 2 };
+    console.log($rootScope.User);
 
     // *** End
  
     return {
         authorize: function(accessLevel, role) {
             if(role === undefined)
-                role = $rootScope.user.role;
+                role = $rootScope.User.role;
             return accessLevel.bitMask; role;
         },
  
-        isLoggedIn: function(user) {
-            if(user === undefined)
-                user = $rootScope.user;
-            return user.role === userRoles.medical_staff || user.role === userRoles.doctor || user.role === userRoles.charge_nurse;
+        isLoggedIn: function(User) {
+            if(User === undefined)
+                User = $rootScope.User;
+            return User.role === userRoles.medical_staff || User.role === userRoles.doctor || User.role === userRoles.charge_nurse;
         },
  
-        register: function(user, success, error) {
-            $http.post('/register', user).success(success).error(error);
+        register: function(User, success, error) {
+            $http.post('/register', User).success(success).error(error);
         },
  
-        login: function(user, success, error) {
-            $http.post('/login', user).success(function(user){
-                $rootScope.user = user;
-                success(user);
+        login: function(User, success, error) {
+            $http.post('/login', User).success(function(User){
+                $rootScope.User = User;
+                success(User);
             }).error(error);
         },
  
         logout: function(success, error) {
             $http.post('/logout').success(function(){
-                $rootScope.user = {
+                $rootScope.User = {
                     username : '',
                     role : userRoles.public
                 };
@@ -82,7 +82,7 @@ mustacheServices.factory('Auth', function($http, $rootScope, $cookieStore){
         
         accessLevels: accessLevels,
         userRoles: userRoles,
-        user: currentUser
+        User: currentUser
     };
 });
 

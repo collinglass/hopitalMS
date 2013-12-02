@@ -17,7 +17,7 @@ angular.module('mustacheApp.directives')
 		restrict: 'A',
 		link: function(scope, element, attrs) {
 			var prevDisp = element.css('display');
-			$rootScope.$watch('user.role', function(role) {
+			$rootScope.$watch('User.role', function(role) {
 				if(!Auth.authorize(attrs.accessLevel))
 					element.css('display', 'none');
 				else

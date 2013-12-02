@@ -34,7 +34,7 @@ controllers.controller('LoginCtrl', ["$scope", /*"$rootScope",*/ "$http", "$loca
 controllers.controller('NavCtlr', ["$scope", "$rootScope", function ($scope, $rootScope) {
 
     $scope.updateRole = function () {
-        var role = $rootScope.user.role;
+        var role = $rootScope.User.role;
 
         if ($scope.publicRole) {
             role |= 1;
@@ -60,8 +60,8 @@ controllers.controller('NavCtlr', ["$scope", "$rootScope", function ($scope, $ro
             role &= (~8);
         }
 
-        $rootScope.user.role = role;
-        console.log($rootScope.user);
+        $rootScope.User.role = role;
+        console.log($rootScope.User);
     };
 }]);
 
@@ -186,8 +186,6 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
 
 controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient",
     function ($scope, $location, $routeParams, Ward, Patient) {
-
-        console.log(getCookie("user"));
 
         $scope.go = function (path) {
             $location.path(path);
