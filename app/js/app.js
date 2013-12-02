@@ -4,36 +4,78 @@
 // Declare app level module which depends on filters, and services
 angular.module('mustacheApp', [
         'ngRoute',
+        'ngCookies',
         'mustacheApp.filters',
         'mustacheApp.services',
         'mustacheApp.directives',
         'mustacheApp.controllers'
     ]).
-    config(['$routeProvider', function ($routeProvider) {
+    config(['$routeProvider', /*'$rootScope',*/ '$locationProvider', '$httpProvider', 
+        function ($routeProvider, $rootScope, $locationProvider, $httpProvider) {
+        var access = routingConfig.accessLevels;
+
         $routeProvider.when('/login', {
             templateUrl: 'partials/login.html',
-            controller: 'LoginCtrl'
+            controller: 'LoginCtrl',
+            access: access.anon
         });
         $routeProvider.when('/register', {
             templateUrl: 'partials/register.html',
-            controller: 'RegisterCtrl'
+            controller: 'RegisterCtrl',
+            access: access.anon
         });
         $routeProvider.when('/ward', {
             templateUrl: 'partials/ward_list.html',
-            controller: 'WardListCtrl'
+            controller: 'WardListCtrl',
+            access: access.medical_staff
         });
         $routeProvider.when('/ward/:wardId', {
             templateUrl: 'partials/ward_detail.html',
-            controller: 'WardDetailCtrl'
+            controller: 'WardDetailCtrl',
+            access: access.medical_staff
         });
         $routeProvider.when('/patients/new', {
             templateUrl: 'partials/patient.html',
-            controller: 'PatientCtrl'
+            controller: 'PatientCtrl',
+            access: access.medical_staff
         });
         $routeProvider.when('/patients/:patientId', {
             templateUrl: 'partials/patient.html',
-            controller: 'PatientCtrl'
+            controller: 'PatientCtrl',
+            access: access.medical_staff
         });
         $routeProvider.otherwise({redirectTo: '/login'});
-    }]);
 
+/*
+        var interceptor = ['$location', '$q', function($location, $q) {
+        function success(response) {
+            return response;
+        }
+ 
+        function error(response) {
+ 
+            if(response.status === 401) {
+                $location.path('/login');
+                return $q.reject(response);
+            } else {
+            return $q.reject(response);
+            }
+        }
+ 
+        return function(promise) {
+            return promise.then(success, error);
+        }
+    }];
+
+    $httpProvider.responseInterceptors.push(interceptor);
+     */
+}]).run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
+ 
+    $rootScope.$on("$routeChangeStart", function (event, next, current) {
+        if (!Auth.authorize(next.access)) {
+            if(Auth.isLoggedIn()) $location.path('/');
+            else $location.path('/login');
+        }
+    });
+ 
+}]);

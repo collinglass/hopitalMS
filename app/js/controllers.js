@@ -5,7 +5,7 @@
 var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
-controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$http", "$location", function ($scope, $rootScope, $http, $location) {
+controllers.controller('LoginCtrl', ["$scope", /*"$rootScope",*/ "$http", "$location", function ($scope, $rootScope, $http, $location) {
     $scope.onNewAccount = function () {
         window.console.log("User is: ", JSON.stringify($scope.User));
         $rootScope.User = $scope.User;
@@ -84,6 +84,13 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
 
 controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
     function ($scope, $location, $routeParams, Ward, Patient, Employee) {
+        function getCookie(name) {
+            var regexp = new RegExp("(?:^" + name + "|;\s*"+ name + ")=(.*?)(?:;|$)", "g");
+            var result = regexp.exec(document.cookie);
+            return (result === null) ? null : result[1];
+        }
+
+        console.log(document.cookie);
 
         $scope.go = function (path) {
             $location.path(path);
@@ -147,6 +154,8 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
 
 controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient",
     function ($scope, $location, $routeParams, Ward, Patient) {
+
+        console.log(getCookie("user"));
 
         $scope.go = function (path) {
             $location.path(path);

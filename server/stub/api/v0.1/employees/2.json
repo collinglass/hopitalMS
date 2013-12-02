@@ -5,5 +5,5 @@
     "firstName": "Doctor",
     "lastName": "Who",
     "email": "doctor@who.com",
-    "roles": [2, 3]
+    "role": 4
 }

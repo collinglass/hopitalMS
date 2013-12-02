@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/handlers"
+	//"github.com/gorilla/mux"
 	"io"
 	"io/ioutil"
 	"log"
@@ -13,12 +14,57 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	//"time"
 )
 
 func init() {
 	mime.AddExtensionType(".json", "application/json; charset=utf-8")
 }
 
+/*
+type CookieValue struct {
+	Username string `json:"username"`
+	Role     int    `json:"role"`
+}
+
+func AuthenticationHandler(w http.ResponseWriter, req *http.Request) {
+	var cookieValue CookieValue
+
+	cookieValue.Username = ""
+	cookieValue.Role = 1
+
+	// var authCookie Cookie
+
+	/*
+		// If request already contains a user
+		// deserialize json then check if that mother fucker contains a user
+		err := json.NewDecoder(req.Body).Decode(&authCookie)
+		if err != nil {
+			panic(err)
+		}
+		// if it does keep passing that shit around
+		if authCookie.name == "user" {
+			cookieValue.Username = authCookie.
+		}
+*/
+
+// Serialize the response to JSON
+/*
+		j, err := json.Marshal(cookieValue)
+		if err != nil {
+			panic(err)
+		}
+	log.Println("Hello")
+	var res []byte
+	expire := time.Now().AddDate(0, 0, 1)
+	cookie := http.Cookie{"user", `{"username": "", "role": 1}`, "/", "www.dummy.com", expire, expire.Format(time.UnixDate), 86400, true, true, "test=tcookie", []string{"test=tcookie"}}
+
+	http.SetCookie(w, &cookie)
+	// Write the response
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(res)
+}
+*/
 func main() {
 	log.Println("Starting Server")
 
@@ -28,7 +74,9 @@ func main() {
 	// stubFileserver := session.EnsureHasSession(sessionMngr,
 	// 	tokenName,
 	// 	)
+	//r := mux.NewRouter()
 
+	//r.HandleFunc("/#/login", AuthenticationHandler).Methods("GET")
 	http.Handle("/api/", newRESTStubHandler("./stub/"))
 	http.Handle("/", logHandler(http.FileServer(http.Dir("../app/"))))
 

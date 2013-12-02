@@ -1,5 +1,5 @@
 {
-    "roleId": 3,
-    "roleName": "Medical Staff",
-    "roleSlug": "medical_staff"
+    "roleId": 4,
+    "roleName": "Doctor",
+    "roleSlug": "doctor"
 }

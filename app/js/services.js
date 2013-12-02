@@ -29,3 +29,60 @@ mustacheServices.factory("Employee", ["$resource", function($resource){
         query: {method:'GET', params:{employeeId:'@id'}, isArray:true}
     });
 }]);
+
+mustacheServices.factory('Auth', function($http, $rootScope, $cookieStore){
+ 
+    var accessLevels = routingConfig.accessLevels, 
+                    userRoles = routingConfig.userRoles,
+                    currentUser = $cookieStore.get('user') || { username: '', role: userRoles.public };
+ 
+    $rootScope.accessLevels = accessLevels;
+    $rootScope.userRoles = userRoles;
+    
+    // *** Start of Dummy $rootScope data to make app work without backend
+
+    $rootScope.user = { username: '', role: 1 };
+    console.log($rootScope.user);
+
+    // *** End
+ 
+    return {
+        authorize: function(accessLevel, role) {
+            if(role === undefined)
+                role = $rootScope.user.role;
+            return accessLevel.bitMask; role;
+        },
+ 
+        isLoggedIn: function(user) {
+            if(user === undefined)
+                user = $rootScope.user;
+            return user.role === userRoles.user || user.role === userRoles.admin;
+        },
+ 
+        register: function(user, success, error) {
+            $http.post('/register', user).success(success).error(error);
+        },
+ 
+        login: function(user, success, error) {
+            $http.post('/login', user).success(function(user){
+                $rootScope.user = user;
+                success(user);
+            }).error(error);
+        },
+ 
+        logout: function(success, error) {
+            $http.post('/logout').success(function(){
+                $rootScope.user = {
+                    username : '',
+                    role : userRoles.public
+                };
+                success();
+            }).error(error);
+        },
+        
+        accessLevels: accessLevels,
+        userRoles: userRoles,
+        user: currentUser
+    };
+});
+
