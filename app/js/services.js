@@ -32,33 +32,40 @@ mustacheServices.factory("Employee", ["$resource", function ($resource) {
 
 mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
 
-    var accessLevels = routingConfig.accessLevels,
-        userRoles = routingConfig.userRoles,
-        currentUser = $cookieStore.get('User') || { username: '', role: userRoles.public };
+    var currentUser = $cookieStore.get('User') || { username: "", role: ["public"] };
 
-    $rootScope.accessLevels = accessLevels;
-    $rootScope.userRoles = userRoles;
 
     // *** Start of Dummy $rootScope data to make app work without backend
 
-    $rootScope.User = { username: '', role: 2 };
+    $rootScope.User = { username: "", roles: ["medicalStaff"] };
 //    console.log($rootScope.User);
 
     // *** End
 
     return {
-        authorize: function (accessLevel, role) {
-            if (role === undefined) {
-                role = $rootScope.User.role;
+        authorize: function (accessRoles, roles) {
+            if (roles === undefined) {
+                roles = $rootScope.User.roles;
             }
-            return accessLevel.bitMask;
+            for(var requiredRole in accessRoles) {
+                if (roles[requiredRole]) {
+                    return true;
+                }
+            }
+            return false;
         },
 
         isLoggedIn: function (User) {
             if (User === undefined) {
                 User = $rootScope.User;
             }
-            return User.role === userRoles.medicalStaff || User.role === userRoles.doctor || User.role === userRoles.chargeNurse;
+            for( var i = 0; i < 3; i++ ) {
+                if (User.roles === "medicalStaff" || User.roles === "doctor" || User.roles === "chargeNurse") {
+                    return true;
+                }
+            }
+
+            return false;
         },
 
         register: function (User, success, error) {
@@ -75,15 +82,13 @@ mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
         logout: function (success, error) {
             $http.post('/logout').success(function () {
                 $rootScope.User = {
-                    username: '',
-                    role: userRoles.public
+                    username: "",
+                    roles: ["public"]
                 };
                 success();
             }).error(error);
         },
 
-        accessLevels: accessLevels,
-        userRoles: userRoles,
         User: currentUser
     };
 });

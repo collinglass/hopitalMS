@@ -12,41 +12,40 @@ angular.module('mustacheApp', [
     ]).
     config(['$routeProvider', '$locationProvider', '$httpProvider', 
         function ($routeProvider, $locationProvider, $httpProvider) {
-        var access = routingConfig.accessLevels;
 
         $routeProvider.when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl',
-            access: access.anon
+            access: ["public"]
         });
         $routeProvider.when('/register', {
             templateUrl: 'partials/register.html',
             controller: 'RegisterCtrl',
-            access: access.anon
+            access: ["public"]
         });
         $routeProvider.when('/ward', {
             templateUrl: 'partials/ward_list.html',
             controller: 'WardListCtrl',
-            access: access.medicalStaff
+            access: ["medicalStaff"]
         });
         $routeProvider.when('/ward/:wardId', {
             templateUrl: 'partials/ward_detail.html',
             controller: 'WardDetailCtrl',
-            access: access.medicalStaff
+            access: ["medicalStaff"]
         });
         $routeProvider.when('/patients/new', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: access.medicalStaff
+            access: ["medicalStaff"]
         });
         $routeProvider.when('/patients/:patientId', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: access.medicalStaff
+            access: ["medicalStaff"]
         });
         $routeProvider.otherwise({
             redirectTo: '/login',
-            access: access.anon
+            access: ["public"]
         });
 
 
