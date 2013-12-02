@@ -9,7 +9,7 @@ angular.module('mustacheApp.directives', []).
       elm.text(version);
     };
   }]);
-/*
+
 angular.module('mustacheApp.directives')
 	.directive('accessLevel', ['$rootScope', 'Auth', function($rootScope, Auth) {
 	
@@ -26,4 +26,3 @@ angular.module('mustacheApp.directives')
 		}
 	};
 }]);
-*/

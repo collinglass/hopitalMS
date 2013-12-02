@@ -44,9 +44,12 @@ angular.module('mustacheApp', [
             controller: 'PatientCtrl',
             access: access.medical_staff
         });
-        $routeProvider.otherwise({redirectTo: '/login'});
+        $routeProvider.otherwise({
+            redirectTo: '/login',
+            access: access.anon
+        });
 
-/*
+
         var interceptor = ['$location', '$q', function($location, $q) {
         function success(response) {
             return response;
@@ -68,12 +71,12 @@ angular.module('mustacheApp', [
     }];
 
     $httpProvider.responseInterceptors.push(interceptor);
-     */
+    
 }]).run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
  
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!Auth.authorize(next.access)) {
-            if(Auth.isLoggedIn()) $location.path('/ward/1');
+            if(Auth.isLoggedIn()) $location.path('/ward/1');                // Currently, when logged in, redirects you to ward/1
             else $location.path('/login');
         }
     });
