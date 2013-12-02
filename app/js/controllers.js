@@ -31,15 +31,49 @@ controllers.controller('LoginCtrl', ["$scope", /*"$rootScope",*/ "$http", "$loca
     };
 }]);
 
+controllers.controller('NavCtlr', ["$scope", "$rootScope", function ($scope, $rootScope) {
+
+    $scope.updateRole = function () {
+        var role = $rootScope.user.role;
+
+        if ($scope.publicRole) {
+            role |= 1;
+        } else {
+            role &= (~1);
+        }
+
+        if ($scope.medStaffRole) {
+            role |= 2;
+        } else {
+            role &= (~2);
+        }
+
+        if ($scope.doctorRole) {
+            role |= 4;
+        } else {
+            role &= (~4);
+        }
+
+        if ($scope.nurseRole) {
+            role |= 8;
+        } else {
+            role &= (~8);
+        }
+
+        $rootScope.user.role = role;
+        console.log($rootScope.user);
+    };
+}]);
+
 controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$http", "$location", "Employee", function ($scope, $rootScope, $http, $location, Employee) {
 
     $scope.User = $rootScope.User;
     window.console.log("RegisterCtrl, User is: ", JSON.stringify($scope.User));
 
-    $scope.onRegister = function() {
+    $scope.onRegister = function () {
         window.console.log("User is: ", JSON.stringify($scope.User));
         $rootScope.User = $scope.User;
-        Employee.save($scope.User, function() {
+        Employee.save($scope.User, function () {
             var promise = $http.post("/api/v0.1/sessions/", {
                 employeeId: $rootScope.User.employeeId,
                 password: $rootScope.User.password
@@ -85,7 +119,7 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
 controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
     function ($scope, $location, $routeParams, Ward, Patient, Employee) {
         function getCookie(name) {
-            var regexp = new RegExp("(?:^" + name + "|;\s*"+ name + ")=(.*?)(?:;|$)", "g");
+            var regexp = new RegExp("(?:^" + name + "|;\s*" + name + ")=(.*?)(?:;|$)", "g");
             var result = regexp.exec(document.cookie);
             return (result === null) ? null : result[1];
         }
