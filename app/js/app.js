@@ -27,22 +27,22 @@ angular.module('mustacheApp', [
         $routeProvider.when('/ward', {
             templateUrl: 'partials/ward_list.html',
             controller: 'WardListCtrl',
-            access: access.medical_staff
+            access: access.medicalStaff
         });
         $routeProvider.when('/ward/:wardId', {
             templateUrl: 'partials/ward_detail.html',
             controller: 'WardDetailCtrl',
-            access: access.medical_staff
+            access: access.medicalStaff
         });
         $routeProvider.when('/patients/new', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: access.medical_staff
+            access: access.medicalStaff
         });
         $routeProvider.when('/patients/:patientId', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: access.medical_staff
+            access: access.medicalStaff
         });
         $routeProvider.otherwise({
             redirectTo: '/login',

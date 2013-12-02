@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JSHintConfiguration" version="2.1.0" use-config-file="false">
-    <option bitwise="true" />
-    <option camelcase="false" />
+    <option bitwise="false" />
+    <option camelcase="true" />
     <option curly="true" />
     <option eqeqeq="true" />
+    <option es3="false" />
     <option forin="true" />
-    <option immed="false" />
+    <option immed="true" />
     <option latedef="true" />
     <option newcap="true" />
     <option noarg="true" />

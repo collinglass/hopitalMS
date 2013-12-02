@@ -81,7 +81,7 @@ func main() {
 	http.Handle("/", logHandler(http.FileServer(http.Dir("../app/"))))
 
 	log.Println("Listening on 8080")
-	http.ListenAndServe(":8080", nil)
+	panic(http.ListenAndServe(":8080", nil))
 }
 
 func jsonHandler(h http.Handler) http.HandlerFunc {
