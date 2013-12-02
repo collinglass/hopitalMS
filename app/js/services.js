@@ -41,9 +41,9 @@ mustacheServices.factory('Auth', function($http, $rootScope, $cookieStore){
     
     // *** Start of Dummy $rootScope data to make app work without backend
 
-    $rootScope.user = { username: '', role: 1 };
+    $rootScope.user = { username: '', role: 2 };
     console.log($rootScope.user);
-
+    console.log(userRoles.user);
     // *** End
  
     return {
@@ -56,7 +56,7 @@ mustacheServices.factory('Auth', function($http, $rootScope, $cookieStore){
         isLoggedIn: function(user) {
             if(user === undefined)
                 user = $rootScope.user;
-            return user.role === userRoles.user || user.role === userRoles.admin;
+            return user.role === userRoles.medical_staff || user.role === userRoles.doctor || user.role === userRoles.charge_nurse;
         },
  
         register: function(user, success, error) {

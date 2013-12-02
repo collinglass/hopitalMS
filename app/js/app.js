@@ -10,8 +10,8 @@ angular.module('mustacheApp', [
         'mustacheApp.directives',
         'mustacheApp.controllers'
     ]).
-    config(['$routeProvider', /*'$rootScope',*/ '$locationProvider', '$httpProvider', 
-        function ($routeProvider, $rootScope, $locationProvider, $httpProvider) {
+    config(['$routeProvider', '$locationProvider', '$httpProvider', 
+        function ($routeProvider, $locationProvider, $httpProvider) {
         var access = routingConfig.accessLevels;
 
         $routeProvider.when('/login', {
@@ -73,7 +73,7 @@ angular.module('mustacheApp', [
  
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!Auth.authorize(next.access)) {
-            if(Auth.isLoggedIn()) $location.path('/');
+            if(Auth.isLoggedIn()) $location.path('/ward/1');
             else $location.path('/login');
         }
     });
