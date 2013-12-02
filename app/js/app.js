@@ -76,12 +76,9 @@ angular.module('mustacheApp', [
  
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!Auth.authorize(next.access)) {
-<<<<<<< HEAD
             if(Auth.isLoggedIn()) $location.path(next);                // TODO Works but brings up error
             else $location.path('/login');
         } // TODO else redirect if authorize failed
-=======
->>>>>>> 8045faa254ba1be2ef015c20259b2440dfa23ba3
     });
  
 }]);
