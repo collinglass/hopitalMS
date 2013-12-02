@@ -76,10 +76,9 @@ angular.module('mustacheApp', [
  
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
         if (!Auth.authorize(next.access)) {
-            console.log(next);
-            if(Auth.isLoggedIn()) $location.path(next);                // Currently, when logged in, redirects you to ward/1
+            if(Auth.isLoggedIn()) $location.path(next);                // TODO Works but brings up error
             else $location.path('/login');
-        }
+        } // TODO else redirect if authorize failed
     });
  
 }]);

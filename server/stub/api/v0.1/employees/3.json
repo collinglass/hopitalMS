@@ -5,5 +5,6 @@
     "firstName": "Jimmy",
     "lastName": "Got Talent",
     "email": "stuff@somewhere.com",
-    "role": 8
+    "role": 8,
+    "ward": 2
 }

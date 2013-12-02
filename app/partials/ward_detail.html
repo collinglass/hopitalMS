@@ -25,36 +25,36 @@
             <td>{{patient.status}}</td>
         </tr>
     </table>
+    <div access-level="8"> <!-- TODO get access-level working, look at directives -->
+        <br>
+        <br>
+        <h5>Admissions ({{admissionsRequest.length}})</h5> <!-- Make Dynamic -->
 
-    <br>
-    <br>
-    <h5>Admissions ({{admissionsRequest.length}})</h5> <!-- Make Dynamic -->
+        <button class="btn btn-primary btn-margin" ng-click="admissionsRequest.admit()">Admit</button>
+        <button class="btn btn-danger btn-margin">Refuse</button>
+        <button class="btn btn-info btn-margin">View</button>
 
-    <button class="btn btn-primary btn-margin" ng-click="admissionsRequest.admit()">Admit</button>
-    <button class="btn btn-danger btn-margin">Refuse</button>
-    <button class="btn btn-info btn-margin">View</button>
-
-    <table class="table table-striped table-bordered table-condensed table-hover">
-        <th>
-            <td>Last Name <b class="caret"></b></td>
-            <td>First Name <b class="caret"></b></td>
-            <td>Health Ins# <b class="caret"></b></td>
-            <td>Outbound Ward<b class="caret"></b></td>
-            <td>Outbound Nurse <b class="caret"></b></td>
-            <td>Priority <b class="caret"></b></td>
-            <td>Rationale <b class="caret"></b></td>
-        </th>
-        <tr ng-repeat="request in admissionsRequest"
-            class="selected-{{request.selected}}">
-            <td class="active"><input type="checkbox" ng-model="request.selected"></td>
-            <td>{{request.patientDetails.lastName}}</td>
-            <td>{{request.patientDetails.firstName}}</td>
-            <td>{{request.patientDetails.healthInsNum}}</td>
-            <td><a href="#/ward/{{request.fromWardId}}">{{request.fromWard.name}}</a></td>
-            <td>{{request.chargeNurseName}}</td>
-            <td>{{request.priority}}</td>
-            <td>{{request.rationale}}</td>
-        </tr>
-    </table>
+        <table class="table table-striped table-bordered table-condensed table-hover">
+            <th>
+                <td>Last Name <b class="caret"></b></td>
+                <td>First Name <b class="caret"></b></td>
+                <td>Health Ins# <b class="caret"></b></td>
+                <td>Outbound Ward<b class="caret"></b></td>
+                <td>Outbound Nurse <b class="caret"></b></td>
+                <td>Priority <b class="caret"></b></td>
+                <td>Rationale <b class="caret"></b></td>
+            </th>
+            <tr ng-repeat="request in admissionsRequest" class="selected-{{request.selected}}">
+                <td class="active"><input type="checkbox" ng-model="request.selected"></td>
+                <td>{{request.patientDetails.lastName}}</td>
+                <td>{{request.patientDetails.firstName}}</td>
+                <td>{{request.patientDetails.healthInsNum}}</td>
+                <td><a href="#/ward/{{request.fromWardId}}">{{request.fromWard.name}}</a></td>
+                <td>{{request.chargeNurseName}}</td>
+                <td>{{request.priority}}</td>
+                <td>{{request.rationale}}</td>
+            </tr>
+        </table>
+    </div>
 </div>
 

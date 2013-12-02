@@ -43,8 +43,7 @@ mustacheServices.factory('Auth', function($http, $rootScope, $cookieStore){
 
     $rootScope.user = { username: '', role: 2 };
     console.log($rootScope.user);
-    console.log(userRoles.user);
-    
+
     // *** End
  
     return {

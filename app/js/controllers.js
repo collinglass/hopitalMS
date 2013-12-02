@@ -90,8 +90,6 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             return (result === null) ? null : result[1];
         }
 
-        console.log(document.cookie);
-
         $scope.go = function (path) {
             $location.path(path);
         };

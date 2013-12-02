@@ -5,5 +5,6 @@
     "firstName": "Doctor",
     "lastName": "Who",
     "email": "doctor@who.com",
-    "role": 4
+    "role": 4,
+    "ward": 1
 }
