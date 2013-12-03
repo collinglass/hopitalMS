@@ -129,7 +129,6 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionsRequest = ward.admissionsRequest;
             $scope.admissionsResponse = ward.admissionsResponse;
 
-            console.log($scope.patients);
             console.log($scope.admissionsRequest);
 
             $scope.patients.forEach(function (patient) {
@@ -170,13 +169,13 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                         var patientPush = {
                             details: obj.patientDetails, roomId: "00", 
                             bedId: "00", status: "nominal" };
-                        console.log(obj);
                         $scope.patients.push(patientPush);
-                        // TODO remove from other ward.
 
-
+                        obj.fromWard.patients.splice(obj, 1);
+                        obj.fromWard.save();                        // TODO test if save function works
 
                         $scope.admissionsRequest.splice(obj, 1);
+                        $scope.ward.save();                         // TODO test if save function works
                     }
                 });
             };
