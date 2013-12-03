@@ -74,10 +74,14 @@ angular.module('mustacheApp', [
 }]).run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
  
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        if (!Auth.authorize(next.access)) {
-            if(Auth.isLoggedIn()) $location.path(next);                // TODO Works but brings up error
-            else $location.path('/login');
-        } // TODO else redirect if authorize failed
+        if (Auth.authorize(next.access)) {
+            $location.path(next.$route);
+        } else if (!Auth.isLoggedIn()) {
+            $location.path('/login');
+        } else {
+            // Do nothing, user doesn't have access to this location
+            console.log("Tried to access " + next + " from " + current + " but unauthorized.")
+        }
     });
  
 }]);

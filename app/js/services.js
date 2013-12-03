@@ -33,12 +33,11 @@ mustacheServices.factory("Employee", ["$resource", function ($resource) {
 mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
 
     var currentUser = $cookieStore.get('User') || { username: "", role: ["public"] };
-
-
+    
     // *** Start of Dummy $rootScope data to make app work without backend
 
     $rootScope.User = { username: "", roles: ["medicalStaff"] };
-//    console.log($rootScope.User);
+    //    console.log($rootScope.User);
 
     // *** End
 

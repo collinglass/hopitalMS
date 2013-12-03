@@ -118,11 +118,6 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
 
 controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
     function ($scope, $location, $routeParams, Ward, Patient, Employee) {
-        function getCookie(name) {
-            var regexp = new RegExp("(?:^" + name + "|;\s*" + name + ")=(.*?)(?:;|$)", "g");
-            var result = regexp.exec(document.cookie);
-            return (result === null) ? null : result[1];
-        }
 
         $scope.go = function (path) {
             $location.path(path);
@@ -133,6 +128,9 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.patients = ward.patients;
             $scope.admissionsRequest = ward.admissionsRequest;
             $scope.admissionsResponse = ward.admissionsResponse;
+
+            console.log($scope.patients);
+            console.log($scope.admissionsRequest);
 
             $scope.patients.forEach(function (patient) {
                 Patient.get({patientId: patient.patientId}, function (patientDetails) {
@@ -167,7 +165,20 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             });
 
             $scope.admissionsRequest.admit = function () {
-                window.console.log("I AINT ADMITIN NOTHIN");
+                angular.forEach($scope.admissionsRequest, function(obj) {
+                    if ( obj.selected == true ) {
+                        var patientPush = {
+                            details: obj.patientDetails, roomId: "00", 
+                            bedId: "00", status: "nominal" };
+                        console.log(obj);
+                        $scope.patients.push(patientPush);
+                        // TODO remove from other ward.
+
+
+
+                        $scope.admissionsRequest.splice(obj, 1);
+                    }
+                });
             };
 
             $scope.patients.discharge = function () {
