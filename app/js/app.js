@@ -16,36 +16,59 @@ angular.module('mustacheApp', [
         $routeProvider.when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl',
-            access: ["public"]
+            access: {
+                    "public":true,
+                    "chargeNurse": false,
+                    "doctor": false,
+                    "medicalStaff": false,
+                }
         });
         $routeProvider.when('/register', {
             templateUrl: 'partials/register.html',
             controller: 'RegisterCtrl',
-            access: ["public"]
+            access: {
+                    "public":true,
+                    "chargeNurse": false,
+                    "doctor": false,
+                    "medicalStaff": false,
+                }
         });
         $routeProvider.when('/ward', {
             templateUrl: 'partials/ward_list.html',
             controller: 'WardListCtrl',
-            access: ["medicalStaff"]
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.when('/ward/:wardId', {
             templateUrl: 'partials/ward_detail.html',
             controller: 'WardDetailCtrl',
-            access: ["medicalStaff"]
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.when('/patients/new', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: ["medicalStaff"]
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.when('/patients/:patientId', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: ["medicalStaff"]
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.otherwise({
             redirectTo: '/login',
-            access: ["public"]
+            access: {
+                    "public":true,
+                    "chargeNurse": false,
+                    "doctor": false,
+                    "medicalStaff": false,
+                }
         });
 
 

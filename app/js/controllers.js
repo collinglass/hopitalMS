@@ -116,8 +116,12 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
     }]);
 
 
-controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
-    function ($scope, $location, $routeParams, Ward, Patient, Employee) {
+controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "Auth",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee, Auth) {
+
+        $scope.authorize = function (accessRoles) {
+            return Auth.authorize(accessRoles);
+        }
 
         $scope.go = function (path) {
             $location.path(path);
@@ -128,8 +132,6 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.patients = ward.patients;
             $scope.admissionsRequest = ward.admissionsRequest;
             $scope.admissionsResponse = ward.admissionsResponse;
-
-            console.log($scope.admissionsRequest);
 
             $scope.patients.forEach(function (patient) {
                 Patient.get({patientId: patient.patientId}, function (patientDetails) {

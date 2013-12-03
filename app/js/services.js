@@ -32,11 +32,17 @@ mustacheServices.factory("Employee", ["$resource", function ($resource) {
 
 mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
 
-    var currentUser = $cookieStore.get('User') || { username: "", role: ["public"] };
+    var currentUser = $cookieStore.get('User') || { username: "", roles: ["public"] };
     
     // *** Start of Dummy $rootScope data to make app work without backend
 
-    $rootScope.User = { username: "", roles: ["medicalStaff"] };
+    $rootScope.User = { username: "", roles: {
+            "public":true,
+            "chargeNurse": false,
+            "doctor": false,
+            "medicalStaff": true
+        } 
+    };
     //    console.log($rootScope.User);
 
     // *** End
@@ -59,7 +65,7 @@ mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
                 User = $rootScope.User;
             }
             for( var i = 0; i < 3; i++ ) {
-                if (User.roles === "medicalStaff" || User.roles === "doctor" || User.roles === "chargeNurse") {
+                if ( User.roles["medicalStaff"] || User.roles["doctor"] || User.roles["chargeNurse"] ) { // TODO This is not correct
                     return true;
                 }
             }
