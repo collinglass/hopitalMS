@@ -12,41 +12,63 @@ angular.module('mustacheApp', [
     ]).
     config(['$routeProvider', '$locationProvider', '$httpProvider', 
         function ($routeProvider, $locationProvider, $httpProvider) {
-        var access = routingConfig.accessLevels;
 
         $routeProvider.when('/login', {
             templateUrl: 'partials/login.html',
             controller: 'LoginCtrl',
-            access: access.anon
+            access: {
+                    "public":true,
+                    "chargeNurse": false,
+                    "doctor": false,
+                    "medicalStaff": false,
+                }
         });
         $routeProvider.when('/register', {
             templateUrl: 'partials/register.html',
             controller: 'RegisterCtrl',
-            access: access.anon
+            access: {
+                    "public":true,
+                    "chargeNurse": false,
+                    "doctor": false,
+                    "medicalStaff": false,
+                }
         });
         $routeProvider.when('/ward', {
             templateUrl: 'partials/ward_list.html',
             controller: 'WardListCtrl',
-            access: access.medicalStaff
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.when('/ward/:wardId', {
             templateUrl: 'partials/ward_detail.html',
             controller: 'WardDetailCtrl',
-            access: access.medicalStaff
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.when('/patients/new', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: access.medicalStaff
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.when('/patients/:patientId', {
             templateUrl: 'partials/patient.html',
             controller: 'PatientCtrl',
-            access: access.medicalStaff
+            access: {
+                    "medicalStaff": true,
+                }
         });
         $routeProvider.otherwise({
             redirectTo: '/login',
-            access: access.anon
+            access: {
+                    "public":true,
+                    "chargeNurse": false,
+                    "doctor": false,
+                    "medicalStaff": false,
+                }
         });
 
 
@@ -75,10 +97,16 @@ angular.module('mustacheApp', [
 }]).run(['$rootScope', '$location', 'Auth', function ($rootScope, $location, Auth) {
  
     $rootScope.$on("$routeChangeStart", function (event, next, current) {
-        if (!Auth.authorize(next.access)) {
-            if(Auth.isLoggedIn()) $location.path(next);                // TODO Works but brings up error
-            else $location.path('/login');
-        } // TODO else redirect if authorize failed
+        if (Auth.authorize(next.access)) {
+            $location.path(next.$route);
+        } else if (!Auth.isLoggedIn()) {
+            $location.path('/login');
+        //} else if ( next.$route === '/login') {       // TODO if loggedin and trying to access login page -> redirect
+        //    $location.path('/ward');
+        } else {
+            // Do nothing, user doesn't have access to this location
+            console.log("Tried to access " + next + " from " + current + " but unauthorized.")
+        }
     });
  
 }]);

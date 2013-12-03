@@ -116,12 +116,11 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
     }]);
 
 
-controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee",
-    function ($scope, $location, $routeParams, Ward, Patient, Employee) {
-        function getCookie(name) {
-            var regexp = new RegExp("(?:^" + name + "|;\s*" + name + ")=(.*?)(?:;|$)", "g");
-            var result = regexp.exec(document.cookie);
-            return (result === null) ? null : result[1];
+controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "Auth",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee, Auth) {
+
+        $scope.authorize = function (accessRoles) {
+            return Auth.authorize(accessRoles);
         }
 
         $scope.go = function (path) {
@@ -167,7 +166,20 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             });
 
             $scope.admissionsRequest.admit = function () {
-                window.console.log("I AINT ADMITIN NOTHIN");
+                angular.forEach($scope.admissionsRequest, function(obj) {
+                    if ( obj.selected == true ) {
+                        var patientPush = {
+                            details: obj.patientDetails, roomId: "00", 
+                            bedId: "00", status: "nominal" };
+                        $scope.patients.push(patientPush);
+
+                        obj.fromWard.patients.splice(obj, 1);
+                        obj.fromWard.save();                        // TODO test if save function works
+
+                        $scope.admissionsRequest.splice(obj, 1);
+                        $scope.ward.save();                         // TODO test if save function works
+                    }
+                });
             };
 
             $scope.patients.discharge = function () {

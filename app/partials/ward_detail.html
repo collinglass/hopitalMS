@@ -25,10 +25,10 @@
             <td>{{patient.status}}</td>
         </tr>
     </table>
-    <div access-level="8"> <!-- TODO get access-level working, look at directives -->
+    <div ng-show="authorize({ 'chargeNurse': true });">
         <br>
         <br>
-        <h5>Admissions ({{admissionsRequest.length}})</h5> <!-- Make Dynamic -->
+        <h5>Admissions ({{admissionsRequest.length}})</h5>
 
         <button class="btn btn-primary btn-margin" ng-click="admissionsRequest.admit()">Admit</button>
         <button class="btn btn-danger btn-margin">Refuse</button>
