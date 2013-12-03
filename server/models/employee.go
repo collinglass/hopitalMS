@@ -92,7 +92,7 @@ func (e *Employee) Create() error {
 		return fmt.Errorf("error verifying for existence, %v", err)
 	}
 	if changes != 1 {
-		return fmt.Errorf("employee with ID %d already exists", e.EmployeeID)
+		return fmt.Errorf("employee with ID %d already exists, changes %d", e.EmployeeID, changes)
 	}
 
 	emplByte, err := e.marshal()
@@ -100,11 +100,11 @@ func (e *Employee) Create() error {
 		return fmt.Errorf("marshalling employee, %v", err)
 	}
 
-	changes, err := redis.Int(conn.Do("SET", key, emplByte))
+	ok, err := redis.String(conn.Do("SET", key, emplByte))
 	if err != nil {
 		return fmt.Errorf("error setting employee, %v", err)
 	}
-	if changes != 1 {
+	if ok != "OK" {
 		return fmt.Errorf("expected 1 employee change, got %d", 1)
 	}
 	return nil
@@ -135,10 +135,15 @@ func (e *Employee) Delete() error {
 	conn := pool.Get()
 	defer conn.Close()
 
-	// Only delete the record, don't care about the values
 	_, err := conn.Do("HDEL", "employees:all", e.EmployeeID)
-	// Don't delete the actual hash
-	return err
+	if err != nil {
+		return fmt.Errorf("deleting employee from record list, %v", err)
+	}
+	_, err = conn.Do("DEL", fmt.Sprintf("employees:%d", e.EmployeeID))
+	if err != nil {
+		return fmt.Errorf("deleting actual employee, %v", err)
+	}
+	return nil
 }
 
 func FindEmployee(employeeID int) (*Employee, bool, error) {
@@ -173,10 +178,10 @@ func FindAllEmployees() ([]*Employee, error) {
 		return nil, fmt.Errorf("getting vals for employees:all, %v", err)
 	}
 
-	err := conn.Send("MULTI")
-	if err != nil {
+	if err := conn.Send("MULTI"); err != nil {
 		return nil, fmt.Errorf("preparing pipelined GET over all employees, %v", err)
 	}
+
 	for _, id := range members {
 		err := conn.Send("GET", id)
 		if err != nil {
@@ -191,7 +196,7 @@ func FindAllEmployees() ([]*Employee, error) {
 
 	var empl *Employee
 	employees := make([]*Employee, 0, len(replies))
-	for i, reply := range replies {
+	for _, reply := range replies {
 		empl, err = unmarshal([]byte(reply))
 		if err != nil {
 			return employees, err
