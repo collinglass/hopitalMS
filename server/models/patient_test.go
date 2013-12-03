@@ -103,7 +103,7 @@ func Test_Patient_CanCreateManyAndRetrieveMany(t *testing.T) {
 	}
 }
 
-func Test_Patient_CantCreatepatientAlreadyExists(t *testing.T) {
+func Test_Patient_CantCreatePatientAlreadyExists(t *testing.T) {
 
 	exists := models.NewPatient(1, "John", "Smith")
 

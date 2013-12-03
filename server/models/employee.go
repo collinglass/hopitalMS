@@ -12,6 +12,15 @@ const (
 	employeePrefix = "employees:%d"
 )
 
+type Role string
+
+var (
+	ChargeNurseRole = "chargeNurse"
+	DoctorRole      = "doctor"
+	MedicalStaff    = "medicalStaff"
+	Public          = "public"
+)
+
 // Employee holds the data of a PMS employee.  The passwordHash is not
 // exposed to JSON decoder/encoders
 type Employee struct {
