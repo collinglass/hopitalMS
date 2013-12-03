@@ -5,6 +5,7 @@
     <button class="btn btn-primary btn-margin" ng-click="go('/patients/new')">Register</button>
     <button class="btn btn-danger btn-margin" ng-click="dischargePatient()">Discharge</button>
     <button class="btn btn-warning btn-margin">Transfer</button>
+    <button class="btn btn-info btn-margin" ng-click="patients.view()">View</button>
 
     <table class="table table-striped table-bordered table-condensed table-hover">
         <th>
@@ -28,11 +29,11 @@
     <div ng-show="authorize({ 'chargeNurse': true });">
         <br>
         <br>
-        <h5>Admissions ({{admissionsRequest.length}})</h5>
+        <h5>Admissions ({{admissionRequests.length}})</h5>
 
-        <button class="btn btn-primary btn-margin" ng-click="admissionsRequest.admit()">Admit</button>
+        <button class="btn btn-primary btn-margin" ng-click="admissionRequests.admit()">Admit</button>
         <button class="btn btn-danger btn-margin">Refuse</button>
-        <button class="btn btn-info btn-margin">View</button>
+        <button class="btn btn-info btn-margin" ng-click="admissionRequests.view()">View</button>
 
         <table class="table table-striped table-bordered table-condensed table-hover">
             <th>
@@ -44,7 +45,7 @@
                 <td>Priority <b class="caret"></b></td>
                 <td>Rationale <b class="caret"></b></td>
             </th>
-            <tr ng-repeat="request in admissionsRequest" class="selected-{{request.selected}}">
+            <tr ng-repeat="request in admissionRequests" class="selected-{{request.selected}}">
                 <td class="active"><input type="checkbox" ng-model="request.selected"></td>
                 <td>{{request.patientDetails.lastName}}</td>
                 <td>{{request.patientDetails.firstName}}</td>

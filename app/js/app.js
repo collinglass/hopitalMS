@@ -61,6 +61,20 @@ angular.module('mustacheApp', [
                     "medicalStaff": true,
                 }
         });
+        $routeProvider.when('/admissions/:admRequestId', {
+            templateUrl: 'partials/admission.html',
+            controller: 'AdmissionCtrl',
+            access: {
+                    "medicalStaff": true,
+                }
+        });
+        $routeProvider.when('/rationale/:admRequestId', {
+            templateUrl: 'partials/rationale.html',
+            controller: 'RationaleCtrl',
+            access: {
+                    "medicalStaff": true,
+                }
+        });
         $routeProvider.otherwise({
             redirectTo: '/login',
             access: {

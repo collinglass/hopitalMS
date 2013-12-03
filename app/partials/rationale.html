@@ -1,0 +1,25 @@
+<div ng-controller="RationaleCtrl">
+    <form role="form">
+        <div class="form-group">
+            Rationale
+            <p>{{admissionRequest.rationale}}</p>
+        </div>
+        <div class="form-group">
+            Last Name
+            <p>Bravo</p> <!-- TODO change to dynamic -->
+        </div>
+        <div class="form-group">
+            First Name
+            <p>Johnny</p> <!-- TODO change to dynamic -->
+        </div>
+        </div>
+        <div class="form-group">
+            Local Doctor
+            <p>Jimmy Joe</p> <!-- TODO make dynamic -->
+        </div>
+
+        <button type="submit" class="btn btn-default" ng-show="newPath()" ng-click="admit()">Admit</button>
+        <button type="submit" class="btn btn-default" ng-hide="newPath()" ng-click="save()">Update</button>
+
+    </form>
+</div>

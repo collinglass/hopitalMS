@@ -17,6 +17,12 @@ mustacheServices.factory("Patient", ["$resource", function ($resource) {
     });
 }]);
 
+mustacheServices.factory("AdmissionRequest", ["$resource", function ($resource) {
+    return $resource('/api/v0.1/admissionRequests/:admRequestId', {admRequestId: '@id'}, {
+        query: {method: 'GET', params: {admRequestId: '@id'}, isArray: true}
+    });
+}]);
+
 mustacheServices.factory("Role", ["$resource", function ($resource) {
     return $resource('/api/v0.1/roles/:roleId', {roleId: '@id'}, {
         query: {method: 'GET', params: {roleId: '@id'}, isArray: true}
@@ -38,7 +44,7 @@ mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
 
     $rootScope.User = { username: "", roles: {
             "public":true,
-            "chargeNurse": false,
+            "chargeNurse": true,
             "doctor": false,
             "medicalStaff": true
         } 

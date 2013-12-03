@@ -1,0 +1,7 @@
+{
+	"admRequestId": 1, 
+	"patientId": 6, 
+	"fromWardId": 2, 
+	"priority": "low", 
+	"rationale": "The patient is ill."
+}
