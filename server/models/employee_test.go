@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func Test_CanValidatePassword(t *testing.T) {
+func Test_Employee_CanValidatePassword(t *testing.T) {
 	emplID := 1
 	pass := []byte("hello!")
 
@@ -26,7 +26,7 @@ func Test_CanValidatePassword(t *testing.T) {
 	}
 }
 
-func Test_CanCreateAndDelete(t *testing.T) {
+func Test_Employee_CanCreateAndDelete(t *testing.T) {
 	emplID := 1
 	pass := []byte("hello!")
 	empl, err := models.NewEmployee(emplID, pass)
@@ -45,7 +45,7 @@ func Test_CanCreateAndDelete(t *testing.T) {
 	}
 }
 
-func Test_CanCreateAndRetrieve(t *testing.T) {
+func Test_Employee_CanCreateAndRetrieve(t *testing.T) {
 	emplID := 1
 	pass := []byte("hello!")
 	want, err := models.NewEmployee(emplID, pass)
@@ -88,7 +88,7 @@ var manyEmpl = []struct {
 	{-9292, []byte("hel#!#@!lo")},
 }
 
-func Test_CanCreateManyAndRetrieveMany(t *testing.T) {
+func Test_Employee_CanCreateManyAndRetrieveMany(t *testing.T) {
 	wantEmpl := make(map[int]*models.Employee)
 	for _, val := range manyEmpl {
 		empl, err := models.NewEmployee(val.id, val.pass)
@@ -131,7 +131,7 @@ func Test_CanCreateManyAndRetrieveMany(t *testing.T) {
 	}
 }
 
-func Test_CantCreateEmployeeAlreadyExists(t *testing.T) {
+func Test_Employee_CantCreateEmployeeAlreadyExists(t *testing.T) {
 	emplID := 1
 	pass := []byte("hello!")
 	exists, err := models.NewEmployee(emplID, pass)

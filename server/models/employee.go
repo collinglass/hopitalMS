@@ -7,6 +7,11 @@ import (
 	"github.com/garyburd/redigo/redis"
 )
 
+const (
+	employeeAll    = "employees:all"
+	employeePrefix = "employees:%d"
+)
+
 // Employee holds the data of a PMS employee.  The passwordHash is not
 // exposed to JSON decoder/encoders
 type Employee struct {
@@ -85,9 +90,9 @@ func (e *Employee) Create() error {
 	conn := pool.Get()
 	defer conn.Close()
 
-	key := fmt.Sprintf("employees:%d", e.EmployeeID)
+	key := fmt.Sprintf(employeePrefix, e.EmployeeID)
 	// Create a record
-	changes, err := redis.Int(conn.Do("HSETNX", "employees:all", e.EmployeeID, key))
+	changes, err := redis.Int(conn.Do("HSETNX", employeeAll, e.EmployeeID, key))
 	if err != nil {
 		return fmt.Errorf("error verifying for existence, %v", err)
 	}
@@ -114,7 +119,7 @@ func (e *Employee) Create() error {
 func (e *Employee) Update() error {
 	conn := pool.Get()
 	defer conn.Close()
-	key := fmt.Sprintf("employees:%d", e.EmployeeID)
+	key := fmt.Sprintf(employeePrefix, e.EmployeeID)
 
 	emplByte, err := e.marshal()
 	if err != nil {
@@ -135,11 +140,11 @@ func (e *Employee) Delete() error {
 	conn := pool.Get()
 	defer conn.Close()
 
-	_, err := conn.Do("HDEL", "employees:all", e.EmployeeID)
+	_, err := conn.Do("HDEL", employeeAll, e.EmployeeID)
 	if err != nil {
 		return fmt.Errorf("deleting employee from record list, %v", err)
 	}
-	_, err = conn.Do("DEL", fmt.Sprintf("employees:%d", e.EmployeeID))
+	_, err = conn.Do("DEL", fmt.Sprintf(employeePrefix, e.EmployeeID))
 	if err != nil {
 		return fmt.Errorf("deleting actual employee, %v", err)
 	}
@@ -150,7 +155,7 @@ func FindEmployee(employeeID int) (*Employee, bool, error) {
 	conn := pool.Get()
 	defer conn.Close()
 
-	id, err := redis.String(conn.Do("HGET", "employees:all", employeeID))
+	id, err := redis.String(conn.Do("HGET", employeeAll, employeeID))
 	if err != nil {
 		return nil, false, fmt.Errorf("getting employee ID %d, %v", employeeID, err)
 	}
@@ -173,9 +178,9 @@ func FindAllEmployees() ([]*Employee, error) {
 	conn := pool.Get()
 	defer conn.Close()
 
-	members, err := redis.Strings(conn.Do("HVALS", "employees:all"))
+	members, err := redis.Strings(conn.Do("HVALS", employeeAll))
 	if err != nil {
-		return nil, fmt.Errorf("getting vals for employees:all, %v", err)
+		return nil, fmt.Errorf("getting vals for %s, %v", employeeAll, err)
 	}
 
 	if err := conn.Send("MULTI"); err != nil {
