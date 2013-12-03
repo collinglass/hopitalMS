@@ -203,15 +203,15 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
         });
 }]);
 
-controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient",
-    function ($scope, $location, $routeParams, Ward, Patient) {
+controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "AdmissionRequest",
+    function ($scope, $location, $routeParams, Ward, Patient, AdmissionRequest) {
 
         $scope.go = function (path) {
             $location.path(path);
         };
 
-        $scope.save = function (patient) {
-            Patient.save(patient);
+        $scope.save = function () {
+            Patient.save($scope.patient);
         };
 
         $scope.newPath = function () {
@@ -222,7 +222,6 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         };
                                                                     // TODO dynamically show available rooms and beds
         if ($location.path() === '/patients/new') {
-
             // Test with Ward 1
             Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
                 $scope.ward = ward;
@@ -252,8 +251,8 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                         address: $scope.nextOfKin.address, 
                         phoneNum: $scope.nextOfKin.phoneNum }
                     });
-                    //newPatient.$save();                      // TODO get working with database
-                    //console.log(newPatient);
+                    $scope.patient = newPatient;
+                    $scope.save();                      // TODO get working with database
                 var wardPush = {
                     patientId: $scope.newPatientId,
                     bedId: $scope.bedId,
@@ -264,94 +263,48 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                     $scope.patients.push(wardPush);
 
                 // Check out the ward after
-                $scope.go('/ward/1');               // TODO dynamic wardId
+                $scope.go('/ward/' + $scope.ward.wardId);
 
             };
 
         } else if ( $location.path() === ('/admissions/' + $routeParams.admRequestId) ) {
-            console.log("hello");
-            /*
-                var patientPush = {
-                    details: obj.patientDetails, 
-                    roomId: "00", 
-                    bedId: "00", 
-                    status: "nominal" 
-                    };
+            console.log($routeParams);
 
-                $scope.patients.push(patientPush);
+            AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
 
-                $scope.admissionRequests.splice(obj, 1);
-                $scope.ward.save();                         // TODO test if save function works
+                $scope.admissionRequest = admissionRequest;
+                $scope.admRequestId = admissionRequest.admRequestId;
+                $scope.patientId = admissionRequest.patientId;
+                $scope.rationale = admissionRequest.rationale;
+                $scope.priority = admissionRequest.priority;
 
-                obj.fromWard.patients.splice(obj, 1);
-                obj.fromWard.save();                        // TODO test if save function works
-            */
+                console.log(admissionRequest);
+            
+
+                Patient.get({patientId: admissionRequest.patientId}, function (patient) {  // TODO dynamic wardId
+                    $scope.patient = patient;
+                });
+                Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
+                    $scope.ward = ward;
+                    $scope.patients = ward.patients;
+                    $scope.beds = ward.beds;
+                });
+
+            });
+            
         } else {
             Patient.get({patientId: $routeParams.patientId}, function (patient) {
-
                 $scope.patient = patient;
-                $scope.patientId = patient.patientId;
-                $scope.lastName = patient.lastName;
-                $scope.firstName = patient.firstName;
-                $scope.healthInsNum = patient.healthInsNum;
-                $scope.address = patient.address;
-                $scope.phoneNum = patient.phoneNum;
-                $scope.dateOfBirth = patient.dateOfBirth;
-                $scope.gender = patient.gender;
-                $scope.maritalStatus = patient.maritalStatus;
+            });
 
-                $scope.nextOfKin = patient.nextOfKin;
-
-                $scope.update = function () {
-                    window.console.log('update');
-                    /*
-                     $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
-                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
-                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
-                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
-                     address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
-*/
-};
-
-});
-}
+            Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
+                $scope.ward = ward;
+                $scope.patients = ward.patients;
+                $scope.beds = ward.beds;
+            });
+        }
 }]);
 
-controllers.controller('AdmissionCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "AdmissionRequest",
-    function ($scope, $location, $routeParams, Ward, Patient, AdmissionRequest) {
-
-        $scope.go = function (path) {
-            $location.path(path);
-        };
-
-        $scope.save = function (patient) {
-            Patient.save(patient);
-        };
-
-
-
-        AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
-
-            $scope.admissionRequest = admissionRequest;
-            $scope.admRequestId = admissionRequest.admRequestId;
-            $scope.patientId = admissionRequest.patientId;
-            $scope.rationale = admissionRequest.rationale;
-            $scope.priority = admissionRequest.priority;
-
-            $scope.update = function () {
-                window.console.log('update');
-                    /*
-                     $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
-                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
-                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
-                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
-                     address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
-                    */
-            };
-
-        });
-
-}]);
 controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
     function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
         $scope.back = function() {
