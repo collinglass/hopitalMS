@@ -46,3 +46,7 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+.patient-float {
+  float: left;
+}

@@ -1,6 +1,22 @@
 <div ng-controller="PatientCtrl">
     <form role="form">
         <div class="form-group">
+            <label for="patient-roomId">Room </label>
+            <select id="patient-roomId" name="patient-roomId" ng-model="roomId">
+                <option value="40">40 </option> 
+                <option value="41" selected>41 </option>
+                <option value="42">42 </option>
+                <option value="43">43 </option>
+                <option value="44">44 </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient-bedId">Bed </label>
+            <select id="patient-bedId" name="patient-bedId" ng-model="bedId">
+                <option ng-repeat="bed in beds" value="{{bed.bedId}}"> {{bed.bedId}} </option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="patient-firstName">First Name</label>
             <input type="text" id="patient-firstname" name="patient-firstname" class="form-control" ng-model="firstName"
                 placeholder="{{patient.firstName}}">
@@ -12,7 +28,7 @@
         </div>
         <div class="form-group">
             <label for="patient-gender">Gender</label>
-            <select id="patient-gender" name="patient-gender">
+            <select id="patient-gender" name="patient-gender" ng-model="gender">
                 <option value="Male">Male </option> 
                 <option value="Female" selected>Female </option>
                 <option value="Transgender">Transgender</option>
@@ -40,7 +56,7 @@
         </div>
         <div class="form-group">
             <label for="patient-maritalStatus">Marital Status</label>
-            <select id="patient-maritalStatus" name="patient-maritalStatus">
+            <select id="patient-maritalStatus" name="patient-maritalStatus" ng-model="maritalStatus">
                 <option value="Single">Single </option> 
                 <option value="Married" selected>Married </option>
                 <option value="Separated">Separated </option>

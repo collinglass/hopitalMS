@@ -66,6 +66,7 @@ angular.module('mustacheApp', [
             controller: 'AdmissionCtrl',
             access: {
                     "medicalStaff": true,
+                    "chargeNurse": true,
                 }
         });
         $routeProvider.when('/rationale/:admRequestId', {
