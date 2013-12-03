@@ -81,6 +81,14 @@ angular.module('mustacheApp', [
             controller: 'RefusalCtrl',
             access: {
                     "medicalStaff": true,
+                    "chargeNurse": true,
+                }
+        });
+        $routeProvider.when('/transfer/:patientId', {
+            templateUrl: 'partials/transfer.html',
+            controller: 'TransferCtrl',
+            access: {
+                    "medicalStaff": true,
                 }
         });
         $routeProvider.otherwise({

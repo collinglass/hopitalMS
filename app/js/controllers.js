@@ -173,6 +173,14 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                 });
             };
 
+            $scope.patients.transfer = function () {
+                angular.forEach($scope.patients, function(obj) {
+                    if ( obj.selected == true ) {
+                        $scope.go("/transfer/" + obj.patientId);
+                    }
+                });
+            };
+
             $scope.admissionRequests.refuse = function () {
                 angular.forEach($scope.admissionRequests, function(obj) {
                     if ( obj.selected == true ) {
@@ -406,3 +414,43 @@ controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "W
         });
 
 }]);
+
+controllers.controller('TransferCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
+        $scope.back = function() {
+            history.go(-1);
+        };
+
+        $scope.transfer = function() {
+            var request = {
+                admRequestId: $scope.newAdmissionId,
+                patientId: $scope.patient.patientId,
+                toWardId: $scope.toWardId,
+                fromWardId: $scope.fromWardId,
+                priority: $scope.priority,
+                rationale: $scope.rationale
+            };
+            console.log(request);
+            $scope.admissionRequests.push(request);
+            // TODO save
+        }
+
+        Patient.get({patientId: $routeParams.patientId}, function (patient) {
+            $scope.patient = patient;
+            var toWards = [];
+            Ward.query(function (wardIds) {
+                $scope.toWards = wardIds;
+                wardIds.forEach(function (wardId) {
+                    Ward.get({wardId: wardId.id}, function (ward) {
+                        ward.patients.forEach(function (wardPatient) {
+                            if ( patient.patientId === wardPatient.patientId ) {
+                                $scope.admissionRequests = ward.admissionRequests;
+                                $scope.fromWardId = ward.wardId;
+                            }
+                        });
+                    });
+                });
+            });
+        });
+}]);
+

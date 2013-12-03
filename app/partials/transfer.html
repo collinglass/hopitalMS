@@ -1,0 +1,38 @@
+<div ng-controller="TransferCtrl">
+    <form role="form">
+        <div class="form-group">
+            <label for="admission-rationale"><h5>Rationale </h5></label>
+            <textarea class="form-control" rows="5" id="admission-rationale" name="admission-rationale" ng-model="rationale"
+                placeholder="{{rationale}}"></textarea>
+        </div>
+        <div class="form-group">
+            Last Name
+            <p>{{patient.lastName}}</p> <!-- TODO change to dynamic -->
+        </div>
+        <div class="form-group">
+            First Name
+            <p>{{patient.firstName}}</p> <!-- TODO change to dynamic -->
+        </div>
+        <div class="form-group">
+            <h5>Inbound Ward</h5>
+        </div>
+        <div class="form-group">
+            <label for="transfer-toWardId">Ward Id </label>
+            <select id="transfer-toWardId" name="transfer-toWardId" ng-model="toWardId">
+                <option ng-repeat="ward in toWards" value="{{ward.id}}"> {{ward.id}} </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="transfer-priority">Priority </label>
+            <select id="transfer-priority" name="transfer-priority" ng-model="priority">
+                <option value="Low">Low </option>
+                <option value="Medium">Medium </option>
+                <option value="High">High</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-default" ng-click="back()">Go Back </button>
+        <button type="submit" class="btn btn-warning" ng-click="transfer()">Transfer </button>
+
+    </form>
+</div>
