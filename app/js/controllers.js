@@ -310,15 +310,6 @@ controllers.controller('AdmissionCtrl', ["$scope", "$location", "$routeParams", 
             $scope.patientId = admissionRequest.patientId;
             $scope.rationale = admissionRequest.rationale;
             $scope.priority = admissionRequest.priority;
-            //$scope.lastName = admissionRequest.lastName;              // TODO using patientId get patient info
-            //$scope.firstName = admissionRequest.firstName;
-            //$scope.healthInsNum = admissionRequest.healthInsNum;      // TODO using fromWardId get ward outbound doctor, etc.
-            //$scope.address = patient.address;
-            //$scope.phoneNum = patient.phoneNum;
-            //$scope.dateOfBirth = patient.dateOfBirth;
-            //$scope.gender = patient.gender;
-            //$scope.maritalStatus = patient.maritalStatus;
-
 
             $scope.update = function () {
                 window.console.log('update');
@@ -332,18 +323,13 @@ controllers.controller('AdmissionCtrl', ["$scope", "$location", "$routeParams", 
             };
 
         });
+
 }]);
-controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "AdmissionRequest",
-    function ($scope, $location, $routeParams, Ward, Patient, AdmissionRequest) {
-
-        $scope.go = function (path) {
-            $location.path(path);
+controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
+        $scope.back = function() {
+            history.go(-1);
         };
-
-        $scope.save = function (patient) {
-            Patient.save(patient);
-        };
-
 
 
         AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
@@ -357,23 +343,22 @@ controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", 
             //$scope.lastName = admissionRequest.lastName;              // TODO using patientId get patient info
             //$scope.firstName = admissionRequest.firstName;
             //$scope.healthInsNum = admissionRequest.healthInsNum;      // TODO using fromWardId get ward outbound doctor, etc.
-            //$scope.address = patient.address;
-            //$scope.phoneNum = patient.phoneNum;
-            //$scope.dateOfBirth = patient.dateOfBirth;
-            //$scope.gender = patient.gender;
-            //$scope.maritalStatus = patient.maritalStatus;
 
+            Patient.get({patientId: admissionRequest.patientId}, function (patient) {
+                $scope.firstName = patient.firstName;
+                $scope.lastName = patient.lastName;
+            });
+            
 
-            $scope.update = function () {
-                window.console.log('update');
-                    /*
-                     $scope.patients.patient({ patientId: $scope.patientId, lastName: $scope.lastName, firstName: $scope.firstName,
-                     healthInsNum: $scope.healthInsNum, address: $scope.address, phoneNum: $scope.phoneNum,
-                     dateOfBirth: $scope.dateOfBirth, gender: $scope.gender, maritalStatus: $scope.maritalStatus,
-                     nextOfKin: { name: $scope.nextOfKin.name, relationship: $scope.nextOfKin.relationship,
-                     address: $scope.nextOfKin.address, phoneNum: $scope.nextOfKin.phoneNum }});
-                    */
-            };
+            Ward.get({wardId: admissionRequest.fromWardId}, function (fromWard) {
+                $scope.wardName = fromWard.name;
+                Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
+                    $scope.chargeNurseName = nurse.firstName + " " + nurse.lastName;
+                });
+                Employee.get({employeeId: fromWard.doctorId}, function (doctor) {
+                    $scope.doctorName = doctor.firstName + " " + doctor.lastName;
+                });
+            });
 
         });
 }]);

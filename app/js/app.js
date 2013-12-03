@@ -62,7 +62,7 @@ angular.module('mustacheApp', [
                 }
         });
         $routeProvider.when('/admissions/:admRequestId', {
-            templateUrl: 'partials/admission.html',
+            templateUrl: 'partials/patient.html',
             controller: 'AdmissionCtrl',
             access: {
                     "medicalStaff": true,
