@@ -191,7 +191,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
 
             $scope.admissionRequests.admit = function () {
                 angular.forEach($scope.admissionRequests, function(obj) {
-                    if ( obj.selected == true ) {
+                    if ( obj.selected ) {
                         console.log(obj);
                         $scope.go("/admissions/" + obj.admRequestId);
                     }
@@ -200,12 +200,10 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
 
             $scope.patients.discharge = function () {
                 angular.forEach($scope.patients, function (patient) {
-                    if (!patient.selected) {
-                        // ignore those that aren't selected
-                        return;
+                    if (patient.selected) {
+                        var index = $scope.patients.indexOf(patient);
+                        $scope.patients.splice(index, 1);                   // TODO Free up bed
                     }
-                    var index = $scope.patients.indexOf(patient);
-                    $scope.patients.splice(index, 1);
                 });
             };
         });
