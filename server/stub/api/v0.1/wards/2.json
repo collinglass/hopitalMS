@@ -39,7 +39,7 @@
         {"patientId": 8, "toWardId": 1, "inProgress":false, "refusal": "She's a jerk, keep her"}
     ],
     "admissionRequests": [
-        {"admRequestId": 4, "patientId": 4, "fromWardId": 1, "priority": "high", "rationale": "The patient hurt his back."},
-        {"admRequestId": 5, "patientId": 5, "fromWardId": 1, "priority": "low", "rationale": "The patient keeps throwing up."}
+        {"admRequestId": 4, "patientId": 4, "toWardId": 2, "fromWardId": 1, "priority": "high", "rationale": "The patient hurt his back."},
+        {"admRequestId": 5, "patientId": 5, "toWardId": 2, "fromWardId": 1, "priority": "low", "rationale": "The patient keeps throwing up."}
     ]
 }

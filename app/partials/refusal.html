@@ -1,0 +1,34 @@
+<div ng-controller="RefusalCtrl">
+    <form role="form">
+        <div class="form-group">
+            <label for="admission-refusal"><h5>Reason for Refusal </h5></label>
+            <textarea class="form-control" rows="5" id="admission-refusal" name="admission-refusal" ng-model="refusal"
+                placeholder="{{refusal}}"></textarea>
+        </div>
+        <div class="form-group">
+            Last Name
+            <p>{{lastName}}</p> <!-- TODO change to dynamic -->
+        </div>
+        <div class="form-group">
+            First Name
+            <p>{{firstName}}</p> <!-- TODO change to dynamic -->
+        </div>
+        <div class="form-group">
+            <h5>Outbound Ward</h5>
+            Name
+            <p>{{wardName}}</p> <!-- TODO make dynamic -->
+        </div>
+        <div class="form-group">
+            Local Doctor
+            <p>{{doctorName}}</p> <!-- TODO make dynamic -->
+        </div>
+        <div class="form-group">
+            Charge Nurse
+            <p>{{chargeNurseName}}</p> <!-- TODO make dynamic -->
+        </div>
+
+        <button type="submit" class="btn btn-default" ng-click="back()">Go Back </button>
+        <button type="submit" class="btn btn-danger" ng-click="refuse()">Refuse </button>
+
+    </form>
+</div>

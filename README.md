@@ -8,7 +8,7 @@ Under `app/` is the frontend stuff.  The frontend is an Angular app.
 
 ## Todo
 
-Admit patient, Update patient, Discharge patient, refuse admission, transfer patient, connect it all to the backend
+Discharge patient, transfer patient
 
 Small things: Command + f "TODO"
 

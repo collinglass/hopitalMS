@@ -1,6 +1,7 @@
 {
 	"admRequestId": 3, 
-	"patientId": 8, 
+	"patientId": 8,
+	"toWardId": 1, 
 	"fromWardId": 2, 
 	"priority": "high", 
 	"rationale": "The patient broke his pinky."

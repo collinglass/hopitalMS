@@ -173,6 +173,14 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                 });
             };
 
+            $scope.admissionRequests.refuse = function () {
+                angular.forEach($scope.admissionRequests, function(obj) {
+                    if ( obj.selected == true ) {
+                        $scope.go("/refusal/" + obj.admRequestId);
+                    }
+                });
+            };
+
             $scope.admissionRequests.view = function () {
                 angular.forEach($scope.admissionRequests, function(obj) {
                     if ( obj.selected == true ) {
@@ -288,9 +296,19 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                     $scope.ward = ward;
                     $scope.patients = ward.patients;
                     $scope.beds = ward.beds;
+                    $scope.admissionRequests = ward.admissionRequests;
                 });
-
             });
+
+            var wardPush = {
+                patientId: $scope.patient.patientId,
+                bedId: $scope.bedId,
+                status: "nominal"
+            };
+            console.log(wardPush);
+            $scope.patients.push(wardPush);
+            var index = $scope.admissionRequests.indexOf(admissionRequest);
+            $scope.admissionRequests.splice(index, 1);
             
         } else {
             Patient.get({patientId: $routeParams.patientId}, function (patient) {
@@ -337,4 +355,56 @@ controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", 
             });
 
         });
+}]);
+
+controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
+        $scope.back = function() {
+            history.go(-1);
+        };
+
+        $scope.refuse = function() {
+            var response = {
+                patientId: $scope.patientId,
+                toWardId: $scope.fromWard.wardId,
+                inProgress: false,
+                refusal: $scope.refusal
+            };
+            console.log(response);
+            $scope.fromWard.admissionResponses.push(response);
+            var index = $scope.toWard.admissionRequests.indexOf($scope.admissionRequest);
+            $scope.toWard.admissionRequests.splice(index, 1);
+        }
+
+        AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
+
+            $scope.admissionRequest = admissionRequest;
+            $scope.admRequestId = admissionRequest.admRequestId;
+            $scope.patientId = admissionRequest.patientId;
+            $scope.rationale = admissionRequest.rationale;
+            $scope.priority = admissionRequest.priority;
+
+            Patient.get({patientId: admissionRequest.patientId}, function (patient) {
+                $scope.firstName = patient.firstName;
+                $scope.lastName = patient.lastName;
+            });
+            
+            Ward.get({wardId: admissionRequest.toWardId}, function (toWard) {           
+                $scope.toWard = toWard;
+            });
+
+            Ward.get({wardId: admissionRequest.fromWardId}, function (fromWard) {
+                $scope.wardName = fromWard.name;
+                $scope.fromWard = fromWard;
+                Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
+                    $scope.chargeNurseName = nurse.firstName + " " + nurse.lastName;
+                });
+                Employee.get({employeeId: fromWard.doctorId}, function (doctor) {
+                    $scope.doctorName = doctor.firstName + " " + doctor.lastName;
+                });
+
+            });
+
+        });
+
 }]);
