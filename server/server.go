@@ -5,6 +5,7 @@ import (
 	"github.com/collinglass/moustacheMS/server/models"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -42,10 +43,23 @@ func main() {
 	// Static files
 	mainRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../app/")))
 
+	// Heartbeat
+	mainRouter.PathPrefix("/ping").Handler(pingHandler())
+
 	// Pass back to stdlib http
 	http.Handle("/", handlers.LoggingHandler(os.Stdout, mainRouter))
 
 	log.Println("Starting Server")
 	log.Printf("Listening on %s", spec.ListenOn)
 	panic(http.ListenAndServe(spec.ListenOn, nil))
+}
+
+func pingHandler() http.HandlerFunc {
+	return func(rw http.ResponseWriter, req *http.Request) {
+		rw.WriteHeader(http.StatusOK)
+		_, err := io.WriteString(rw, "pong")
+		if err != nil {
+			log.Fatalf("Pong failed, %v", err)
+		}
+	}
 }
