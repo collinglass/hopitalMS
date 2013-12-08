@@ -42,9 +42,9 @@
 
 
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="#/login">Login</a></li>
-        <li><a href="#/register">Register</a></li>
-        <li><a href="#/ward">Ward</a></li>
+        <li ng-hide="isLoggedIn();"><a href="#/login">Login</a></li>
+        <li ng-hide="isLoggedIn();"><a href="#/register">Register</a></li>
+        <li ng-show="isLoggedIn();"><a href="#/ward">Ward</a></li>
     </ul>
 </nav>
 

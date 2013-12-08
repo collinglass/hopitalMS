@@ -131,8 +131,6 @@ angular.module('mustacheApp', [
             $location.path(next.$route);
         } else if (!Auth.isLoggedIn()) {
             $location.path('/login');
-        //} else if ( next.$route === '/login') {       // TODO if loggedin and trying to access login page -> redirect
-        //    $location.path('/ward');
         } else {
             // Do nothing, user doesn't have access to this location
             console.log("Tried to access " + next + " from " + current + " but unauthorized.")
