@@ -27,17 +27,17 @@ func main() {
 	apiRoutes := mainRouter.PathPrefix("/api/v0.1").Subrouter()
 
 	// Sessions are handled in this package
-	apiRoutes.Handle("/sessions/", sessionHandler)
+	apiRoutes.Handle("/sessions", sessionHandler)
 
 	// Controllers
 	apiRoutes.Handle("/employees/{id:[0-9]+}", ctrl.EmployeeCtrl(store))
-	apiRoutes.Handle("/employees/", ctrl.EmployeeCtrl(store))
+	apiRoutes.Handle("/employees", ctrl.EmployeeCtrl(store))
 
 	apiRoutes.Handle("/patients/{id:[0-9]+}", ctrl.PatientCtrl(store))
-	apiRoutes.Handle("/patients/", ctrl.PatientCtrl(store))
+	apiRoutes.Handle("/patients", ctrl.PatientCtrl(store))
 
 	apiRoutes.Handle("/wards/{id:[0-9]+}", ctrl.WardCtrl(store))
-	apiRoutes.Handle("/wards/", ctrl.WardCtrl(store))
+	apiRoutes.Handle("/wards", ctrl.WardCtrl(store))
 
 	// Static files
 	mainRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../app/")))

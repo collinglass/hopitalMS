@@ -23,83 +23,58 @@ mustacheServices.factory("AdmissionRequest", ["$resource", function ($resource) 
     });
 }]);
 
-mustacheServices.factory("Role", ["$resource", function ($resource) {
-    return $resource('/api/v0.1/roles/:roleId', {roleId: '@id'}, {
-        query: {method: 'GET', params: {roleId: '@id'}, isArray: true}
-    });
-}]);
-
-
 mustacheServices.factory("Employee", ["$resource", function ($resource) {
     return $resource('/api/v0.1/employees/:employeeId', {employeeId: '@id'}, {
         query: {method: 'GET', params: {employeeId: '@id'}, isArray: true}
     });
 }]);
 
-mustacheServices.factory('Auth', function ($http, $rootScope, $cookieStore) {
-
-    var currentUser = $cookieStore.get('User') || { username: "", wardId: 1, roles: ["public"] };
-
-    // *** Start of Dummy $rootScope data to make app work without backend
-
-    $rootScope.User = { username: "", wardId: 1, roles: {
-            "public":true,
-            "chargeNurse": false,
-            "doctor": false,
-            "medicalStaff": true
-        }
-    };
-
-    // *** End
+mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($http, $rootScope, Employee) {
 
     return {
-        authorize: function (accessRoles, roles) {
-            if (roles === undefined) {
-                roles = $rootScope.User.roles;
+        logIn: function(employeeId, password) {
+            return $http.post('/api/v0.1/sessions',{employeeId:employeeId, password:password});
+        },
+        logOut: function() {
+            var promise = $http.delete('/api/v0.1/sessions');
+            promise.success(function(){
+                $rootScope.User = undefined;
+
+            });
+
+            promise.error(function(data, status){
+                window.console.log("Status:" + status + JSON.stringify(data));
+            });
+        },
+        isLogged: function() {
+            return $rootScope.User !== undefined;
+        },
+        getUser: function() {
+            return $rootScope.User;
+        },
+        authorize: function(requiredRoles) {
+            if (!this.isLogged()) {
+                return false;
             }
-            for(var requiredRole in accessRoles) {
-                if (roles[requiredRole]) {
-                    return true;
+            var user = $rootScope.User || {};
+            user.roles = user.roles || {};
+
+            // For each required role
+            for (var role in requiredRoles) {
+                // If the required role is set to false,
+                if (!requiredRoles[role]) {
+                    // skip to next role
+                    continue;
                 }
-            }
-            return false;
-        },
-
-        isLoggedIn: function (User) {
-            if (User === undefined) {
-                User = $rootScope.User;
-            }
-            for( var i = 0; i < 3; i++ ) {
-                if ( User.roles["medicalStaff"] || User.roles["doctor"] || User.roles["chargeNurse"] ) { // TODO This is not correct
-                    return true;
+                // this role is mandatory!
+                if (!user.roles[role]) {
+                    // But this user doesn't have it
+                    return false;
                 }
+                // User has this role
             }
-
-            return false;
-        },
-
-        register: function (User, success, error) {
-            $http.post('/register', User).success(success).error(error);
-        },
-
-        login: function (User, success, error) {
-            $http.post('/login', User).success(function (User) {
-                $rootScope.User = User;
-                success(User);
-            }).error(error);
-        },
-
-        logout: function (success, error) {
-            $http.post('/logout').success(function () {
-                $rootScope.User = {
-                    username: "",
-                    roles: ["public"]
-                };
-                success();
-            }).error(error);
-        },
-
-        User: currentUser
+            return true;
+        }
     };
-});
+}]);
 

@@ -38,13 +38,16 @@ type userCreds struct {
 
 func postSession(store *sessions.CookieStore) http.HandlerFunc {
 	return func(rw http.ResponseWriter, req *http.Request) {
-		defer req.Body.Close()
 		var cred userCreds
-		err := json.NewDecoder(req.Body).Decode(&cred)
+		dec := json.NewDecoder(req.Body)
+		defer req.Body.Close()
+		err := dec.Decode(&cred)
 		if err != nil {
-			http.Error(rw, "Malformed credentials", http.StatusBadRequest)
+			msg := fmt.Sprintf("Malformed credentials, %v", err)
+			errorResponse(rw, msg, msg, http.StatusBadRequest)
 			return
 		}
+
 		empl, ok, err := models.FindEmployee(cred.EmployeeID)
 		if err != nil {
 			errorResponse(rw,
