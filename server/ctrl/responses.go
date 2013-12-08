@@ -22,6 +22,7 @@ func jsonResponse(rw http.ResponseWriter, data interface{}) {
 
 	toWrite := body.Len()
 	rw.WriteHeader(http.StatusOK)
+	rw.Header().Add("Content-Type", "application/json; charset=utf-8")
 	n, err := io.Copy(rw, body)
 	if err != nil {
 		log.Printf("Writing response, %v", err)

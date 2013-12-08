@@ -82,6 +82,7 @@ func postSession(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 		session.Values[emplIDCookieKey] = empl.EmployeeID
+		session.Options.MaxAge = store.Options.MaxAge
 
 		err = session.Save(req, rw)
 		if err != nil {
@@ -116,8 +117,9 @@ func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 				http.StatusBadRequest)
 			return
 		}
-		session.Options.MaxAge = -1
 		delete(session.Values, emplIDCookieKey)
+		session.Options.MaxAge = -1
+
 		err = session.Save(req, rw)
 		if err != nil {
 			errorResponse(rw,
