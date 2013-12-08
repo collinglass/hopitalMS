@@ -6,11 +6,10 @@ import (
 )
 
 var (
-	serverAddr = "192.168.0.24:6379"
-	pool       *redis.Pool
+	pool *redis.Pool
 )
 
-func init() {
+func Start(serverAddr string) {
 	pool = &redis.Pool{
 		MaxIdle:     3,
 		IdleTimeout: 240 * time.Second,

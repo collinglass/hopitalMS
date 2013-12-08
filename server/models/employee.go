@@ -25,6 +25,7 @@ var (
 // exposed to JSON decoder/encoders
 type Employee struct {
 	EmployeeID   int           `json:"employeeId"`
+	WardID       int           `json:"wardId"`
 	FirstName    string        `json:"firstName"`
 	LastName     string        `json:"lastName"`
 	Email        string        `json:"email"`

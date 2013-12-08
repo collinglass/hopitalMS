@@ -5,6 +5,11 @@
     "firstName": "Samantha",
     "lastName": "Fox",
     "email": "samantha@fox.com",
-    "role": 2,
+    "roles": {
+        "public": true,
+        "chargeNurse": true,
+        "doctor": false,
+        "medicalStaff": true,
+    },
     "ward": 1
 }

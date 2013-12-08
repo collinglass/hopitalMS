@@ -1,0 +1,122 @@
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"github.com/collinglass/moustacheMS/server/models"
+	"github.com/gorilla/handlers"
+	"github.com/gorilla/sessions"
+	"net/http"
+	"time"
+)
+
+const (
+	sessionCookieName = "session"
+	emplIDCookieKey   = "emplID"
+)
+
+func StartSessions(authKey, cryptKey []byte) (*sessions.CookieStore, http.Handler) {
+	store := sessions.NewCookieStore(authKey, cryptKey)
+	store.Options = &sessions.Options{
+		Path:   "/",
+		MaxAge: int(time.Hour * 24),
+		Secure: true,
+	}
+
+	sessionHandler := handlers.MethodHandler{
+		"POST":   postSession(store),
+		"DELETE": deleteSession(store),
+	}
+	return store, sessionHandler
+}
+
+type userCreds struct {
+	EmployeeID int    `json:"employeeId"`
+	Password   string `json:"password"`
+}
+
+func postSession(store *sessions.CookieStore) http.HandlerFunc {
+	return func(rw http.ResponseWriter, req *http.Request) {
+		defer req.Body.Close()
+		var cred userCreds
+		err := json.NewDecoder(req.Body).Decode(&cred)
+		if err != nil {
+			http.Error(rw, "Malformed credentials", http.StatusBadRequest)
+			return
+		}
+		empl, ok, err := models.FindEmployee(cred.EmployeeID)
+		if err != nil {
+			errorResponse(rw,
+				fmt.Sprintf("Finding employeeID %d, %v", cred.EmployeeID, err),
+				"Oups, error",
+				http.StatusInternalServerError)
+			return
+		}
+		if !ok {
+			errorResponse(rw,
+				fmt.Sprintf("Unknown user, %#v"),
+				"Invalid username/password",
+				http.StatusForbidden)
+			return
+		}
+		err = empl.ValidatePassword([]byte(cred.Password))
+		if err != nil {
+			errorResponse(rw,
+				fmt.Sprintf("Validate password failed for user %#v, %v", cred, err),
+				"Invalid username/password",
+				http.StatusForbidden)
+			return
+		}
+
+		session, err := store.New(req, sessionCookieName)
+		if err != nil {
+			errorResponse(rw,
+				fmt.Sprintf("Creating cookie session for user %d, %v",
+					empl.EmployeeID, err),
+				"Oups, error",
+				http.StatusInternalServerError)
+			return
+		}
+		session.Values[emplIDCookieKey] = empl.EmployeeID
+
+		err = session.Save(req, rw)
+		if err != nil {
+			errorResponse(rw,
+				fmt.Sprintf("Saving cookie session for user %d, %v",
+					empl.EmployeeID, err),
+				"Oups, error",
+				http.StatusInternalServerError)
+			return
+		}
+
+		rw.WriteHeader(http.StatusCreated)
+	}
+}
+
+func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
+	return func(rw http.ResponseWriter, req *http.Request) {
+		session, err := store.Get(req, sessionCookieName)
+		if err != nil {
+			errorResponse(rw,
+				fmt.Sprintf("Couldn't get session from cookie, %v", err),
+				"Invalid session",
+				http.StatusBadRequest)
+			return
+		}
+		session.Options = &sessions.Options{
+			MaxAge: -1,
+		}
+		delete(session.Values, emplIDCookieKey)
+		err = session.Save(req, rw)
+		if err != nil {
+			errorResponse(rw,
+				fmt.Sprintf("Saving deleted session, %v", err),
+				"Oups, error",
+				http.StatusInternalServerError)
+			return
+		}
+		// OK because we return a nulled cookie store, otherwise would
+		// be NoContent (if return nothing)
+		rw.WriteHeader(http.StatusOK)
+	}
+}
