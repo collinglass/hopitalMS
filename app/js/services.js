@@ -32,27 +32,26 @@ mustacheServices.factory("Employee", ["$resource", function ($resource) {
 mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($http, $rootScope, Employee) {
 
     return {
-        logIn: function(employeeId, password) {
-            return $http.post('/api/v0.1/sessions',{employeeId:employeeId, password:password});
+        logIn: function (employeeId, password) {
+            return $http.post('/api/v0.1/sessions', {employeeId: employeeId, password: password});
         },
-        logOut: function() {
+        logOut: function () {
             var promise = $http.delete('/api/v0.1/sessions');
-            promise.success(function(){
+            promise.success(function () {
                 $rootScope.User = undefined;
-
             });
 
-            promise.error(function(data, status){
+            promise.error(function (data, status) {
                 window.console.log("Status:" + status + JSON.stringify(data));
             });
         },
-        isLogged: function() {
+        isLogged: function () {
             return $rootScope.User !== undefined;
         },
-        getUser: function() {
+        getUser: function () {
             return $rootScope.User;
         },
-        authorize: function(requiredRoles) {
+        authorize: function (requiredRoles) {
             if (!this.isLogged()) {
                 return false;
             }

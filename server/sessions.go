@@ -72,8 +72,6 @@ func postSession(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 
-		log.Printf("Before. Store options are: %v", store.Options)
-
 		session, err := store.New(req, sessionCookieName)
 		if err != nil {
 			errorResponse(rw,
@@ -95,9 +93,6 @@ func postSession(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 
-		log.Printf("Saved session cookie, values: %v", session.Values)
-		log.Printf("After. Store options are: %v", store.Options)
-
 		rw.WriteHeader(http.StatusCreated)
 	}
 }
@@ -113,7 +108,6 @@ func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 
-		log.Printf("Before. Store options are: %v", store.Options)
 		session, err := store.Get(req, sessionCookieName)
 		if err != nil {
 			errorResponse(rw,
@@ -123,8 +117,9 @@ func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 
-		log.Printf("Deleting cookie from values: %v", session.Values)
-
+		// old version of gorilla/sessions have a bug with Options, if
+		// you have a problem, try updating gorilla/sessions
+		session.Options.MaxAge = -1
 		delete(session.Values, emplIDCookieKey)
 
 		err = session.Save(req, rw)
@@ -135,8 +130,6 @@ func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 				http.StatusInternalServerError)
 			return
 		}
-		log.Printf("After deleting cookie, values: %v", session.Values)
-		log.Printf("After. Store options are: %v", store.Options)
 		rw.WriteHeader(http.StatusNoContent)
 	}
 }
