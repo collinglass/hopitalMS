@@ -2,6 +2,7 @@
 	"patientId": 5,
 	"lastName": "Mice",
 	"firstName": "Samantha",
+	"bedId": 1004,
 	"healthInsNum": "5438 1049 76AC GHRK",
 	"address" : "1234 Something street",
 	"phoneNum" : "123-456-7890",

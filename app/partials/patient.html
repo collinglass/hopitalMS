@@ -2,7 +2,7 @@
     <form role="form">
         <div class="form-group">
             <label for="patient-bedId">Bed </label>
-            <select id="patient-bedId" name="patient-bedId" ng-model="bedId">
+            <select id="patient-bedId" name="patient-bedId" ng-model="patient.bedId">
                 <option ng-repeat="bed in beds" value="{{bed.bedId}}"> Room {{bed.roomId}} - {{bed.bedId}} </option>
             </select>
         </div>
@@ -19,9 +19,9 @@
         <div class="form-group">
             <label for="patient-gender">Gender</label>
             <select id="patient-gender" name="patient-gender" ng-model="patient.gender"> <!-- Make Gender show selected gender -->
-                <option value="Male">Male </option>
-                <option value="Female">Female </option>
-                <option value="Transgender">Transgender</option>
+                <option value="male">Male </option>
+                <option value="female">Female </option>
+                <option value="transgender">Transgender</option>
             </select>
         </div>
         <div class="form-group">
@@ -47,11 +47,11 @@
         <div class="form-group">
             <label for="patient-maritalStatus">Marital Status</label>
             <select id="patient-maritalStatus" name="patient-maritalStatus" ng-model="patient.maritalStatus">
-                <option value="Single">Single </option> 
-                <option value="Married" selected>Married </option>
-                <option value="Separated">Separated </option>
-                <option value="Divorced">Divorced </option>
-                <option value="Widowed">Widowed </option>
+                <option value="single">Single </option> 
+                <option value="married">Married </option>
+                <option value="separated">Separated </option>
+                <option value="divorced">Divorced </option>
+                <option value="widowed">Widowed </option>
             </select>
         </div>
         <div class="form-group">

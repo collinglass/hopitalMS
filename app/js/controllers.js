@@ -31,7 +31,11 @@ controllers.controller('LoginCtrl', ["$scope", /*"$rootScope",*/ "$http", "$loca
     };
 }]);
 
-controllers.controller('NavCtlr', ["$scope", "$rootScope", function ($scope, $rootScope) {
+controllers.controller('NavCtlr', ["$scope", "$rootScope", "Auth", function ($scope, $rootScope, Auth) {
+
+    $scope.isLoggedIn = function () {
+        return Auth.isLoggedIn();
+    }
 
     $scope.updateRole = function () {
         var role = $rootScope.User.role;
@@ -116,16 +120,8 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
     }]);
 
 
-controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "Auth",
-    function ($scope, $location, $routeParams, Ward, Patient, Employee, Auth) {
-
-        $scope.authorize = function (accessRoles) {
-            return Auth.authorize(accessRoles);
-        }
-
-        $scope.go = function (path) {
-            $location.path(path);
-        };
+controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "Auth", "$rootScope",
+    function ($scope, $location, $routeParams, Ward, Patient, Employee, Auth, $rootScope) {
 
         Ward.get({wardId: $routeParams.wardId}, function (ward) {
             $scope.ward = ward;
@@ -164,55 +160,67 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                     response.patientDetails = patientDetails;
                 });
             });
+            
 
-            $scope.patients.view = function () {
-                angular.forEach($scope.patients, function(obj) {
-                    if ( obj.selected == true ) {
-                        $scope.go("/patients/" + obj.patientId);
-                    }
-                });
-            };
+            if ( $scope.ward.wardId === $rootScope.User.wardId ) {
 
-            $scope.patients.transfer = function () {
-                angular.forEach($scope.patients, function(obj) {
-                    if ( obj.selected == true ) {
-                        $scope.go("/transfer/" + obj.patientId);
-                    }
-                });
-            };
+                $scope.authorize = function (accessRoles) {
+                    return Auth.authorize(accessRoles);
+                };
 
-            $scope.admissionRequests.refuse = function () {
-                angular.forEach($scope.admissionRequests, function(obj) {
-                    if ( obj.selected == true ) {
-                        $scope.go("/refusal/" + obj.admRequestId);
-                    }
-                });
-            };
+                $scope.go = function (path) {
+                    $location.path(path);
+                };
 
-            $scope.admissionRequests.view = function () {
-                angular.forEach($scope.admissionRequests, function(obj) {
-                    if ( obj.selected == true ) {
-                        $scope.go("/rationale/" + obj.admRequestId);
-                    }
-                });
-            };
+                $scope.patients.view = function () {
+                    angular.forEach($scope.patients, function(obj) {
+                        if ( obj.selected == true ) {
+                            $scope.go("/patients/" + obj.patientId);
+                        }
+                    });
+                };
 
-            $scope.admissionRequests.admit = function () {
-                angular.forEach($scope.admissionRequests, function(obj) {
-                    if ( obj.selected ) {
-                        console.log(obj);
-                        $scope.go("/admissions/" + obj.admRequestId);
-                    }
-                });
-            };
+                $scope.patients.transfer = function () {
+                    angular.forEach($scope.patients, function(obj) {
+                        if ( obj.selected == true ) {
+                            $scope.go("/transfer/" + obj.patientId);
+                        }
+                    });
+                };
 
-            $scope.patients.discharge = function () {
-                angular.forEach($scope.patients, function (patient) {
-                    if (patient.selected) {
-                        var index = $scope.patients.indexOf(patient);
-                        $scope.patients.splice(index, 1);                   // TODO Free up bed
-                    }
-                });
+                $scope.admissionRequests.refuse = function () {
+                    angular.forEach($scope.admissionRequests, function(obj) {
+                        if ( obj.selected == true ) {
+                            $scope.go("/refusal/" + obj.admRequestId);
+                        }
+                    });
+                };
+
+                $scope.admissionRequests.view = function () {
+                    angular.forEach($scope.admissionRequests, function(obj) {
+                        if ( obj.selected == true ) {
+                            $scope.go("/rationale/" + obj.admRequestId);
+                        }
+                    });
+                };
+
+                $scope.admissionRequests.admit = function () {
+                    angular.forEach($scope.admissionRequests, function(obj) {
+                        if ( obj.selected ) {
+                            console.log(obj);
+                            $scope.go("/admissions/" + obj.admRequestId);
+                        }
+                    });
+                };
+
+                $scope.patients.discharge = function () {
+                    angular.forEach($scope.patients, function (patient) {
+                        if (patient.selected) {
+                            var index = $scope.patients.indexOf(patient);
+                            $scope.patients.splice(index, 1);                   // TODO Free up bed
+                        }
+                    });
+                };
             };
         });
 }]);
@@ -235,7 +243,7 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
             return false;
         };
                                                                     // TODO dynamically show available rooms and beds
-        if ($location.path() === '/patients/new') {
+                                                                    if ($location.path() === '/patients/new') {
             // Test with Ward 1
             Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
                 $scope.ward = ward;
@@ -265,13 +273,13 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                         address: $scope.nextOfKin.address, 
                         phoneNum: $scope.nextOfKin.phoneNum }
                     });
-                    $scope.patient = newPatient;
+                $scope.patient = newPatient;
                     $scope.save();                      // TODO get working with database
-                var wardPush = {
-                    patientId: $scope.newPatientId,
-                    bedId: $scope.bedId,
-                    status: "nominal"
-                };
+                    var wardPush = {
+                        patientId: $scope.newPatientId,
+                        bedId: $scope.bedId,
+                        status: "nominal"
+                    };
                     console.log(wardPush);
 
                     $scope.patients.push(wardPush);
@@ -293,7 +301,7 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 $scope.priority = admissionRequest.priority;
 
                 console.log(admissionRequest);
-            
+
 
                 Patient.get({patientId: admissionRequest.patientId}, function (patient) {  // TODO dynamic wardId
                     $scope.patient = patient;
@@ -319,15 +327,15 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         } else {
             Patient.get({patientId: $routeParams.patientId}, function (patient) {
                 $scope.patient = patient;
-            });
 
-            Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
-                $scope.ward = ward;
-                $scope.patients = ward.patients;
-                $scope.beds = ward.beds;
+                Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
+                    $scope.ward = ward;
+                    $scope.patients = ward.patients;
+                    $scope.beds = ward.beds;
+                });
             });
-        }
-}]);
+        };
+    }]);
 
 controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
     function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
@@ -452,5 +460,5 @@ controllers.controller('TransferCtrl', ["$scope", "$location", "$routeParams", "
                 });
             });
         });
-}]);
+    }]);
 

@@ -2,6 +2,7 @@
 	"patientId": 3,
 	"lastName": "Smith",
 	"firstName": "John",
+	"bedId": 1002,
 	"healthInsNum": "0123 4567 89AB CDEF",
 	"address" : "1234 Something street",
 	"phoneNum" : "123-456-7890",
