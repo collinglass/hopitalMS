@@ -40,11 +40,10 @@ func main() {
 	apiRoutes.Handle("/wards/{id:[0-9]+}", ctrl.WardCtrl(store))
 	apiRoutes.Handle("/wards", ctrl.WardCtrl(store))
 
-	// Static files
-	mainRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../app/")))
-
 	// Heartbeat
 	mainRouter.PathPrefix("/ping").Handler(pingHandler())
+	// Static files
+	mainRouter.PathPrefix("/").Handler(http.FileServer(http.Dir("../app/")))
 
 	// Pass back to stdlib http
 	http.Handle("/", handlers.LoggingHandler(os.Stdout, mainRouter))

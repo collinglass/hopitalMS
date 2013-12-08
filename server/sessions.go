@@ -21,7 +21,7 @@ func StartSessions(authKey, cryptKey []byte) (*sessions.CookieStore, http.Handle
 	store.Options = &sessions.Options{
 		Path:   "/",
 		MaxAge: int(time.Hour * 24),
-		Secure: true,
+		// Secure: true,
 	}
 
 	sessionHandler := handlers.MethodHandler{
@@ -99,17 +99,24 @@ func postSession(store *sessions.CookieStore) http.HandlerFunc {
 
 func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 	return func(rw http.ResponseWriter, req *http.Request) {
+		_, err := req.Cookie(sessionCookieName)
+		if err == http.ErrNoCookie {
+			errorResponse(rw,
+				fmt.Sprintf("Couldn't get session from cookie, %v", err),
+				"Invalid session",
+				http.StatusUnauthorized)
+			return
+		}
+
 		session, err := store.Get(req, sessionCookieName)
 		if err != nil {
 			errorResponse(rw,
-				fmt.Sprintf("Couldn't get session from cookie, %v", err),
+				fmt.Sprintf("Error getting/saving session, %v", err),
 				"Invalid session",
 				http.StatusBadRequest)
 			return
 		}
-		session.Options = &sessions.Options{
-			MaxAge: -1,
-		}
+		session.Options.MaxAge = -1
 		delete(session.Values, emplIDCookieKey)
 		err = session.Save(req, rw)
 		if err != nil {
