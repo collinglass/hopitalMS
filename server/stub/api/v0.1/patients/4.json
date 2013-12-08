@@ -2,6 +2,7 @@
 	"patientId": 4,
 	"lastName": "Hats",
 	"firstName": "Jason",
+	"bedId": 1003,
 	"healthInsNum": "0689 7594 93JF LOHR",
 	"address" : "1234 Something street",
 	"phoneNum" : "123-456-7890",

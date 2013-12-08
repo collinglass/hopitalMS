@@ -332,7 +332,6 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                     $scope.ward = ward;
                     $scope.patients = ward.patients;
                     $scope.beds = ward.beds;
-                    
                 });
             });
         };

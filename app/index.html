@@ -13,7 +13,8 @@
 <nav class="navbar navbar-default navbar-static-top"
      role="navigation"
      ng-controller="NavCtlr">
-    <a class="navbar-brand" href="#">The Mustache PMS</a>
+    <a class="navbar-brand" ng-hide="isLoggedIn();" href="#">The Mustache PMS</a>
+    <a class="navbar-brand" ng-show="isLoggedIn();" href="#/ward">The Mustache PMS</a>
 
     <label class="checkbox-inline">
         <input type="checkbox"
