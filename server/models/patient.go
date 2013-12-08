@@ -111,6 +111,9 @@ func FindPatient(patientID int) (*Patient, bool, error) {
 
 	id, err := redis.String(conn.Do("HGET", patientAll, patientID))
 	if err != nil {
+		if err == redis.ErrNil {
+			return nil, false, nil
+		}
 		return nil, false, fmt.Errorf("getting patient ID %d, %v", patientID, err)
 	}
 

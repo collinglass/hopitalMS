@@ -6,6 +6,7 @@ import (
 	"github.com/collinglass/moustacheMS/server/models"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/sessions"
+	"log"
 	"net/http"
 	"time"
 )
@@ -54,7 +55,7 @@ func postSession(store *sessions.CookieStore) http.HandlerFunc {
 		}
 		if !ok {
 			errorResponse(rw,
-				fmt.Sprintf("Unknown user, %#v"),
+				fmt.Sprintf("Unknown user, %#v", cred),
 				"Invalid username/password",
 				http.StatusForbidden)
 			return
@@ -115,8 +116,24 @@ func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 				http.StatusInternalServerError)
 			return
 		}
-		// OK because we return a nulled cookie store, otherwise would
-		// be NoContent (if return nothing)
-		rw.WriteHeader(http.StatusOK)
+		rw.WriteHeader(http.StatusNoContent)
 	}
+}
+
+func errorResponse(rw http.ResponseWriter, cause, public string, code int) {
+	log.Printf("%d: %s, answered '%s'", code, cause, public)
+	jsonErr := struct {
+		Code    int    `json:"code"`
+		Message string `json:"message"`
+	}{
+		code,
+		public,
+	}
+	jsonBytes, err := json.Marshal(&jsonErr)
+	if err != nil {
+		log.Printf("error serving error message, %v", err)
+		http.Error(rw, "Error serving error message", http.StatusInternalServerError)
+		return
+	}
+	http.Error(rw, string(jsonBytes), code)
 }

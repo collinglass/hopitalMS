@@ -15,10 +15,10 @@ const (
 type Role string
 
 var (
-	ChargeNurseRole = "chargeNurse"
-	DoctorRole      = "doctor"
-	MedicalStaff    = "medicalStaff"
-	Public          = "public"
+	ChargeNurseRole = Role("chargeNurse")
+	DoctorRole      = Role("doctor")
+	MedicalStaff    = Role("medicalStaff")
+	Public          = Role("public")
 )
 
 // Employee holds the data of a PMS employee.  The passwordHash is not
@@ -167,6 +167,9 @@ func FindEmployee(employeeID int) (*Employee, bool, error) {
 
 	id, err := redis.String(conn.Do("HGET", employeeAll, employeeID))
 	if err != nil {
+		if err == redis.ErrNil {
+			return nil, false, nil
+		}
 		return nil, false, fmt.Errorf("getting employee ID %d, %v", employeeID, err)
 	}
 

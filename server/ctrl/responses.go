@@ -30,6 +30,11 @@ func jsonResponse(rw http.ResponseWriter, data interface{}) {
 	}
 }
 
+func unauthorizedResponse(rw http.ResponseWriter, action string) {
+	msg := fmt.Sprintf("Not authorized to %s", action)
+	errorResponse(rw, msg, msg, http.StatusUnauthorized)
+}
+
 func badRouteResponse(rw http.ResponseWriter, req *http.Request) {
 	errorResponse(rw,
 		fmt.Sprintf("Requested bad method: %s", req.RequestURI),
@@ -45,8 +50,8 @@ func dbErrorResponse(rw http.ResponseWriter, err error) {
 func errorResponse(rw http.ResponseWriter, cause, public string, code int) {
 	log.Printf("%d: %s, answered '%s'", code, cause, public)
 	jsonErr := struct {
-		Code    int    `json:"code"`
-		Message string `json:"message"`
+		Code    int    `json:"errorCode"`
+		Message string `json:"errorMessage"`
 	}{
 		code,
 		public,

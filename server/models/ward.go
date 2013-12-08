@@ -130,6 +130,9 @@ func FindWard(wardID int) (*Ward, bool, error) {
 
 	id, err := redis.String(conn.Do("HGET", wardAll, wardID))
 	if err != nil {
+		if err == redis.ErrNil {
+			return nil, false, nil
+		}
 		return nil, false, fmt.Errorf("getting ward ID %d, %v", wardID, err)
 	}
 
