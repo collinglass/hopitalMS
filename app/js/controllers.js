@@ -6,6 +6,10 @@ var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
 controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth", "Employee", function ($scope, $rootScope, $location, Auth, Employee) {
+    $scope.isLogged = function() {
+        return Auth.isLogged();
+    }
+
     $scope.onNewAccount = function () {
         $rootScope.User = $scope.User;
         $location.path('/register');
@@ -29,6 +33,7 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
 }]);
 
 controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Employee", "Auth", function ($scope, $rootScope, $location, Employee, Auth) {
+
     $scope.onRegister = function () {
         Employee.save($scope.User, function () {
             $scope.User = $scope.User || {};
@@ -47,41 +52,18 @@ controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Em
     };
 }]);
 
-controllers.controller('NavCtlr', ["$scope", "$rootScope", "Auth", function ($scope, $rootScope, Auth) {
+controllers.controller('NavCtlr', ["$scope", "Auth", function ($scope, Auth) {
 
-    $scope.isLogged = function () {
+    $scope.isLogged = function() {
         return Auth.isLogged();
     };
 
-    $scope.updateRole = function () {
-        var role = $rootScope.User.role;
+    $scope.logOut = function() {
+        Auth.logOut();
+    };
 
-        if ($scope.publicRole) {
-            role |= 1;
-        } else {
-            role &= (~1);
-        }
-
-        if ($scope.medStaffRole) {
-            role |= 2;
-        } else {
-            role &= (~2);
-        }
-
-        if ($scope.doctorRole) {
-            role |= 4;
-        } else {
-            role &= (~4);
-        }
-
-        if ($scope.nurseRole) {
-            role |= 8;
-        } else {
-            role &= (~8);
-        }
-
-        $rootScope.User.role = role;
-        console.log($rootScope.User);
+    $scope.getUser = function() {
+        return Auth.getUser();
     };
 }]);
 

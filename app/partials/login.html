@@ -1,8 +1,7 @@
 <div ng-controller="LoginCtrl">
-    <form class="navbar-form navbar-left" role="search">
-        <div class="modal-header">
-            <h4 class="modal-title">Please login</h4>
-        </div>
+
+    <form ng-hide="isLogged()" class="navbar-form navbar-left" role="search">
+        <h4>Please login</h4>
         <div class="modal-body form-group">
             <label class="login-field-icon fui-user" for="login-name"></label>
             <input type="text" id="login-name" class="form-control" ng-model="User.employeeId"

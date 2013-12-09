@@ -13,6 +13,13 @@ angular.module('mustacheApp', [
     config(['$routeProvider', '$locationProvider', '$httpProvider',
         function ($routeProvider, $locationProvider, $httpProvider) {
 
+            // Catch all
+            $routeProvider.otherwise({
+                redirectTo: '/login',
+                access: {} // anybody
+            });
+
+            // Routes
             $routeProvider.when('/login', {
                 templateUrl: 'partials/login.html',
                 controller: 'LoginCtrl',
@@ -81,10 +88,6 @@ angular.module('mustacheApp', [
                     "medicalStaff": true
                 }
             });
-            $routeProvider.otherwise({
-                redirectTo: '/login',
-                access: {} // anybody
-            });
 
 
             var interceptor = ['$location', '$q', function ($location, $q) {
@@ -118,7 +121,6 @@ angular.module('mustacheApp', [
                 $location.path('/login');
             } else {
                 // Do nothing, user doesn't have access to this location
-                window.console.log("Tried to access " + next + " from " + current + " but unauthorized.");
             }
         });
 
