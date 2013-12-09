@@ -1,9 +1,13 @@
 {
     "employeeId": 7,
-    "passwordHash": "garbblegarbble",
-    "passwordSalt": "0xDEADBEEF",
+    "password": "0xDEADBEEF",
     "firstName": "Michel",
     "lastName": "James",
     "email": "Mike_g@gmail.com",
-    "roles": [1, 3]
+    "roles": {
+        "chargeNurse": false,
+        "doctor": false,
+        "medicalStaff": true
+    },
+    "wardId": 1
 }
