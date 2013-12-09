@@ -5,18 +5,18 @@
 var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
-controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth", "Employee", function ($scope, $rootScope, $location, Auth, Employee) {
+controllers.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'Auth', function ($scope, $rootScope, $location, Auth) {
     $scope.User = {};
-    $scope.User.employeeId = "";
-    $scope.User.password = "";
+    $scope.User.employeeId = '';
+    $scope.User.password = '';
 
     $scope.isLogged = function () {
         return Auth.isLogged();
-    }
+    };
 
     $scope.onNewAccount = function () {
-        var employeeId = $scope.User.employeeId || "";
-        var password = $scope.User.password || "";
+        var employeeId = $scope.User.employeeId || '';
+        var password = $scope.User.password || '';
 
         if (employeeId && password) {
             $rootScope.User = $scope.User;
@@ -37,22 +37,22 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
             if (data.code !== 400) {
                 $scope.errorMsg = data.message;
             }
-            window.console.log("Status: " + status + ", message: " + angular.toJson(data));
+            window.console.log('Status: ' + status + ', message: ' + angular.toJson(data));
         };
 
         Auth.logIn(employeeId, password, success, error);
     };
 }]);
 
-controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Employee", "Auth", function ($scope, $rootScope, $location, Employee, Auth) {
+controllers.controller('RegisterCtrl', ['$scope', '$rootScope', '$location', 'Employee', 'Auth', function ($scope, $rootScope, $location, Employee, Auth) {
 
     var getRoleObject = function () {
         switch ($scope.RoleChoice) {
-            case "Medical Staff":
+            case 'Medical Staff':
                 return {medicalStaff: true};
-            case "Charge Nurse":
+            case 'Charge Nurse':
                 return {medicalStaff: true, chargeNurse: true};
-            case "Doctor":
+            case 'Doctor':
                 return {medicalStaff: true, doctor: true};
         }
     };
@@ -69,14 +69,14 @@ controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Em
             };
 
             var error = function (data) {
-                window.console.log("Status: " + status + ", message: " + angular.toJson(data));
+                window.console.log('Status: ' + status + ', message: ' + angular.toJson(data));
             };
             Auth.logIn(employeeId, password, success, error);
         });
     };
 }]);
 
-controllers.controller('NavCtlr', ["$scope", "$location", "Auth", function ($scope, $location, Auth) {
+controllers.controller('NavCtlr', ['$scope', '$location', 'Auth', function ($scope, $location, Auth) {
 
     $scope.isLogged = function () {
         return Auth.isLogged();
@@ -84,7 +84,7 @@ controllers.controller('NavCtlr', ["$scope", "$location", "Auth", function ($sco
 
     $scope.logOut = function () {
         Auth.logOut();
-        $location.path("/login");
+        $location.path('/login');
     };
 
     $scope.getUser = function () {
@@ -92,7 +92,7 @@ controllers.controller('NavCtlr', ["$scope", "$location", "Auth", function ($sco
     };
 }]);
 
-controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee",
+controllers.controller('WardListCtrl', ['$scope', '$location', 'Ward', 'Employee',
     function ($scope, $location, Ward, Employee) {
 
         $scope.wards = [];
@@ -115,7 +115,7 @@ controllers.controller('WardListCtrl', ["$scope", "$location", "Ward", "Employee
     }]);
 
 
-controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "Auth", "$rootScope",
+controllers.controller('WardDetailCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient', 'Employee', 'Auth', '$rootScope',
     function ($scope, $location, $routeParams, Ward, Patient, Employee, Auth, $rootScope) {
 
         Ward.get({wardId: $routeParams.wardId}, function (ward) {
@@ -144,7 +144,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
                 Ward.get({wardId: request.fromWardId}, function (fromWard) {
                     request.fromWard = fromWard;
                     Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
-                        request.chargeNurseName = nurse.firstName + " " + nurse.lastName;
+                        request.chargeNurseName = nurse.firstName + ' ' + nurse.lastName;
                     });
                 });
             });
@@ -172,7 +172,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.patients.view = function () {
                 angular.forEach($scope.patients, function (obj) {
                     if (obj.selected) {
-                        $scope.go("/patients/" + obj.patientId);
+                        $scope.go('/patients/' + obj.patientId);
                     }
                 });
             };
@@ -180,7 +180,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.patients.transfer = function () {
                 angular.forEach($scope.patients, function (obj) {
                     if (obj.selected) {
-                        $scope.go("/transfer/" + obj.patientId);
+                        $scope.go('/transfer/' + obj.patientId);
                     }
                 });
             };
@@ -188,7 +188,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionRequests.refuse = function () {
                 angular.forEach($scope.admissionRequests, function (obj) {
                     if (obj.selected) {
-                        $scope.go("/refusal/" + obj.admRequestId);
+                        $scope.go('/refusal/' + obj.admRequestId);
                     }
                 });
             };
@@ -196,7 +196,7 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionRequests.view = function () {
                 angular.forEach($scope.admissionRequests, function (obj) {
                     if (obj.selected) {
-                        $scope.go("/rationale/" + obj.admRequestId);
+                        $scope.go('/rationale/' + obj.admRequestId);
                     }
                 });
             };
@@ -204,8 +204,8 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionRequests.admit = function () {
                 angular.forEach($scope.admissionRequests, function (obj) {
                     if (obj.selected) {
-                        console.log(obj);
-                        $scope.go("/admissions/" + obj.admRequestId);
+                        //window.console.log(obj);
+                        $scope.go('/admissions/' + obj.admRequestId);
                     }
                 });
             };
@@ -221,8 +221,8 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
         });
     }]);
 
-controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "AdmissionRequest",
-    function ($scope, $location, $routeParams, Ward, Patient, AdmissionRequest) {
+controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'Ward', 'Patient',
+    function ($scope, $location, $routeParams, $rootScope, Ward, Patient) {
 
         $scope.go = function (path) {
             $location.path(path);
@@ -230,12 +230,24 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
 
         $scope.save = function () {
             var patient = $scope.patient;
-            window.console.log("Saving patient: " + angular.toJson(patient));
+            window.console.log('Saving patient: ' + angular.toJson(patient));
             patient.$save({patientId: patient.patientId});
         };
 
         $scope.newPath = function () {
             if ($location.path() === '/patients/new') {
+                return true;
+            }
+            return false;
+        };
+        $scope.admissionPath = function () {
+            if ($location.path() === '/admissions/' + $routeParams.admRequestId) {
+                return true;
+            }
+            return false;
+        };
+        $scope.updatePath = function () {
+            if ($location.path() === '/patients/' + $routeParams.patientId) {
                 return true;
             }
             return false;
@@ -276,9 +288,9 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 var wardPush = {
                     patientId: $scope.newPatientId,
                     bedId: $scope.bedId,
-                    status: "nominal"
+                    status: 'nominal'
                 };
-                console.log(wardPush);
+                window.console.log(wardPush);
 
                 $scope.patients.push(wardPush);
 
@@ -288,40 +300,39 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
             };
 
         } else if ($location.path() === ('/admissions/' + $routeParams.admRequestId)) {
-            console.log($routeParams);
-
-            AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
-
-                $scope.admissionRequest = admissionRequest;
-                $scope.admRequestId = admissionRequest.admRequestId;
-                $scope.patientId = admissionRequest.patientId;
-                $scope.rationale = admissionRequest.rationale;
-                $scope.priority = admissionRequest.priority;
-
-                console.log(admissionRequest);
-
-
-                Patient.get({patientId: admissionRequest.patientId}, function (patient) {  // TODO dynamic wardId
-                    $scope.patient = patient;
+            var daAdmissionRequest;
+            var daWard;
+            var daPatient;
+            Ward.get({wardId: $rootScope.User.wardId}, function (ward) {
+                window.console.log(ward);
+                $scope.ward = ward;
+                daWard = ward;
+                ward.admissionRequests.forEach( function (admissionRequest) {
+                    if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
+                        daAdmissionRequest = admissionRequest;
+                    }
                 });
-                Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
-                    $scope.ward = ward;
-                    $scope.patients = ward.patients;
-                    $scope.beds = ward.beds;
-                    $scope.admissionRequests = ward.admissionRequests;
+                Patient.get({patientId: daAdmissionRequest.patientId}, function (patient) {
+                    $scope.patient = patient;
+                    daPatient = patient;
                 });
             });
 
-            var wardPush = {
-                patientId: $scope.patient.patientId,
-                bedId: $scope.bedId,
-                status: "nominal"
-            };
-            console.log(wardPush);
-            $scope.patients.push(wardPush);
-            var index = $scope.admissionRequests.indexOf(admissionRequest);
-            $scope.admissionRequests.splice(index, 1);
+            $scope.admit = function () {
+                var wardPush = {
+                    patientId: $scope.patient.patientId,
+                    bedId: $scope.bedId,
+                    status: 'nominal'
+                };
+                window.console.log(wardPush);
+                daWard.patients.push(wardPush);
+                var index = daWard.admissionRequests.indexOf(daAdmissionRequest);
+                window.console.log('Splice at ' + index);
+                daWard.admissionRequests.splice(index, 1);
+                daWard.$save({wardId: daWard.wardId});
 
+                $scope.go('/ward/' + $scope.ward.wardId);
+            };
         } else {
             Patient.get({patientId: $routeParams.patientId}, function (patient) {
                 $scope.patient = patient;
@@ -333,10 +344,9 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
                 });
             });
         }
-        ;
     }]);
 
-controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
+controllers.controller('RationaleCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient', 'Employee', 'AdmissionRequest',
     function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
         $scope.back = function () {
             history.go(-1);
@@ -360,17 +370,17 @@ controllers.controller('RationaleCtrl', ["$scope", "$location", "$routeParams", 
             Ward.get({wardId: admissionRequest.fromWardId}, function (fromWard) {
                 $scope.wardName = fromWard.name;
                 Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
-                    $scope.chargeNurseName = nurse.firstName + " " + nurse.lastName;
+                    $scope.chargeNurseName = nurse.firstName + ' ' + nurse.lastName;
                 });
                 Employee.get({employeeId: fromWard.doctorId}, function (doctor) {
-                    $scope.doctorName = doctor.firstName + " " + doctor.lastName;
+                    $scope.doctorName = doctor.firstName + ' ' + doctor.lastName;
                 });
             });
 
         });
     }]);
 
-controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
+controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient', 'Employee', 'AdmissionRequest',
     function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
         $scope.back = function () {
             history.go(-1);
@@ -383,7 +393,7 @@ controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "W
                 inProgress: false,
                 refusal: $scope.refusal
             };
-            console.log(response);
+            window.console.log(response);
             $scope.fromWard.admissionResponses.push(response);
             var index = $scope.toWard.admissionRequests.indexOf($scope.admissionRequest);
             $scope.toWard.admissionRequests.splice(index, 1);
@@ -410,10 +420,10 @@ controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "W
                 $scope.wardName = fromWard.name;
                 $scope.fromWard = fromWard;
                 Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
-                    $scope.chargeNurseName = nurse.firstName + " " + nurse.lastName;
+                    $scope.chargeNurseName = nurse.firstName + ' ' + nurse.lastName;
                 });
                 Employee.get({employeeId: fromWard.doctorId}, function (doctor) {
-                    $scope.doctorName = doctor.firstName + " " + doctor.lastName;
+                    $scope.doctorName = doctor.firstName + ' ' + doctor.lastName;
                 });
 
             });
@@ -422,8 +432,8 @@ controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "W
 
     }]);
 
-controllers.controller('TransferCtrl', ["$scope", "$location", "$routeParams", "Ward", "Patient", "Employee", "AdmissionRequest",
-    function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
+controllers.controller('TransferCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient',
+    function ($scope, $location, $routeParams, Ward, Patient) {
         $scope.back = function () {
             history.go(-1);
         };
@@ -437,14 +447,13 @@ controllers.controller('TransferCtrl', ["$scope", "$location", "$routeParams", "
                 priority: $scope.priority,
                 rationale: $scope.rationale
             };
-            console.log(request);
+            window.console.log(request);
             $scope.admissionRequests.push(request);
             // TODO save
         };
 
         Patient.get({patientId: $routeParams.patientId}, function (patient) {
             $scope.patient = patient;
-            var toWards = [];
             Ward.query(function (wardIds) {
                 $scope.toWards = wardIds;
                 wardIds.forEach(function (wardId) {
