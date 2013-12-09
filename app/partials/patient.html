@@ -2,7 +2,7 @@
     <form role="form">
         <div class="form-group">
             <label for="patient-bedId">Bed </label>
-            <select id="patient-bedId" name="patient-bedId" ng-model="patient.bedId">
+            <select id="patient-bedId" name="patient-bedId" ng-model="patient.bedId" integer>
                 <option ng-repeat="bed in beds" value="{{bed.bedId}}"> Room {{bed.roomId}} - {{bed.bedId}} </option>
             </select>
         </div>

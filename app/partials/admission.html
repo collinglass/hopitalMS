@@ -20,12 +20,12 @@
         <div class="form-group">
             <label for="patient-roomId">Room </label>
             <input type="text" id="patient-roomId" name="patient-roomId" class="form-control" ng-model="roomId"
-                placeholder="Enter roomId">
+                placeholder="Enter roomId" integer>
         </div>
         <div class="form-group">
             <label for="patient-bedId">Bed </label>
             <input type="text" id="patient-bedId" name="patient-bedId" class="form-control" ng-model="bedId"
-                placeholder="Enter bedId">
+                placeholder="Enter bedId" integer>
         </div>
 
         <button type="submit" class="btn btn-default" ng-show="newPath()" ng-click="admit()">Admit</button>

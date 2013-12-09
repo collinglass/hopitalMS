@@ -14,11 +14,11 @@
             <label class="login-field-icon fui-user" for="create-lastname"></label>
             <input type="text" id="create-lastname" class="form-control" ng-model="User.lastName"
                    placeholder="Last Name">
-
-            <label class="login-field-icon" for="create-wardId"></label>
-            <input type="text" id="create-wardId" class="form-control" ng-model="User.wardId"
-                   placeholder="Ward ID" integer>
-
+            <label class="login-field-icon" for="create-wardId">Ward ID</label>
+            <select class="form-control" id="create-wardId" ng-model="User.wardId" integer>
+                <option>1</option>
+                <option>2</option>
+            </select>
             <label class="login-field-icon" for="create-roles">Role</label>
             <select class="form-control" id="create-roles" ng-model="RoleChoice">
                 <option>Medical Staff</option>
