@@ -252,6 +252,8 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
             var patient = $scope.patient;
             window.console.log('Saving patient: ' + angular.toJson(patient));
             patient.$save({patientId: patient.patientId});
+
+            $scope.go('/ward/' + $rootScope.User.wardId);
         };
 
         $scope.newPath = function () {
