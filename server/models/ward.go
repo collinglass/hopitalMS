@@ -18,7 +18,7 @@ type Bed struct {
 
 type AdmissionRequest struct {
 	AdmRequestID int    `json:"admRequestId"`
-	PatientID    int    `json:"wardId"`
+	PatientID    int    `json:"patientId"`
 	FromWardID   int    `json:"fromWardId"`
 	Priority     string `json:"priority"`
 	Rationale    string `json:"rationale"`
@@ -26,7 +26,7 @@ type AdmissionRequest struct {
 
 type AdmissionResponse struct {
 	AdmResponseID int    `json:"admResponseID"`
-	PatientID     int    `json:"wardId"`
+	PatientID     int    `json:"patientId"`
 	ToWardID      int    `json:"toWardId"`
 	InProgress    bool   `json:"inProgress"`
 	Refusal       string `json:"refusal"`

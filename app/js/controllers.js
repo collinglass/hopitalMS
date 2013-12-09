@@ -135,7 +135,6 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.admissionRequests.forEach(function (request) {
                 Patient.get({patientId: request.patientId}, function (patientDetails) {
                     request.patientDetails = patientDetails;
-
                 });
 
                 Ward.get({wardId: request.fromWardId}, function (fromWard) {
@@ -153,67 +152,68 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             });
 
 
-            if ($scope.ward.wardId === $rootScope.User.wardId) {
-
-                $scope.authorize = function (accessRoles) {
-                    return Auth.authorize(accessRoles);
-                };
-
-                $scope.go = function (path) {
-                    $location.path(path);
-                };
-
-                $scope.patients.view = function () {
-                    angular.forEach($scope.patients, function (obj) {
-                        if (obj.selected == true) {
-                            $scope.go("/patients/" + obj.patientId);
-                        }
-                    });
-                };
-
-                $scope.patients.transfer = function () {
-                    angular.forEach($scope.patients, function (obj) {
-                        if (obj.selected == true) {
-                            $scope.go("/transfer/" + obj.patientId);
-                        }
-                    });
-                };
-
-                $scope.admissionRequests.refuse = function () {
-                    angular.forEach($scope.admissionRequests, function (obj) {
-                        if (obj.selected == true) {
-                            $scope.go("/refusal/" + obj.admRequestId);
-                        }
-                    });
-                };
-
-                $scope.admissionRequests.view = function () {
-                    angular.forEach($scope.admissionRequests, function (obj) {
-                        if (obj.selected == true) {
-                            $scope.go("/rationale/" + obj.admRequestId);
-                        }
-                    });
-                };
-
-                $scope.admissionRequests.admit = function () {
-                    angular.forEach($scope.admissionRequests, function (obj) {
-                        if (obj.selected) {
-                            console.log(obj);
-                            $scope.go("/admissions/" + obj.admRequestId);
-                        }
-                    });
-                };
-
-                $scope.patients.discharge = function () {
-                    angular.forEach($scope.patients, function (patient) {
-                        if (patient.selected) {
-                            var index = $scope.patients.indexOf(patient);
-                            $scope.patients.splice(index, 1);                   // TODO Free up bed
-                        }
-                    });
-                };
+            if ($scope.ward.wardId !== $rootScope.User.wardId) {
+                // Stop here
+                return;
             }
-            ;
+
+            $scope.authorize = function (accessRoles) {
+                return Auth.authorize(accessRoles);
+            };
+
+            $scope.go = function (path) {
+                $location.path(path);
+            };
+
+            $scope.patients.view = function () {
+                angular.forEach($scope.patients, function (obj) {
+                    if (obj.selected) {
+                        $scope.go("/patients/" + obj.patientId);
+                    }
+                });
+            };
+
+            $scope.patients.transfer = function () {
+                angular.forEach($scope.patients, function (obj) {
+                    if (obj.selected) {
+                        $scope.go("/transfer/" + obj.patientId);
+                    }
+                });
+            };
+
+            $scope.admissionRequests.refuse = function () {
+                angular.forEach($scope.admissionRequests, function (obj) {
+                    if (obj.selected) {
+                        $scope.go("/refusal/" + obj.admRequestId);
+                    }
+                });
+            };
+
+            $scope.admissionRequests.view = function () {
+                angular.forEach($scope.admissionRequests, function (obj) {
+                    if (obj.selected) {
+                        $scope.go("/rationale/" + obj.admRequestId);
+                    }
+                });
+            };
+
+            $scope.admissionRequests.admit = function () {
+                angular.forEach($scope.admissionRequests, function (obj) {
+                    if (obj.selected) {
+                        console.log(obj);
+                        $scope.go("/admissions/" + obj.admRequestId);
+                    }
+                });
+            };
+
+            $scope.patients.discharge = function () {
+                angular.forEach($scope.patients, function (patient) {
+                    if (patient.selected) {
+                        var index = $scope.patients.indexOf(patient);
+                        $scope.patients.splice(index, 1);                   // TODO Free up bed
+                    }
+                });
+            };
         });
     }]);
 
@@ -381,7 +381,7 @@ controllers.controller('RefusalCtrl', ["$scope", "$location", "$routeParams", "W
             $scope.fromWard.admissionResponses.push(response);
             var index = $scope.toWard.admissionRequests.indexOf($scope.admissionRequest);
             $scope.toWard.admissionRequests.splice(index, 1);
-        }
+        };
 
         AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
 
