@@ -15,7 +15,7 @@
      ng-controller="NavCtlr">
 
     <div ng-show="isLogged()">
-        <a class="navbar-brand" ng-show="isLogged()" href="#/ward">The Mustache PMS</a>
+        <a class="navbar-brand" href="#/ward/{{getUser().wardId}}">The Mustache PMS</a>
 
 
         <div class="nav navbar-nav navbar-right">
@@ -26,7 +26,7 @@
     </div>
 
     <div ng-hide="isLogged()">
-        <a class="navbar-brand" href="#">The Mustache PMS</a>
+        <div class="navbar-brand" href="#">The Mustache PMS</div>
     </div>
 
 </nav>
