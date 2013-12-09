@@ -300,21 +300,16 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
             };
 
         } else if ($location.path() === ('/admissions/' + $routeParams.admRequestId)) {
-            var daAdmissionRequest;
-            var daWard;
-            var daPatient;
             Ward.get({wardId: $rootScope.User.wardId}, function (ward) {
                 window.console.log(ward);
                 $scope.ward = ward;
-                daWard = ward;
                 ward.admissionRequests.forEach( function (admissionRequest) {
                     if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
-                        daAdmissionRequest = admissionRequest;
+                        $scope.admissionRequest = admissionRequest;
+                        Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
+                            $scope.patient = patient;
+                        });
                     }
-                });
-                Patient.get({patientId: daAdmissionRequest.patientId}, function (patient) {
-                    $scope.patient = patient;
-                    daPatient = patient;
                 });
             });
 
@@ -325,11 +320,11 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
                     status: 'nominal'
                 };
                 window.console.log(wardPush);
-                daWard.patients.push(wardPush);
-                var index = daWard.admissionRequests.indexOf(daAdmissionRequest);
+                $scope.ward.patients.push(wardPush);
+                var index = $scope.ward.admissionRequests.indexOf($scope.admissionRequest);
                 window.console.log('Splice at ' + index);
-                daWard.admissionRequests.splice(index, 1);
-                daWard.$save({wardId: daWard.wardId});
+                $scope.ward.admissionRequests.splice(index, 1);
+                $scope.ward.$save({wardId: $scope.ward.wardId});
 
                 $scope.go('/ward/' + $scope.ward.wardId);
             };
