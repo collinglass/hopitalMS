@@ -1,0 +1,9 @@
+{
+    "employeeId": 5,
+    "passwordHash": "garbblegarbble",
+    "passwordSalt": "0xDEADBEEF",
+    "firstName": "Dwayne",
+    "lastName": "Carter",
+    "email": "dwayneCarter@weezy.com",
+    "roles": [1, 3]
+}

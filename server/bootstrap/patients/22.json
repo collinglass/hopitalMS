@@ -1,0 +1,17 @@
+{
+	"patientId": 22,
+	"lastName": "Presley",
+	"firstName": "Elvis",
+	"healthInsNum": "4837 4345 66EH FDFE",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "single",
+	"nextOfKin": {
+		"name" : "John Wayne",
+		"relationship": "cousin",
+		"address" : "Tennessee",
+		"phoneNum" : "543-332-5431"
+	}
+}

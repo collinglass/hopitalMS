@@ -21,7 +21,7 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         var password = $scope.User.password;
 
         var success = function() {
-            $location.path('/wards/' + Auth.getUser().wardId);
+            $location.path('/ward/' + Auth.getUser().wardId);
         };
 
         var error = function(data) {
@@ -34,14 +34,26 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
 
 controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Employee", "Auth", function ($scope, $rootScope, $location, Employee, Auth) {
 
+    var getRoleObject = function() {
+        switch ($scope.RoleChoice) {
+            case "Medical Staff":
+                return {medicalStaff:true};
+            case "Charge Nurse":
+                return {medicalStaff:true, chargeNurse: true};
+            case "Doctor":
+                return {medicalStaff:true, doctor: true};
+        }
+    };
+
     $scope.onRegister = function () {
+        $scope.User.roles = getRoleObject();
         Employee.save($scope.User, function () {
             $scope.User = $scope.User || {};
             var employeeId = $scope.User.employeeId;
             var password = $scope.User.password;
 
             var success = function() {
-                $location.path('/wards/' + Auth.getUser().wardId);
+                $location.path('/ward/' + Auth.getUser().wardId);
             };
 
             var error = function(data) {
@@ -52,7 +64,7 @@ controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Em
     };
 }]);
 
-controllers.controller('NavCtlr', ["$scope", "Auth", function ($scope, Auth) {
+controllers.controller('NavCtlr', ["$scope", "$location", "Auth", function ($scope, $location, Auth) {
 
     $scope.isLogged = function() {
         return Auth.isLogged();
@@ -60,6 +72,7 @@ controllers.controller('NavCtlr', ["$scope", "Auth", function ($scope, Auth) {
 
     $scope.logOut = function() {
         Auth.logOut();
+        $location.path("/login");
     };
 
     $scope.getUser = function() {

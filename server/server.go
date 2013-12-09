@@ -1,6 +1,8 @@
 package main
 
 import (
+	"github.com/collinglass/moustacheMS/server/auth"
+	"github.com/collinglass/moustacheMS/server/config"
 	"github.com/collinglass/moustacheMS/server/ctrl"
 	"github.com/collinglass/moustacheMS/server/models"
 	"github.com/gorilla/handlers"
@@ -13,13 +15,13 @@ import (
 
 func main() {
 	log.Println("Parsing specification")
-	spec := ParseSpec()
+	spec := config.ParseSpec()
 
 	log.Println("Preparing Redis pool")
 	models.Start(spec.Redis)
 
 	log.Println("Starting secret sessions store")
-	store, sessionHandler := StartSessions([]byte(spec.AuthKey), []byte(spec.CryptKey))
+	store, sessionHandler := auth.StartSessions([]byte(spec.AuthKey), []byte(spec.CryptKey))
 
 	log.Println("Registering handlers")
 

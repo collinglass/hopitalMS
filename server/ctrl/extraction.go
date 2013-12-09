@@ -2,6 +2,7 @@ package ctrl
 
 import (
 	"fmt"
+	"github.com/collinglass/moustacheMS/server/auth"
 	"github.com/collinglass/moustacheMS/server/models"
 	"github.com/gorilla/mux"
 	"github.com/gorilla/sessions"
@@ -11,9 +12,8 @@ import (
 )
 
 const (
-	// Must match ../sessions.go, but can't import (cycle)
-	sessionCookieName = "mustache_session"
-	emplIDCookieKey   = "emplID"
+	sessionCookieName = auth.SessionCookieName
+	emplIDCookieKey   = auth.EmplIDCookieKey
 )
 
 func extractID(req *http.Request) (int, bool) {

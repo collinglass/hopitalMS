@@ -1,8 +1,0 @@
-{
-	"admRequestId": 5, 
-	"patientId": 5,
-	"toWardId": 2, 
-	"fromWardId": 1, 
-	"priority": "low", 
-	"rationale": "The patient keeps throwing up."
-}

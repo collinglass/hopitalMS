@@ -1,0 +1,17 @@
+{
+	"patientId": 19,
+	"lastName": "Lee",
+	"firstName": "Jenn",
+	"healthInsNum": "4223 3827 63ZS EJSH",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "female",
+	"maritalStatus": "married",
+	"nextOfKin": {
+		"name" : "Ying Lee",
+		"relationship": "spouse",
+		"address" : "Vancouver",
+		"phoneNum" : "432-678-3568"
+	}
+}

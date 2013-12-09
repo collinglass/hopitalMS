@@ -1,0 +1,18 @@
+{
+    "patientId": 1,
+    "lastName": "Jacobs",
+    "firstName": "Eric",
+    "bedId": 1000,
+    "healthInsNum": "6928 8472 19EN JUAA",
+    "address" : "1234 Something street",
+    "phoneNum" : "123-456-7890",
+    "dateOfBirth": "1987-04-23T00:00:00.000Z",
+    "gender": "male",
+    "maritalStatus": "single",
+    "nextOfKin": {
+        "name" : "Somebody Close to that person",
+        "relationship" : "brother",
+        "address" :"Somewhere way to far",
+        "phoneNum" : "666-666-6666"
+    }
+}

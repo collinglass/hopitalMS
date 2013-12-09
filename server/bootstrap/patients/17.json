@@ -1,0 +1,17 @@
+{
+	"patientId": 17,
+	"lastName": "Yao",
+	"firstName": "Fang",
+	"healthInsNum": "3929 4322 79AG EUDJ",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "single",
+	"nextOfKin": {
+		"name" : "Fing Yao",
+		"relationship": "sister",
+		"address" : "Vancouver",
+		"phoneNum" : "753-677-4672"
+	}
+}

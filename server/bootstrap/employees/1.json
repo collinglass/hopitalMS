@@ -1,0 +1,15 @@
+{
+    "employeeId": 1,
+    "passwordHash": "garbblegarbble",
+    "passwordSalt": "0xDEADBEEF",
+    "firstName": "Samantha",
+    "lastName": "Fox",
+    "email": "samantha@fox.com",
+    "roles": {
+        "public": true,
+        "chargeNurse": true,
+        "doctor": false,
+        "medicalStaff": true,
+    },
+    "ward": 1
+}

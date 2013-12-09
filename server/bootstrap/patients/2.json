@@ -1,0 +1,19 @@
+{
+    "patientId": 2,
+    "lastName": "Jimmy",
+    "firstName": "Hendrix",
+    "bedId": 1001,
+    "healthInsNum": "4562 8472 19EN JUAA",
+    "address" : "1234 Something street",
+    "phoneNum" : "123-456-7890",
+    "dateOfBirth": "1987-04-23T00:00:00.000Z",
+    "gender": "male",
+    "maritalStatus": "single",
+    "nextOfKin": {
+        "name" : "Collin Glasses",
+        "relationship": "nephew",
+        "address" :"Australia",
+        "phoneNum" : "123-456-7890"
+    }
+
+}

@@ -1,0 +1,17 @@
+{
+	"patientId": 25,
+	"lastName": "Chan",
+	"firstName": "Jackie",
+	"healthInsNum": "4828 4244 49ES SKDH",
+	"address" : "1234 Something street",
+	"phoneNum" : "123-456-7890",
+	"dateOfBirth": "1987-04-23T00:00:00.000Z",
+	"gender": "male",
+	"maritalStatus": "married",
+	"nextOfKin": {
+		"name" : "Sally Chan",
+		"relationship": "spouse",
+		"address" : "Iqaluit",
+		"phoneNum" : "543-543-5432"
+	}
+}
