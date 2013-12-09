@@ -6,13 +6,26 @@ var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
 controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth", "Employee", function ($scope, $rootScope, $location, Auth, Employee) {
+    $scope.User = {};
+    $scope.User.employeeId = "";
+    $scope.User.password = "";
+
     $scope.isLogged = function() {
         return Auth.isLogged();
     }
 
     $scope.onNewAccount = function () {
-        $rootScope.User = $scope.User;
-        $location.path('/register');
+        var employeeId = $scope.User.employeeId || "";
+        var password = $scope.User.password || "";
+
+        if ( !employeeId ) {
+            $scope.errorMsg = "Missing employee ID."
+        } else if ( !password ) {
+            $scope.errorMsg = "Missing password."
+        } else {
+            $rootScope.User = $scope.User;
+            $location.path('/register');
+        }
     };
 
     $scope.onLogin = function () {
