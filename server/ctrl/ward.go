@@ -11,8 +11,8 @@ import (
 
 func WardCtrl(store *sessions.CookieStore) http.HandlerFunc {
 	routes := map[string]http.Handler{
-		"GET": getWard(store),
-		"PUT": updateWard(store),
+		"GET":  getWard(store),
+		"POST": updateWard(store),
 	}
 	return func(rw http.ResponseWriter, req *http.Request) {
 		h, ok := routes[req.Method]
@@ -92,13 +92,13 @@ func updateWard(store *sessions.CookieStore) http.HandlerFunc {
 			return // extractEmployee wrote the error message
 		}
 
-		if empl.Roles[models.MedicalStaff] {
+		if !empl.Roles[models.MedicalStaff] {
 			unauthorizedResponse(rw, "access this location as a non-medical staff")
 			return
 		}
 
-		var wantWard *models.Ward
-		err := json.NewDecoder(req.Body).Decode(wantWard)
+		var wantWard models.Ward
+		err := json.NewDecoder(req.Body).Decode(&wantWard)
 		if err != nil {
 			msg := fmt.Sprintf("Bad JSON format, %v", err)
 			errorResponse(rw, msg, msg, http.StatusBadRequest)
@@ -124,8 +124,8 @@ func updateWard(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 
-		if isChangeAdmReqList(wantWard, currentWard) ||
-			isChangeAdmRespList(wantWard, currentWard) {
+		if isChangeAdmReqList(&wantWard, currentWard) ||
+			isChangeAdmRespList(&wantWard, currentWard) {
 			if !empl.Roles[models.ChargeNurseRole] {
 				unauthorizedResponse(rw, "modify response lists")
 				return
