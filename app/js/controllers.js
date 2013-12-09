@@ -298,7 +298,7 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
                     ward.patients.push({
                         patientId: savedPt.patientId,
                         bedId: bedId,
-                        status: "nominal"
+                        status: 'nominal'
                     });
                     ward.$save({wardId: ward.wardId});
 
@@ -407,13 +407,14 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
             ward.admissionRequests.forEach( function (admissionRequest) {
                 if( $routeParams.admRequestId === admissionRequest.admRequestId ) {
                     $scope.admissionRequest = admissionRequest;
+                    Ward.get({wardId: $scope.admissionRequest.fromWardId}, function (ward) {
+                        $scope.fromWard = ward;
+                    });
+                    Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
+                        $scope.patient = patient;
+                    });
+                    return;
                 }
-            });
-            Ward.get({wardId: $scope.admissionRequest.fromWardId}, function (ward) {
-                $scope.fromWard = ward;
-            });
-            Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
-                $scope.patient = patient;
             });
         });
 
