@@ -58,6 +58,7 @@ func (e *Employee) marshal() ([]byte, error) {
 
 	return json.Marshal(struct {
 		EmployeeID   int           `json:"employeeId"`
+		WardID       int           `json:"wardId"`
 		FirstName    string        `json:"firstName"`
 		LastName     string        `json:"lastName"`
 		Email        string        `json:"email"`
@@ -65,6 +66,7 @@ func (e *Employee) marshal() ([]byte, error) {
 		PasswordHash []byte        `json:"passwordHash"`
 	}{
 		EmployeeID:   e.EmployeeID,
+		WardID:       e.WardID,
 		FirstName:    e.FirstName,
 		LastName:     e.LastName,
 		Email:        e.Email,
@@ -76,6 +78,7 @@ func (e *Employee) marshal() ([]byte, error) {
 func unmarshal(data []byte) (*Employee, error) {
 	e := struct {
 		EmployeeID   int           `json:"employeeId"`
+		WardID       int           `json:"wardId"`
 		FirstName    string        `json:"firstName"`
 		LastName     string        `json:"lastName"`
 		Email        string        `json:"email"`
@@ -87,6 +90,7 @@ func unmarshal(data []byte) (*Employee, error) {
 	}
 	return &Employee{
 		EmployeeID:   e.EmployeeID,
+		WardID:       e.WardID,
 		FirstName:    e.FirstName,
 		LastName:     e.LastName,
 		Email:        e.Email,
