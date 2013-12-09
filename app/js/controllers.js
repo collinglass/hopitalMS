@@ -406,7 +406,7 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
                 $scope.doctorName = employee.firstName + ' ' + employee.lastName;
             });
             ward.admissionRequests.forEach( function (admissionRequest) {
-                if( $routeParams.admRequestId === admissionRequest.admRequestId ) {
+                if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
                     $scope.admissionRequest = admissionRequest;
                     Ward.get({wardId: $scope.admissionRequest.fromWardId}, function (ward) {
                         $scope.fromWard = ward;
@@ -414,12 +414,12 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
                     Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
                         $scope.patient = patient;
                     });
-                    return;
                 }
             });
         });
 
         $scope.refuse = function () {
+            console.log("Ready!");
             var response = {
                 patientId: $scope.patient.patientId,
                 toWardId: $scope.fromWard.wardId,
