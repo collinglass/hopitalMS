@@ -2,20 +2,20 @@
     <form role="form">
         <div class="form-group">
             Rationale
-            <p>{{rationale}}</p>
+            <p>{{admissionRequest.rationale}}</p>
         </div>
         <div class="form-group">
             Last Name
-            <p>{{lastName}}</p> <!-- TODO change to dynamic -->
+            <p>{{patient.lastName}}</p> <!-- TODO change to dynamic -->
         </div>
         <div class="form-group">
             First Name
-            <p>{{firstName}}</p> <!-- TODO change to dynamic -->
+            <p>{{patient.firstName}}</p> <!-- TODO change to dynamic -->
         </div>
         <div class="form-group">
             <h5>Outbound Ward</h5>
             Name
-            <p>{{wardName}}</p> <!-- TODO make dynamic -->
+            <p>{{ward.name}}</p> <!-- TODO make dynamic -->
         </div>
         <div class="form-group">
             Local Doctor
