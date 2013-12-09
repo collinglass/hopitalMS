@@ -18,11 +18,7 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         var employeeId = $scope.User.employeeId || "";
         var password = $scope.User.password || "";
 
-        if (!employeeId) {
-            $scope.errorMsg = "Missing employee ID."
-        } else if (!password) {
-            $scope.errorMsg = "Missing password."
-        } else {
+        if (employeeId && password) {
             $rootScope.User = $scope.User;
             $location.path('/register');
         }
@@ -38,8 +34,10 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         };
 
         var error = function (data) {
+            if (data.code !== 400) {
+                $scope.errorMsg = data.message;
+            }
             window.console.log("Status: " + status + ", message: " + angular.toJson(data));
-            $scope.errorMsg = data.message;
         };
 
         Auth.logIn(employeeId, password, success, error);
@@ -442,7 +440,7 @@ controllers.controller('TransferCtrl', ["$scope", "$location", "$routeParams", "
             console.log(request);
             $scope.admissionRequests.push(request);
             // TODO save
-        }
+        };
 
         Patient.get({patientId: $routeParams.patientId}, function (patient) {
             $scope.patient = patient;
