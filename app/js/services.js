@@ -31,6 +31,8 @@ mustacheServices.factory("Employee", ["$resource", function ($resource) {
 
 mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($http, $rootScope, Employee) {
 
+    var isLogged = false;
+
     return {
         logIn: function (employeeId, password, success, error) {
             $http.post('/api/v0.1/sessions', {employeeId: employeeId, password: password})
@@ -38,6 +40,7 @@ mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($
                     Employee.get({employeeId: employeeId}, function (empl) {
                         $rootScope.User = empl;
                         success(data, status, headers, config);
+                        isLogged = true;
                     });
                 })
                 .error(function (data, status, headers, config) {
@@ -48,6 +51,7 @@ mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($
             var promise = $http.delete('/api/v0.1/sessions');
             promise.success(function () {
                 $rootScope.User = undefined;
+                isLogged = false;
             });
 
             promise.error(function (data, status) {
@@ -55,15 +59,12 @@ mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($
             });
         },
         isLogged: function () {
-            return $rootScope.User !== undefined;
+            return isLogged;
         },
         getUser: function () {
             return $rootScope.User;
         },
         authorize: function (requiredRoles) {
-            if (!this.isLogged()) {
-                return false;
-            }
             var user = $rootScope.User || {};
             user.roles = user.roles || {};
 
