@@ -18,8 +18,8 @@
         </div>
         <div class="form-group">
             <label for="transfer-toWardId">Ward Id </label>
-            <select id="transfer-toWardId" name="transfer-toWardId" ng-model="toWardId" integer>
-                <option ng-repeat="ward in toWards" value="{{ward.id}}"> {{ward.id}} </option>
+            <select id="transfer-toWardId" name="transfer-toWardId" ng-model="wardId" integer>
+                <option ng-repeat="ward in wardList" value="{{ward.wardId}}"> {{ward.wardId}} </option>
             </select>
         </div>
         <div class="form-group">
