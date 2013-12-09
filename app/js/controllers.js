@@ -224,8 +224,25 @@ controllers.controller('WardDetailCtrl', ['$scope', '$location', '$routeParams',
         });
     }]);
 
-controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'Ward', 'Patient',
-    function ($scope, $location, $routeParams, $rootScope, Ward, Patient) {
+controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'Ward', 'Patient', 'Auth',
+    function ($scope, $location, $routeParams, $rootScope, Ward, Patient, Auth) {
+
+        var filterFreeBeds = function(ward) {
+            var busyBeds = {};
+            angular.forEach(ward.patients, function(inPatient) {
+               busyBeds[inPatient.bedId] = true;
+            });
+
+            var freeBeds = [];
+            angular.forEach(ward.beds, function(bed) {
+                if (busyBeds[bed.bedId]) {
+                    // skip this one
+                    return;
+                }
+                freeBeds.push(bed);
+            });
+            return freeBeds;
+        };
 
         $scope.go = function (path) {
             $location.path(path);
@@ -238,36 +255,28 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
         };
 
         $scope.newPath = function () {
-            if ($location.path() === '/patients/new') {
-                return true;
-            }
-            return false;
+            return $location.path() === '/patients/new';
         };
         $scope.admissionPath = function () {
-            if ($location.path() === '/admissions/' + $routeParams.admRequestId) {
-                return true;
-            }
-            return false;
+            return $location.path() === '/admissions/' + $routeParams.admRequestId;
+
         };
         $scope.updatePath = function () {
-            if ($location.path() === '/patients/' + $routeParams.patientId) {
-                return true;
-            }
-            return false;
+            return $location.path() === '/patients/' + $routeParams.patientId;
         };
+
         // TODO dynamically show available rooms and beds
         if ($location.path() === '/patients/new') {
-            // Test with Ward 1
-            Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
+            var wardId = Auth.getUser().wardId;
+            Ward.get({wardId: wardId}, function (ward) {
                 $scope.ward = ward;
                 $scope.patients = ward.patients;
-                $scope.beds = ward.beds;
+                $scope.freeBeds = filterFreeBeds(ward);
             });
             Patient.query(function (patientIds) {
                 $scope.newPatientId = patientIds.length;
             });
 
-            //window.console.log($scope.patients);
 
             $scope.admit = function () {
 
@@ -284,12 +293,12 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
                 patient.nextOfKin = newPatient.nextOfKin;
 
                 patient.$save(function (savedPt) {
-
+                    var bedId = $scope.bedId;
                     var ward = $scope.ward;
                     ward.patients.push({
                         patientId: savedPt.patientId,
-                        bedId: savedPt.bedId,
-                        status: 'nominal'
+                        bedId: bedId,
+                        status: "nominal"
                     });
                     ward.$save({wardId: ward.wardId});
 
@@ -309,6 +318,7 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
                         Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
                             $scope.patient = patient;
                         });
+                        return;
                     }
                 });
             });
@@ -395,7 +405,7 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
                 $scope.doctorName = employee.firstName + ' ' + employee.lastName;
             });
             ward.admissionRequests.forEach( function (admissionRequest) {
-                if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
+                if( $routeParams.admRequestId === admissionRequest.admRequestId ) {
                     $scope.admissionRequest = admissionRequest;
                 }
             });
