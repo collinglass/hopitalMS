@@ -4,12 +4,14 @@
         <h4>Please login</h4>
         <div class="modal-body form-group">
             <label class="login-field-icon fui-user" for="login-name"></label>
-            <input type="text" id="login-name" class="form-control" ng-model="User.employeeId"
-                   placeholder="Employee ID" integer integer>
+            <input type="text" id="login-name" name="login-name" class="form-control" ng-model="User.employeeId"
+                   placeholder="Employee ID" integer required>
             <label class="login-field-icon fui-lock" for="login-pass"></label>
             <input type="password" id="login-pass" class="form-control" ng-model="User.password"
-                   placeholder="Password">
-            <span>{{errorMsg}}</span>
+                   placeholder="Password" required>
+            <div>
+                <span>{{errorMsg}}</span>
+            </div>
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-default" ng-click="onNewAccount()">New Account</button>
