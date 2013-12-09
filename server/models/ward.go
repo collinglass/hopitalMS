@@ -33,7 +33,7 @@ type AdmissionResponse struct {
 }
 
 type InPatient struct {
-	PatientID int    `json:"wardId"`
+	PatientID int    `json:"patientId"`
 	BedID     int    `json:"bedId"`
 	Status    string `json:"status"`
 }
@@ -44,7 +44,7 @@ type Ward struct {
 	ChargeNurseID      int                 `json:"chargeNurseId"`
 	DoctorID           int                 `json:"doctorId"`
 	Beds               []Bed               `json:"beds"`
-	Patients           []InPatient         `json:"wards"`
+	Patients           []InPatient         `json:"patients"`
 	AdmissionResponses []AdmissionResponse `json:"admissionResponses"`
 	AdmissionRequests  []AdmissionRequest  `json:"admissionRequests"`
 }
