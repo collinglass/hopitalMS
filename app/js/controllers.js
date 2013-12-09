@@ -18,11 +18,7 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         var employeeId = $scope.User.employeeId || "";
         var password = $scope.User.password || "";
 
-        if ( !employeeId ) {
-            $scope.errorMsg = "Missing employee ID."
-        } else if ( !password ) {
-            $scope.errorMsg = "Missing password."
-        } else {
+        if ( employeeId && password ) {
             $rootScope.User = $scope.User;
             $location.path('/register');
         }
