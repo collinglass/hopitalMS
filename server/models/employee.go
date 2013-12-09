@@ -140,11 +140,11 @@ func (e *Employee) Update() error {
 		return fmt.Errorf("marshalling employee, %v", err)
 	}
 
-	changes, err := redis.Int(conn.Do("SET", key, emplByte))
+	changes, err := redis.String(conn.Do("SET", key, emplByte))
 	if err != nil {
 		return fmt.Errorf("error setting employee, %v", err)
 	}
-	if changes != 1 {
+	if changes != "OK" {
 		return fmt.Errorf("expected 1 employee change, got %d", 1)
 	}
 	return nil

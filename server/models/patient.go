@@ -80,11 +80,11 @@ func (p *Patient) Update() error {
 		return fmt.Errorf("marshalling patient, %v", err)
 	}
 
-	changes, err := redis.Int(conn.Do("SET", key, patient))
+	changes, err := redis.String(conn.Do("SET", key, patient))
 	if err != nil {
 		return fmt.Errorf("error setting patient, %v", err)
 	}
-	if changes != 1 {
+	if changes != "OK" {
 		return fmt.Errorf("expected 1 patient change, got %d", 1)
 	}
 	return nil

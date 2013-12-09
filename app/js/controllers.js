@@ -10,7 +10,7 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
     $scope.User.employeeId = "";
     $scope.User.password = "";
 
-    $scope.isLogged = function() {
+    $scope.isLogged = function () {
         return Auth.isLogged();
     }
 
@@ -18,9 +18,9 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         var employeeId = $scope.User.employeeId || "";
         var password = $scope.User.password || "";
 
-        if ( !employeeId ) {
+        if (!employeeId) {
             $scope.errorMsg = "Missing employee ID."
-        } else if ( !password ) {
+        } else if (!password) {
             $scope.errorMsg = "Missing password."
         } else {
             $rootScope.User = $scope.User;
@@ -33,11 +33,11 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         var employeeId = $scope.User.employeeId;
         var password = $scope.User.password;
 
-        var success = function() {
+        var success = function () {
             $location.path('/ward/' + Auth.getUser().wardId);
         };
 
-        var error = function(data) {
+        var error = function (data) {
             window.console.log("Status: " + status + ", message: " + angular.toJson(data));
             $scope.errorMsg = data.message;
         };
@@ -48,14 +48,14 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
 
 controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Employee", "Auth", function ($scope, $rootScope, $location, Employee, Auth) {
 
-    var getRoleObject = function() {
+    var getRoleObject = function () {
         switch ($scope.RoleChoice) {
             case "Medical Staff":
-                return {medicalStaff:true};
+                return {medicalStaff: true};
             case "Charge Nurse":
-                return {medicalStaff:true, chargeNurse: true};
+                return {medicalStaff: true, chargeNurse: true};
             case "Doctor":
-                return {medicalStaff:true, doctor: true};
+                return {medicalStaff: true, doctor: true};
         }
     };
 
@@ -66,11 +66,11 @@ controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Em
             var employeeId = $scope.User.employeeId;
             var password = $scope.User.password;
 
-            var success = function() {
+            var success = function () {
                 $location.path('/ward/' + Auth.getUser().wardId);
             };
 
-            var error = function(data) {
+            var error = function (data) {
                 window.console.log("Status: " + status + ", message: " + angular.toJson(data));
             };
             Auth.logIn(employeeId, password, success, error);
@@ -80,16 +80,16 @@ controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Em
 
 controllers.controller('NavCtlr', ["$scope", "$location", "Auth", function ($scope, $location, Auth) {
 
-    $scope.isLogged = function() {
+    $scope.isLogged = function () {
         return Auth.isLogged();
     };
 
-    $scope.logOut = function() {
+    $scope.logOut = function () {
         Auth.logOut();
         $location.path("/login");
     };
 
-    $scope.getUser = function() {
+    $scope.getUser = function () {
         return Auth.getUser();
     };
 }]);
@@ -233,7 +233,7 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         $scope.save = function () {
             var patient = $scope.patient;
             window.console.log("Saving patient: " + angular.toJson(patient));
-            patient.$save();
+            patient.$save({patientId: patient.patientId});
         };
 
         $scope.newPath = function () {

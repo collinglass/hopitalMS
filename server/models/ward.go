@@ -99,11 +99,11 @@ func (w *Ward) Update() error {
 		return fmt.Errorf("marshalling ward, %v", err)
 	}
 
-	changes, err := redis.Int(conn.Do("SET", key, ward))
+	changes, err := redis.String(conn.Do("SET", key, ward))
 	if err != nil {
 		return fmt.Errorf("error setting ward, %v", err)
 	}
-	if changes != 1 {
+	if changes != "OK" {
 		return fmt.Errorf("expected 1 ward change, got %d", 1)
 	}
 	return nil

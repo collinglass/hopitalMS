@@ -66,11 +66,11 @@ func (cn *ChargeNurse) Update() error {
 		return fmt.Errorf("marshalling nurse, %v", err)
 	}
 
-	changes, err := redis.Int(conn.Do("SET", key, nurse))
+	changes, err := redis.String(conn.Do("SET", key, nurse))
 	if err != nil {
 		return fmt.Errorf("error setting nurse, %v", err)
 	}
-	if changes != 1 {
+	if changes != "OK" {
 		return fmt.Errorf("expected 1 nurse change, got %d", 1)
 	}
 	return nil
