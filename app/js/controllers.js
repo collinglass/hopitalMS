@@ -255,6 +255,8 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
             var patient = $scope.patient;
             window.console.log('Saving patient: ' + angular.toJson(patient));
             patient.$save({patientId: patient.patientId});
+
+            $scope.go('/ward/' + $rootScope.User.wardId);
         };
 
         $scope.newPath = function () {
@@ -436,40 +438,70 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
 
     }]);
 
-controllers.controller('TransferCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient',
-    function ($scope, $location, $routeParams, Ward, Patient) {
+controllers.controller('TransferCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'Ward', 'Patient',
+    function ($scope, $location, $routeParams, $rootScope, Ward, Patient) {
+
+        $scope.go = function (path) {
+            $location.path(path);
+        };
+
         $scope.back = function () {
             history.go(-1);
         };
 
-        $scope.transfer = function () {
-            var request = {
-                admRequestId: $scope.newAdmissionId,
-                patientId: $scope.patient.patientId,
-                toWardId: $scope.toWardId,
-                fromWardId: $scope.fromWardId,
-                priority: $scope.priority,
-                rationale: $scope.rationale
-            };
-            window.console.log(request);
-            $scope.admissionRequests.push(request);
-            // TODO save
+        String.prototype.hashCode = function () {
+            var hash = 0;
+            if (this.length === 0) return hash;
+            for (var i = 0; i < this.length; i++) {
+                var char = this.charCodeAt(i);
+                hash = ((hash<<5)-hash)+char;
+                hash = hash & hash; // Convert to 32bit integer
+            }
+            return hash;
         };
 
         Patient.get({patientId: $routeParams.patientId}, function (patient) {
+            var wardList = [];
             $scope.patient = patient;
-            Ward.query(function (wardIds) {
-                $scope.toWards = wardIds;
-                wardIds.forEach(function (wardId) {
-                    Ward.get({wardId: wardId.id}, function (ward) {
-                        ward.patients.forEach(function (wardPatient) {
-                            if (patient.patientId === wardPatient.patientId) {
-                                $scope.admissionRequests = ward.admissionRequests;
-                                $scope.fromWardId = ward.wardId;
-                            }
-                        });
+            var newAdmissionId = $scope.patient.patientId + ' ' + new Date().getTime();
+
+            Ward.query(function (wards) {
+                window.console.log(wards);
+                $scope.wards = wards;
+                
+                wards.forEach(function (ward) {
+                    if ( $rootScope.User.wardId == ward.wardId ) {
+                        $scope.ward = ward;
+                    } else {
+                        $scope.toWard = ward;
+                        wardList.push(ward);
+                    }
+                    $scope.ward.patients.forEach( function (patient) {
+                        if ( patient.patientId == $scope.patient.patientId ) {
+                            patient.status = 'transfer';
+                        }
                     });
                 });
+
+                $scope.wardList = wardList;
+
+                $scope.transfer = function () {
+                    var request = {
+                        admRequestId: newAdmissionId.hashCode(),
+                        patientId: $scope.patient.patientId,
+                        toWardId: $scope.wardId,
+                        fromWardId: $scope.User.wardId,
+                        priority: $scope.priority,
+                        rationale: $scope.rationale
+                    };
+                    
+                    $scope.toWard.admissionRequests.push(request);
+                    
+                    $scope.toWard.$save({wardId: $scope.toWard.wardId});
+                    $scope.ward.$save({wardId: $scope.ward.wardId});
+
+                    $scope.go('/ward/' + $scope.ward.wardId);
+                };
             });
         });
     }]);
