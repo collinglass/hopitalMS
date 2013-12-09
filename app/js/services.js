@@ -13,7 +13,8 @@ mustacheServices.factory("Ward", ["$resource", function ($resource) {
 
 mustacheServices.factory("Patient", ["$resource", function ($resource) {
     return $resource('/api/v0.1/patients/:patientId', {patientId: '@id'}, {
-        query: {method: 'GET', params: {patientId: '@id'}, isArray: true}
+        query: {method: 'GET', params: {patientId: '@id'}, isArray: true},
+        save: {method: 'POST', params: {patientId: '@id'}}
     });
 }]);
 

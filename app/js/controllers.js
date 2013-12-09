@@ -108,10 +108,10 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
     function ($scope, $location, $routeParams, Ward, Patient, Employee, Auth, $rootScope) {
 
         Ward.get({wardId: $routeParams.wardId}, function (ward) {
-            $scope.ward = ward;
-            $scope.patients = ward.patients;
-            $scope.admissionRequests = ward.admissionRequests;
-            $scope.admissionResponses = ward.admissionResponses;
+            $scope.ward = ward || {};
+            $scope.patients = ward.patients || [];
+            $scope.admissionRequests = ward.admissionRequests || [];
+            $scope.admissionResponses = ward.admissionResponses || [];
 
             $scope.patients.forEach(function (patient) {
                 Patient.get({patientId: patient.patientId}, function (patientDetails) {
@@ -218,7 +218,9 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         };
 
         $scope.save = function () {
-            Patient.save($scope.patient);
+            var patient = $scope.patient;
+            window.console.log("Saving patient: " + angular.toJson(patient));
+            patient.$save();
         };
 
         $scope.newPath = function () {

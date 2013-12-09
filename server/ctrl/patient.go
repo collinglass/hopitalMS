@@ -14,9 +14,8 @@ import (
 
 func PatientCtrl(store *sessions.CookieStore) http.HandlerFunc {
 	routes := map[string]http.Handler{
-		"POST":   createPatient(store),
 		"GET":    getPatient(store),
-		"PUT":    updatePatient(store),
+		"POST":   savePatient(store),
 		"DELETE": deletePatient(store),
 	}
 	return func(rw http.ResponseWriter, req *http.Request) {
@@ -34,46 +33,6 @@ func PatientCtrl(store *sessions.CookieStore) http.HandlerFunc {
 		}
 
 		h.ServeHTTP(rw, req)
-	}
-}
-
-func createPatient(store *sessions.CookieStore) http.HandlerFunc {
-	return func(rw http.ResponseWriter, req *http.Request) {
-		_, ok := extractID(req)
-		if ok {
-			msg := "can't ask to create a specific patient ID"
-			errorResponse(rw, msg, msg, http.StatusBadRequest)
-			return
-		}
-
-		var patient *models.Patient
-		err := json.NewDecoder(req.Body).Decode(patient)
-		if err != nil {
-			msg := fmt.Sprintf("error unmarshalling JSON, %v", err)
-			errorResponse(rw, msg, msg, http.StatusBadRequest)
-			return
-		}
-
-		h := sha1.New()
-		fmt.Fprintf(h, "%s%s%s%s%v",
-			patient.FirstName,
-			patient.LastName,
-			patient.HealthInsNum,
-			patient.DateOfBirth,
-			time.Now())
-		idHash := h.Sum(make([]byte, 8))
-		id, size := binary.Uvarint(idHash)
-		if size <= 0 {
-			log.Fatalf("Hash too small to produce uint64: %s", idHash)
-		}
-		patient.PatientID = int(id)
-
-		err = patient.Create()
-		if err != nil {
-			dbErrorResponse(rw, err)
-			return
-		}
-		rw.WriteHeader(http.StatusCreated)
 	}
 }
 
@@ -103,7 +62,7 @@ func getPatient(store *sessions.CookieStore) http.HandlerFunc {
 	}
 }
 
-func updatePatient(store *sessions.CookieStore) http.HandlerFunc {
+func savePatient(store *sessions.CookieStore) http.HandlerFunc {
 	return func(rw http.ResponseWriter, req *http.Request) {
 		id, ok := extractID(req)
 		if !ok {
@@ -117,11 +76,6 @@ func updatePatient(store *sessions.CookieStore) http.HandlerFunc {
 			dbErrorResponse(rw, err)
 			return
 		}
-		if !ok {
-			msg := fmt.Sprintf("No patient with ID %d was found", id)
-			errorResponse(rw, msg, msg, http.StatusNotFound)
-			return
-		}
 
 		err = json.NewDecoder(req.Body).Decode(patient)
 		if err != nil {
@@ -131,7 +85,14 @@ func updatePatient(store *sessions.CookieStore) http.HandlerFunc {
 		}
 		defer req.Body.Close()
 
-		err = patient.Update()
+		if !ok {
+			id := createPatientID(patient)
+			log.Printf("Creating new patient with ID %d", id)
+			patient.PatientID = id
+			err = patient.Create()
+		} else {
+			err = patient.Update()
+		}
 		if err != nil {
 			dbErrorResponse(rw, err)
 			return
@@ -167,4 +128,20 @@ func deletePatient(store *sessions.CookieStore) http.HandlerFunc {
 		}
 		rw.WriteHeader(http.StatusNoContent)
 	}
+}
+
+func createPatientID(patient *models.Patient) int {
+	h := sha1.New()
+	fmt.Fprintf(h, "%s%s%s%s%v",
+		patient.FirstName,
+		patient.LastName,
+		patient.HealthInsNum,
+		patient.DateOfBirth,
+		time.Now())
+	idHash := h.Sum(make([]byte, 8))
+	id, size := binary.Uvarint(idHash)
+	if size <= 0 {
+		log.Fatalf("Hash too small to produce uint64: %s", idHash)
+	}
+	return int(id)
 }
