@@ -62,8 +62,7 @@ func createEmployee(store *sessions.CookieStore) http.HandlerFunc {
 		err = empl.Create()
 		if err != nil {
 			msg := fmt.Sprintf("Error creating employee, %v", err)
-			public := "Couldn't save employee to DB"
-			errorResponse(rw, msg, public, http.StatusInternalServerError)
+			errorResponse(rw, msg, msg, http.StatusInternalServerError)
 			return
 		}
 		rw.WriteHeader(http.StatusCreated)

@@ -9,8 +9,8 @@
             <label class="login-field-icon fui-lock" for="login-pass"></label>
             <input type="password" id="login-pass" class="form-control" ng-model="User.password"
                    placeholder="Password" required>
-            <div class="alert alert-danger">
-                <span>{{errorMsg}}</span>
+            <div ng-show="error" class="alert alert-danger">
+                <strong>Warning!</strong> {{error.message}}
             </div>
         </div>
         <div class="modal-footer">

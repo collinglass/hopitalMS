@@ -35,7 +35,7 @@ controllers.controller('LoginCtrl', ['$scope', '$rootScope', '$location', 'Auth'
 
         var error = function (data) {
             if (data.code !== 400) {
-                $scope.errorMsg = data.message;
+                $scope.error = data;
             }
             window.console.log('Status: ' + status + ', message: ' + angular.toJson(data));
         };
@@ -69,6 +69,9 @@ controllers.controller('RegisterCtrl', ['$scope', '$rootScope', '$location', 'Em
             };
 
             var error = function (data) {
+                if (data.code !== 400) {
+                    $scope.error = data;
+                }
                 window.console.log('Status: ' + status + ', message: ' + angular.toJson(data));
             };
             Auth.logIn(employeeId, password, success, error);
@@ -342,11 +345,10 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
         } else {
             Patient.get({patientId: $routeParams.patientId}, function (patient) {
                 $scope.patient = patient;
-
-                Ward.get({wardId: 1}, function (ward) {  // TODO dynamic wardId
+                Ward.get({wardId: $rootScope.User.wardId}, function (ward) {
                     $scope.ward = ward;
                     $scope.patients = ward.patients;
-                    $scope.beds = ward.beds;
+                    $scope.freeBeds = filterFreeBeds(ward);
                 });
             });
         }
