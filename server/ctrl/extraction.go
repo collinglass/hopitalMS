@@ -12,7 +12,7 @@ import (
 
 const (
 	// Must match ../sessions.go, but can't import (cycle)
-	sessionCookieName = "session"
+	sessionCookieName = "mustache_session"
 	emplIDCookieKey   = "emplID"
 )
 

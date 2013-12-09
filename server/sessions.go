@@ -8,21 +8,15 @@ import (
 	"github.com/gorilla/sessions"
 	"log"
 	"net/http"
-	"time"
 )
 
 const (
-	sessionCookieName = "session"
+	sessionCookieName = "mustache_session"
 	emplIDCookieKey   = "emplID"
 )
 
 func StartSessions(authKey, cryptKey []byte) (*sessions.CookieStore, http.Handler) {
 	store := sessions.NewCookieStore(authKey, cryptKey)
-	store.Options = &sessions.Options{
-		Path:   "/",
-		MaxAge: int(time.Hour * 24),
-		// Secure: true,
-	}
 
 	sessionHandler := handlers.MethodHandler{
 		"POST":   postSession(store),
@@ -81,6 +75,7 @@ func postSession(store *sessions.CookieStore) http.HandlerFunc {
 				http.StatusInternalServerError)
 			return
 		}
+
 		session.Values[emplIDCookieKey] = empl.EmployeeID
 
 		err = session.Save(req, rw)
@@ -117,9 +112,6 @@ func deleteSession(store *sessions.CookieStore) http.HandlerFunc {
 			return
 		}
 
-		// old version of gorilla/sessions have a bug with Options, if
-		// you have a problem, try updating gorilla/sessions
-		session.Options.MaxAge = -1
 		delete(session.Values, emplIDCookieKey)
 
 		err = session.Save(req, rw)

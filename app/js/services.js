@@ -32,8 +32,17 @@ mustacheServices.factory("Employee", ["$resource", function ($resource) {
 mustacheServices.factory('Auth', ["$http", "$rootScope", "Employee", function ($http, $rootScope, Employee) {
 
     return {
-        logIn: function (employeeId, password) {
-            return $http.post('/api/v0.1/sessions', {employeeId: employeeId, password: password});
+        logIn: function (employeeId, password, success, error) {
+            $http.post('/api/v0.1/sessions', {employeeId: employeeId, password: password})
+                .success(function (data, status, headers, config) {
+                    Employee.get({employeeId: employeeId}, function (empl) {
+                        $rootScope.User = empl;
+                        success(data, status, headers, config);
+                    });
+                })
+                .error(function (data, status, headers, config) {
+                    error(data, status, headers, config);
+                });
         },
         logOut: function () {
             var promise = $http.delete('/api/v0.1/sessions');

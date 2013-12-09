@@ -5,7 +5,7 @@
 var angular = angular || {}; // To shut JSHint
 var controllers = angular.module('mustacheApp.controllers', []);
 
-controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$cookies", "$location", "Auth", "Employee", function ($scope, $rootScope, $cookies, $location, Auth, Employee) {
+controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth", "Employee", function ($scope, $rootScope, $location, Auth, Employee) {
     $scope.onNewAccount = function () {
         $rootScope.User = $scope.User;
         $location.path('/register');
@@ -15,42 +15,34 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$cookies", "$locat
         $scope.User = $scope.User || {};
         var employeeId = $scope.User.employeeId;
         var password = $scope.User.password;
-        var promise = Auth.logIn(employeeId, password);
-        promise.success(function(data, status, headers, config) {
-            window.console.log("Cookies: " + JSON.stringify($cookies));
-            window.console.log("Header: " + JSON.stringify(headers('Set-Cookie')));
-            Employee.get({employeeId: employeeId}, function (empl) {
-                $rootScope.User = empl;
-                $location.path('/wards/' + empl.wardId);
-            });
-        });
 
-        promise.error(function (data, status) {
-            window.console.log(JSON.stringify($cookies));
-            window.console.log("Status: " + status + ", message: " + JSON.stringify(data));
-        });
+        var success = function() {
+            $location.path('/wards/' + Auth.getUser().wardId);
+        };
+
+        var error = function(data) {
+            window.console.log("Status: " + status + ", message: " + angular.toJson(data));
+        };
+
+        Auth.logIn(employeeId, password, success, error);
     };
 }]);
 
-controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$cookies", "$location", "Employee", "Auth", function ($scope, $rootScope, $cookies, $location, Employee, Auth) {
+controllers.controller('RegisterCtrl', ["$scope", "$rootScope", "$location", "Employee", "Auth", function ($scope, $rootScope, $location, Employee, Auth) {
     $scope.onRegister = function () {
-        window.console.log("User is: ", JSON.stringify($scope.User));
         Employee.save($scope.User, function () {
+            $scope.User = $scope.User || {};
             var employeeId = $scope.User.employeeId;
             var password = $scope.User.password;
-            var promise = Auth.logIn(employeeId, password);
-            promise.success(function(data, status, headers, config) {
-                window.console.log("Cookies: " + JSON.stringify($cookies));
-                window.console.log("Header: " + JSON.stringify(headers('Set-Cookie')));
-                Employee.get({employeeId: employeeId}, function (empl) {
-                    $rootScope.User = empl;
-                    $location.path('/wards/' + empl.wardId);
-                });
-            });
 
-            promise.error(function (data, status) {
-                window.console.log("Status:" + status + JSON.stringify(data));
-            });
+            var success = function() {
+                $location.path('/wards/' + Auth.getUser().wardId);
+            };
+
+            var error = function(data) {
+                window.console.log("Status: " + status + ", message: " + angular.toJson(data));
+            };
+            Auth.logIn(employeeId, password, success, error);
         });
     };
 }]);
