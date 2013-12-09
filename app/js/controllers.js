@@ -213,8 +213,11 @@ controllers.controller('WardDetailCtrl', ["$scope", "$location", "$routeParams",
             $scope.patients.discharge = function () {
                 angular.forEach($scope.patients, function (patient) {
                     if (patient.selected) {
-                        var index = $scope.patients.indexOf(patient);
-                        $scope.patients.splice(index, 1);                   // TODO Free up bed
+                        patient.details.$delete({patientId: patient.patientId});
+                        var ward = $scope.ward;
+                        var index = ward.patients.indexOf(patient);
+                        ward.patients.splice(index, 1);
+                        ward.$save({wardId: ward.wardId});
                     }
                 });
             };
@@ -229,8 +232,6 @@ controllers.controller('PatientCtrl', ["$scope", "$location", "$routeParams", "W
         };
 
         $scope.save = function () {
-            var date = $scope.datepicker.date;
-            console.log(angular.toJson(date));
             var patient = $scope.patient;
             window.console.log("Saving patient: " + angular.toJson(patient));
             patient.$save({patientId: patient.patientId});
