@@ -213,8 +213,11 @@ controllers.controller('WardDetailCtrl', ['$scope', '$location', '$routeParams',
             $scope.patients.discharge = function () {
                 angular.forEach($scope.patients, function (patient) {
                     if (patient.selected) {
-                        var index = $scope.patients.indexOf(patient);
-                        $scope.patients.splice(index, 1);                   // TODO Free up bed
+                        patient.details.$delete({patientId: patient.patientId});
+                        var ward = $scope.ward;
+                        var index = ward.patients.indexOf(patient);
+                        ward.patients.splice(index, 1);
+                        ward.$save({wardId: ward.wardId});
                     }
                 });
             };
@@ -267,35 +270,32 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
             //window.console.log($scope.patients);
 
             $scope.admit = function () {
-                var newPatient = new Patient({
-                    patientId: $scope.newPatientId,
-                    lastName: $scope.lastName,
-                    firstName: $scope.firstName,
-                    healthInsNum: $scope.healthInsNum,
-                    address: $scope.address,
-                    phoneNum: $scope.phoneNum,
-                    dateOfBirth: $scope.dateOfBirth,
-                    gender: $scope.gender,
-                    maritalStatus: $scope.maritalStatus,
-                    nextOfKin: {
-                        name: $scope.nextOfKin.name,
-                        relationship: $scope.nextOfKin.relationship,
-                        address: $scope.nextOfKin.address,
-                        phoneNum: $scope.nextOfKin.phoneNum }
+
+                var newPatient = $scope.patient;
+                var patient = new Patient();
+                patient.lastName = newPatient.lastName;
+                patient.firstName = newPatient.firstName;
+                patient.healthInsNum = newPatient.healthInsNum;
+                patient.address = newPatient.address;
+                patient.phoneNum = newPatient.phoneNum;
+                patient.dateOfBirth = newPatient.dateOfBirth;
+                patient.gender = newPatient.gender;
+                patient.maritalStatus = newPatient.maritalStatus;
+                patient.nextOfKin = newPatient.nextOfKin;
+
+                patient.$save(function (savedPt) {
+
+                    var ward = $scope.ward;
+                    ward.patients.push({
+                        patientId: savedPt.patientId,
+                        bedId: savedPt.bedId,
+                        status: "nominal"
+                    });
+                    ward.$save({wardId: ward.wardId});
+
+                    // Check out the ward after
+                    $scope.go('/ward/' + $scope.ward.wardId);
                 });
-                $scope.patient = newPatient;
-                $scope.save();                      // TODO get working with database
-                var wardPush = {
-                    patientId: $scope.newPatientId,
-                    bedId: $scope.bedId,
-                    status: 'nominal'
-                };
-                window.console.log(wardPush);
-
-                $scope.patients.push(wardPush);
-
-                // Check out the ward after
-                $scope.go('/ward/' + $scope.ward.wardId);
 
             };
 
@@ -343,7 +343,7 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
                     $scope.beds = ward.beds;
                 });
             });
-        }
+        };
     }]);
 
 controllers.controller('RationaleCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient', 'Employee', 'AdmissionRequest',

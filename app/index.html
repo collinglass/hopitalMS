@@ -15,7 +15,7 @@
      ng-controller="NavCtlr">
 
     <div ng-show="isLogged()">
-        <a class="navbar-brand" ng-show="isLogged()" href="#/ward">The Mustache PMS</a>
+        <a class="navbar-brand" href="#/ward/{{getUser().wardId}}">The Mustache PMS</a>
 
 
         <div class="nav navbar-nav navbar-right">
@@ -26,13 +26,13 @@
     </div>
 
     <div ng-hide="isLogged()">
-        <a class="navbar-brand" href="#">The Mustache PMS</a>
+        <div class="navbar-brand" href="#">The Mustache PMS</div>
     </div>
 
 </nav>
 
 <div class="container">
-<div ng-view></div>
+    <div ng-view></div>
 </div>
 <!-- In production use:
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
@@ -46,6 +46,7 @@
 <script src="js/controllers.js"></script>
 <script src="js/filters.js"></script>
 <script src="js/directives.js"></script>
+
 
 </body>
 </html>
