@@ -106,7 +106,7 @@ func updateWard(store *sessions.CookieStore) http.HandlerFunc {
 		}
 
 		// Can only possibly change a ward you belong to
-		if wantWard.WardID != empl.WardID {
+		if wantWard.WardID != empl.WardID && empl.Roles[models.ChargeNurseRole] {
 			format := "update wards, employeeID %d doesn't belong to wardID %d"
 			msg := fmt.Sprintf(format, empl.EmployeeID, wantWard.WardID)
 			unauthorizedResponse(rw, msg)
