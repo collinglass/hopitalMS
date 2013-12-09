@@ -310,13 +310,14 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
 
         } else if ($location.path() === ('/admissions/' + $routeParams.admRequestId)) {
             Ward.get({wardId: $rootScope.User.wardId}, function (ward) {
-                window.console.log(ward);
+                window.console.log(angular.toJson(ward));
                 $scope.ward = ward;
                 ward.admissionRequests.forEach( function (admissionRequest) {
                     if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
                         $scope.admissionRequest = admissionRequest;
                         Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
                             $scope.patient = patient;
+                            $scope.freeBeds = filterFreeBeds(ward);
                         });
                         return;
                     }
@@ -411,12 +412,12 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
                     Patient.get({patientId: admissionRequest.patientId}, function (patient) {
                         $scope.patient = patient;
                     });
-                    return;
                 }
             });
         });
 
         $scope.refuse = function () {
+            console.log("Ready!");
             var response = {
                 patientId: $scope.patient.patientId,
                 toWardId: $scope.fromWard.wardId,
