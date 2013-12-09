@@ -352,37 +352,34 @@ controllers.controller('PatientCtrl', ['$scope', '$location', '$routeParams', '$
         }
     }]);
 
-controllers.controller('RationaleCtrl', ['$scope', '$location', '$routeParams', 'Ward', 'Patient', 'Employee', 'AdmissionRequest',
-    function ($scope, $location, $routeParams, Ward, Patient, Employee, AdmissionRequest) {
+controllers.controller('RationaleCtrl', ['$scope', '$location', '$routeParams', '$rootScope', 'Ward', 'Patient', 'Employee',
+    function ($scope, $location, $routeParams, $rootScope, Ward, Patient, Employee) {
         $scope.back = function () {
             history.go(-1);
         };
 
-
-        AdmissionRequest.get({admRequestId: $routeParams.admRequestId}, function (admissionRequest) {
-
-            $scope.admissionRequest = admissionRequest;
-            $scope.admRequestId = admissionRequest.admRequestId;
-            $scope.patientId = admissionRequest.patientId;
-            $scope.rationale = admissionRequest.rationale;
-            $scope.priority = admissionRequest.priority;
-
-            Patient.get({patientId: admissionRequest.patientId}, function (patient) {
-                $scope.firstName = patient.firstName;
-                $scope.lastName = patient.lastName;
+        Ward.get({wardId: $rootScope.User.wardId}, function (ward) {
+            window.console.log(ward);
+            $scope.ward = ward;
+            Employee.get({employeeId: ward.chargeNurseId}, function (employee) {
+                $scope.chargeNurseName = employee.firstName + ' ' + employee.lastName;
             });
-
-
-            Ward.get({wardId: admissionRequest.fromWardId}, function (fromWard) {
-                $scope.wardName = fromWard.name;
-                Employee.get({employeeId: fromWard.chargeNurseId}, function (nurse) {
-                    $scope.chargeNurseName = nurse.firstName + ' ' + nurse.lastName;
-                });
-                Employee.get({employeeId: fromWard.doctorId}, function (doctor) {
-                    $scope.doctorName = doctor.firstName + ' ' + doctor.lastName;
-                });
+            Employee.get({employeeId: ward.doctorId}, function (employee) {
+                $scope.doctorName = employee.firstName + ' ' + employee.lastName;
             });
-
+            ward.admissionRequests.forEach( function (admissionRequest) {
+                if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
+                    $scope.admissionRequest = admissionRequest;
+                    window.console.log(admissionRequest);
+                    Ward.get({wardId: admissionRequest.fromWardId}, function (ward) {
+                        $scope.fromWard = ward;
+                    });
+                    Patient.get({patientId: admissionRequest.patientId}, function (patient) {
+                        $scope.patient = patient;
+                    });
+                    return;
+                }
+            });
         });
     }]);
 
@@ -408,10 +405,11 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
             ward.admissionRequests.forEach( function (admissionRequest) {
                 if( $routeParams.admRequestId == admissionRequest.admRequestId ) {
                     $scope.admissionRequest = admissionRequest;
-                    Ward.get({wardId: $scope.admissionRequest.fromWardId}, function (ward) {
+                    window.console.log(admissionRequest);
+                    Ward.get({wardId: admissionRequest.fromWardId}, function (ward) {
                         $scope.fromWard = ward;
                     });
-                    Patient.get({patientId: $scope.admissionRequest.patientId}, function (patient) {
+                    Patient.get({patientId: admissionRequest.patientId}, function (patient) {
                         $scope.patient = patient;
                     });
                 }
@@ -426,10 +424,7 @@ controllers.controller('RefusalCtrl', ['$scope', '$location', '$routeParams', '$
                 inProgress: false,
                 refusal: $scope.refusal
             };
-            window.console.log(response);
-            window.console.log($scope.fromWard);
             $scope.fromWard.admissionResponses.push(response);
-            window.console.log($scope.ward);
             var index = $scope.ward.admissionRequests.indexOf($scope.admissionRequest);
             $scope.ward.admissionRequests.splice(index, 1);
             $scope.ward.$save({wardId: $scope.ward.wardId});
