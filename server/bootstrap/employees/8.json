@@ -1,9 +1,13 @@
 {
     "employeeId": 8,
-    "passwordHash": "garbblegarbble",
-    "passwordSalt": "0xDEADBEEF",
+    "password": "0xDEADBEEF",
     "firstName": "Lebron",
     "lastName": "James",
     "email": "lebronjames@gmail.com",
-    "roles": [2, 3]
+    "roles": {
+        "chargeNurse": false,
+        "doctor": false,
+        "medicalStaff": true
+    },
+    "wardId": 2
 }

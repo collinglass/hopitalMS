@@ -1,9 +1,13 @@
 {
     "employeeId": 4,
-    "passwordHash": "garbblegarbble",
-    "passwordSalt": "0xDEADBEEF",
+    "password": "0xDEADBEEF",
     "firstName": "Monica",
     "lastName": "Lewingski",
     "email": "prez@whitehouse.gov",
-    "roles": [2, 3]
+    "roles": {
+        "chargeNurse": false,
+        "doctor": true,
+        "medicalStaff": true
+    },
+    "wardId": 2
 }
