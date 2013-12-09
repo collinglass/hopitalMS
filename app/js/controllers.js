@@ -34,8 +34,10 @@ controllers.controller('LoginCtrl', ["$scope", "$rootScope", "$location", "Auth"
         };
 
         var error = function(data) {
+            if (data.code != 400 ) {
+                $scope.errorMsg = data.message;
+            }
             window.console.log("Status: " + status + ", message: " + angular.toJson(data));
-            $scope.errorMsg = data.message;
         };
 
         Auth.logIn(employeeId, password, success, error);
